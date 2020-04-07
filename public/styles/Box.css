@@ -1,0 +1,6 @@
+.gray-box {
+  width: 200px;
+  height: 200px;
+  border-radius: 30px;
+  background-color: rgba(226, 215, 215, 0.466);
+}
