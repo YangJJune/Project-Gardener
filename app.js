@@ -1,5 +1,4 @@
 const express = require('express');
-const connectHistoryApiFallback = require('connect-history-api-fallback');
 const app = express();
 const port = 3000;
 
