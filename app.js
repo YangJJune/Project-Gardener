@@ -1,14 +1,33 @@
 const express = require('express');
+const connectHistoryApiFallback = require('connect-history-api-fallback');
 const app = express();
-const PORT = 3000;
+const port = 3000;
 
-function handleListening() {
-  console.log(`Listening on http://localhost:${PORT}`);
-}
+app.get('/', function (req, res) {
+  res.sendFile('public/login.html', { root: __dirname });
+});
 
-function handleHome(req, res) {
-  res.send('hello');
-}
+app.listen(port, () => console.log(`the app listening on port ${port}`));
 
-app.get('/', handleHome);
-app.listen(PORT, handleListening);
+// const express = require('express');
+// const app = express();
+// const PORT = 3000;
+
+// function handleListening() {
+//   console.log(`Listening on http://localhost:${PORT}`);
+// }
+
+// function handleHome(req, res) {
+//   res.send('hello');
+// }
+
+// app.use(express.static('public'));
+// app.get('/', handleHome);
+
+// app.listen(PORT, handleListening);
+
+// router.get('/test', function (req, res) {
+//   res.sendFile(path.join(__dirname + '/login.html'));
+// });
+
+// app.use('/', router);
