@@ -23,10 +23,10 @@ app.get('/home', (req, res) => {
       accept: 'application/json',
     },
   }).then((response) => {
-    const access_token = response.data.access_token;
+    const accessToken = response.data.access_token;
     console.log(response.data);
     //redirect the user to the home page, along with the access token
-    res.redirect(`/home.html?access_token=${access_token}`);
+    res.redirect(`/home.html?access_token=${accessToken}`);
   });
 });
 
