@@ -11,7 +11,7 @@ const clientID = '5d2f350f3429d0008893';
 const clientSecret = '2a39092522d77f9b5507b49c14775348301c87c0';
 
 //Declare the redirect route
-app.get('/home', (req, res) => {
+app.get('/', (req, res) => {
   //The req.query object has the query params that were sent to this route.
   const requestToken = req.query.code;
 
@@ -30,34 +30,7 @@ app.get('/home', (req, res) => {
   });
 });
 
-// app.use(express.static(__dirname + '/public'));
 app.use(express.static(__dirname + '/public'));
 console.log(__dirname);
-// app.get('/', function (req, res) {
-//   res.sendFile('public/login.html', { root: __dirname });
-// });
 
 app.listen(port, () => console.log(`Server listening on port ${port}`));
-
-// const express = require('express');
-// const app = express();
-// const PORT = 3000;
-
-// function handleListening() {
-//   console.log(`Listening on http://localhost:${PORT}`);
-// }
-
-// function handleHome(req, res) {
-//   res.send('hello');
-// }
-
-// app.use(express.static('public'));
-// app.get('/', handleHome);
-
-// app.listen(PORT, handleListening);
-
-// router.get('/test', function (req, res) {
-//   res.sendFile(path.join(__dirname + '/login.html'));
-// });
-
-// app.use('/', router);
