@@ -49,7 +49,7 @@
     </header>
 
     <section class="carousel slide" data-ride="carousel" id="layoutContent">
-	  
+	   <!--this part varies depending on client requests-->
     </section>
 
     <footer class="fixed-bottom badge badge-light">
@@ -72,6 +72,46 @@
       crossorigin="anonymous"
     ></script>
     <script>
+	  // NOTICE
+      // ********************************* //
+      // make use of jquery for better productivity.
+
+      $(document).ready(render);
+
+      //identify what to render by pageName in query
+      function render() {
+        const query = window.location.search.substring(1);
+        // when query string is empty
+        if (!query) {
+          // make a http request and draw content layout
+          fetch('/main')
+            .then((res) => {
+              return res.text();
+            })
+            .then((content) => drawLayout(content));
+        } else {
+          // figure out content parameter of query string
+          const seperator = '&';
+          const content = query.split('content=')[1].split(seperator)[0];
+          if (content === 'login_success') {
+            // make a request to get an html part of content
+            // client needs to send access token to be authorized
+            const access_token = query
+              .split('access_token=')[1]
+              .split(seperator)[0];
+            fetch(`/login_2?access_token=${access_token}`)
+              .then((res) => res.text())
+              .then((content) => {
+                drawLayout(content);
+              });
+          }
+        }
+      }
+
+      //draw layout using html content. all previous elements inside id layoutContent will be deleted.
+      function drawLayout(content) {
+        $('#layoutContent').html(content);
+      }
     </script>
   </body>
 </html>
