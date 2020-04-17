@@ -18,7 +18,6 @@ const clientSecret = '2a39092522d77f9b5507b49c14775348301c87c0';
 // main page
 app.use('/main', (req, res) => {
   // where part of html used to
-  content = ``;
 
   // go to login page
   if (username == `guest`) {
@@ -63,9 +62,9 @@ app.use('/main', (req, res) => {
         </form>
       </div>
     `;
-    res.send(html);
+    res.send(content);
   } else {
-    res.send(html);
+    res.send(content);
     next();
   }
 });
@@ -87,33 +86,35 @@ app.use('/login_1', (req, res) => {
     const accessToken = response.data.access_token;
     console.log(response.data);
     //redirect the user to the home page, along with the access token
-    res.redirect(`/src/index.html?page_name=login&access_token=${accessToken}`);
+    res.redirect(
+      `/index.html?content=login_success&access_token=${accessToken}`
+    );
   });
 });
 
 // /login_2에서 git-hub으로 이동한 후,
 // 다시 redirection되는 page
 app.use('/login_2', (req, res) => {
-  //We can get the token from the "access_token" query
+  //We can get the token from the "access_token" paramter of query sent by client
   //param, available in the browsers "location" global
-  const query = window.location.search.substring(1);
-  const token = query.split('access_token=')[1];
+  const token = req.query.access_token;
+  console.log(token);
 
-  //Call the user info API using the fetch browser library
-  fetch('https://api.github.com/user', {
+  //make a 'get' http request to github api to get username
+  axios('https://api.github.com/user', {
     headers: {
       //Include the token in the Authorization header
       Authorization: 'token ' + token,
     },
   })
-    //Parse the response as JSON
-    .then((res) => res.json())
-    .then((res) => {
-      //Once we get the respone(which has many fields)
+    //Axios automatically parse the response as JSON
+    .then((person) => {
+      //Once we get the response(which has many fields)
       //Documented here: https://developer.github.com/v3/users/#get-the-authenticated-user
 
-      // set profile name
-      username = res.name;
+      //send username nested by tag
+      username = person.data.name;
+      res.send(`<h4>Welcome ${username}</h4>`);
     });
 });
 
