@@ -84,11 +84,9 @@ app.use('/login_1', (req, res) => {
     },
   }).then((response) => {
     const accessToken = response.data.access_token;
-    console.log(response.data);
+
     //redirect the user to the home page, along with the access token
-    res.redirect(
-      `/index.html?content=login_success&access_token=${accessToken}`
-    );
+    res.redirect(`/?content=login_success&access_token=${accessToken}`);
   });
 });
 
@@ -98,7 +96,6 @@ app.use('/login_2', (req, res) => {
   //We can get the token from the "access_token" paramter of query sent by client
   //param, available in the browsers "location" global
   const token = req.query.access_token;
-  console.log(token);
 
   //make a 'get' http request to github api to get username
   axios('https://api.github.com/user', {
@@ -114,6 +111,7 @@ app.use('/login_2', (req, res) => {
 
       //send username nested by tag
       username = person.data.name;
+      res.set('Content-Type', 'text/html');
       res.send(`<h4>Welcome ${username}</h4>`);
     });
 });
