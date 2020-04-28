@@ -41,59 +41,34 @@
 
   <section class="carousel slide" data-ride="carousel" id="layoutContent">
     <!--this part varies depending on client requests-->
-	<div class="row justify-content-flex-start">
-	  <div class="col-md-2" style="margin-left:15px;">
-	    <h4>글의 제목</h4>
-	  </div>
-	  <div class="input-text">
-	    <input type="text" class="form-control" placeholder="제목을 입력하세요" style="width:600px;"/>
-	  </div>
-	</div>
-	<div class="row justify-content-flex-start">
-	  <div class="col-md-2" style="margin-left:15px; line-height:100px;">
-	    <h4>요약</h4>
-	  </div>
-	  <div class="input-text">
-	    <input type="text" class="form-control" placeholder="내용을 입력하세요" style="width:600px; height:100px;"/>
-	  </div>
-	</div>
-	<div class="noName" style="">
-		<div class="input-group">
-			<div class="input-group-prepend" style="height:500px">
-				<span class="input-group-text"></span>
-			</div>
-			<textarea class="form-control" aria-label="textarea"></textarea>
-		</div>
-		<div class="button-group" align="right" style="margin-right:2em">
-			<button type="button" class="btn btn-outline-secondary">
-			<svg class="bi bi-cloud-upload" width="4em" height="4em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-			<path d="M4.887 6.2l-.964-.165A2.5 2.5 0 103.5 11H6v1H3.5a3.5 3.5 0 11.59-6.95 5.002 5.002 0 119.804 1.98A2.501 2.501 0 0113.5 12H10v-1h3.5a1.5 1.5 0 00.237-2.981L12.7 7.854l.216-1.028a4 4 0 10-7.843-1.587l-.185.96z"/>
-			<path fill-rule="evenodd" d="M5 8.854a.5.5 0 00.707 0L8 6.56l2.293 2.293A.5.5 0 1011 8.146L8.354 5.5a.5.5 0 00-.708 0L5 8.146a.5.5 0 000 .708z" clip-rule="evenodd"/>
-			<path fill-rule="evenodd" d="M8 6a.5.5 0 01.5.5v8a.5.5 0 01-1 0v-8A.5.5 0 018 6z" clip-rule="evenodd"/>
-			</svg>
-			</button>
-			
-			<button type="button" class="btn btn-outline-secondary">
-			<svg class="bi bi-star" width="4em" height="4em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-			<path fill-rule="evenodd" d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.523-3.356c.329-.314.158-.888-.283-.95l-4.898-.696L8.465.792a.513.513 0 00-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767l-3.686 1.894.694-3.957a.565.565 0 00-.163-.505L1.71 6.745l4.052-.576a.525.525 0 00.393-.288l1.847-3.658 1.846 3.658a.525.525 0 00.393.288l4.052.575-2.906 2.77a.564.564 0 00-.163.506l.694 3.957-3.686-1.894a.503.503 0 00-.461 0z" clip-rule="evenodd"/>
-			</svg>
-			</button>
-		</div>
-		<div class="button-group2" align="right" style="margin:5px 0px 0 0;">
-			<button type="button" class="btn btn-outline-secondary">
-			<svg class="bi bi-caret-left" width="5em" height="2em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-			<path fill-rule="evenodd" d="M10 12.796L4.519 8 10 3.204v9.592zm-.659.753l-5.48-4.796a1 1 0 010-1.506l5.48-4.796A1 1 0 0111 3.204v9.592a1 1 0 01-1.659.753z" clip-rule="evenodd"/>
-			</svg>
-			</button>
-			
-			<button type="button" class="btn btn-outline-secondary">
-			<svg class="bi bi-caret-right" width="5em" height="2em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-			<path fill-rule="evenodd" d="M6 12.796L11.481 8 6 3.204v9.592zm.659.753l5.48-4.796a1 1 0 000-1.506L6.66 2.451C6.011 1.885 5 2.345 5 3.204v9.592a1 1 0 001.659.753z" clip-rule="evenodd"/>
-			</svg>
-			</button>
-		</div>
-	</div>
-	
+    <br>
+    <div class="row justify-content-center">
+      <div class="col-md-2">
+        <h4>잔디 심기</h4>
+      </div>
+      <div class="dropdown col-md-4">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">
+          카테고리
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <a class="dropdown-item" href="#">알고리즘</a>
+          <a class="dropdown-item" href="#">TIL</a>
+          <a class="dropdown-item" href="#">React</a>
+        </div>
+      </div>
+      <div class="col-md-2">
+        <button type="button" class="btn btn-primary">미리 보기</button>
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="input-text">
+        <input type="text" class="form-control" style="width:750px; height:450px; margin-left:200px" />
+      </div>
+      <div class=
+    </div>
+
   </section>
 
   <footer class="fixed-bottom badge badge-light">
