@@ -2,7 +2,8 @@
 # 2020.04.30
 #
 # express-session을 이용한 session 예제
-# (작동 안 함)
+# 
+# URL 에 username 인자를 넣어 테스트 요망
 ***********************************/
 
 const express = require('express');
@@ -18,17 +19,16 @@ app.use(session({
 
 app.use('/:username', (req, res)=>{
     let sess = req.session;
-    sess.username = req.params['username'] + 'add  ';
+    let msg = 'err';
 
-    res.send(`
-        <a id = 'linkBtn'>
-            click me!
-        </a>
-        <script>
-            let a = document.getElementById('linkBtn');
-            a.href = 'http://localhost:3000/sessionStorage.usernmae';
-        </script>
-    `)
+    if(sess.username){
+        sess.username = req.params['username'];
+        msg = 'change username to ' + sess.username;
+    }else{
+        sess.username = req.params['username'];
+        msg = 'set username to ' + sess.username;
+    }
+    res.send(msg);
 })
 
 app.listen(port, () => console.log(`Server listening on port ${port}`));
