@@ -34,6 +34,8 @@ app.use('/', (req, res)=>{
 
         let data = '';
 
+        // response.data에는 json객체들의 배열이 저장되어 있음
+        // (위 github API 기준)
         for(var index in response.data){
             data += index + '번째 data{\n';
             let json = response.data[index];
