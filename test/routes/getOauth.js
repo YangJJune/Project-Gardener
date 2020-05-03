@@ -1,14 +1,12 @@
 /*****************************************
-* 2020.05.02
+* 2020.05.03
 *
 * express router file
 *
 * 로그인이 되어 있는지 확인하고,
 * 로그인이 필요하다면 로그인을 진행
 *
-* https://developer.github.com/apps/building-oauth-apps/authorizing-oauth-apps/#web-application-flow
-* 의 step2 과정 수행 중 문제 발생
-* 해당하는 URL로 POST가 되지 않음.....
+* axios에서 catch()가 호출됨 (err가 있음)
 ******************************************/
 
 const router = require('express').Router();
@@ -41,50 +39,34 @@ router.use('/', (req, res)=>{
         // have a 'code' parameter
         // means that you have been redirected once
         // during the login process.
-        
-        // for test
-        res.send(qs.stringify({
-            clinet_id: clientID,
-            client_secret: clientSecret,
-            code: req.query.code
-        }));
-        
+
+        // request access_token using code
         axios({
-            //url: '/login/oauth/',
-            //url: '/login/oauth/' + req.query.code,
-            url: '/login/oauth/?' + qs.stringify({
-                clinet_id: clientID,
-                client_secret: clientSecret,
-                code: req.query.code
-            }),
+            url: '/login/oauth/access_token',
             method: 'post',
             baseURL: 'https://github.com',
             timeout: 3000,
-            /*
             data:{
                 clinet_id: clientID,
                 client_secret: clientSecret,
                 code: req.query.code
             },
-            */
             headers: {
                 accept: 'application/json',
             }
         }).then((response)=>{
-            session.access_token = response.data.access_token;
-
             // for test
-            res.send('test1');
+            res.send('success');
+
+
+            // store access_token to session Storage
+            session.access_token = response.data.access_token;
 
             // login process is ended
             // go to the next router
             next();
         }).catch((err)=>{
-            // for test
-            res.send(err);
-        }).then(()=>{
-            // for test
-            res.send('test2');
+            res.send('err');
         });
     }else{
         // requires login
