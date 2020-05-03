@@ -1,9 +1,9 @@
 /**********************************
-# 2020.05.01
-#
-# express-session을 이용한 session 예제
-# 
-# URL 에 username 인자를 넣어 테스트 요망
+* 2020.05.01
+*
+* express-session을 이용한 session 예제
+* 
+* URL 에 username 인자를 넣어 테스트 요망
 ***********************************/
 
 const express = require('express');

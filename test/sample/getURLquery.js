@@ -1,11 +1,11 @@
 /**********************************
-# 2020.04.30
-#
-# axios를 이용해 URL(URI) query를
-# 받아오는 예제
-#
-# 받아온 쿼리는 크롬 개발자도구(단축키 F12)
-# Sorces탭에서 확인하길 바람
+* 2020.04.30
+*
+* axios를 이용해 URL(URI) query를
+* 받아오는 예제
+*
+* 받아온 쿼리는 크롬 개발자도구(단축키 F12)
+* Sorces탭에서 확인하길 바람
 ***********************************/
 
 // get external library(module)
@@ -19,9 +19,9 @@ const port = 3000;
 // main page
 app.use('/', (req, res)=>{
     axios({
-        url: 'user/repos',
+        url: '/user/repos',
         method: 'get',
-        baseURL : 'https://api.github.com/',
+        baseURL : 'https://api.github.com',
         params :{
             visibility : 'all'
         },
