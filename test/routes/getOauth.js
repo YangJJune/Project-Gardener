@@ -5,8 +5,7 @@
 *
 * 로그인이 되어 있는지 확인하고,
 * 로그인이 필요하다면 로그인을 진행
-*
-* axios에서 catch()가 호출됨 (err가 있음)
+* (access_token을 session Storage에 저장)
 ******************************************/
 
 const router = require('express').Router();
@@ -29,7 +28,7 @@ router.use(session({
     saveUninitialized: false
 }));
 
-router.use('/', (req, res)=>{
+router.use('/', (req, res, next)=>{
 
     if(session.access_token){ 
         // already have an access token
@@ -46,8 +45,8 @@ router.use('/', (req, res)=>{
             method: 'post',
             baseURL: 'https://github.com',
             timeout: 3000,
-            data:{
-                clinet_id: clientID,
+            params:{
+                client_id: clientID,
                 client_secret: clientSecret,
                 code: req.query.code
             },
@@ -55,16 +54,12 @@ router.use('/', (req, res)=>{
                 accept: 'application/json',
             }
         }).then((response)=>{
-            // for test
-            res.send('success');
-
-
             // store access_token to session Storage
             session.access_token = response.data.access_token;
 
             // login process is ended
-            // go to the next router
-            next();
+            // return to the original page
+            res.redirect(req.baseUrl + req.path);
         }).catch((err)=>{
             res.send('err');
         });
