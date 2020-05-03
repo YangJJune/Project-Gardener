@@ -5,12 +5,9 @@
   "main": "app.js",
   "dependencies": {
     "axios": "^0.19.2",
-    "connect-history-api-fallback": "^1.6.0",
-    "cors": "^2.8.5",
     "express": "^4.17.1",
     "express-session": "^1.17.1",
-    "pm2": "^4.4.0",
-    "randomstring": "^1.1.5"
+    "pm2": "^4.4.0"
   },
   "devDependencies": {},
   "scripts": {
@@ -18,12 +15,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/algoORgoal/project-garden.git"
+    "url": "git+https://github.com/YangJJune/Project-Gardener.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/algoORgoal/project-garden/issues"
+    "url": "https://github.com/YangJJune/Project-Gardener.git"
   },
-  "homepage": "https://github.com/algoORgoal/project-garden#readme"
+  "homepage": "https://github.com/YangJJune/Project-Gardener.git"
 }
