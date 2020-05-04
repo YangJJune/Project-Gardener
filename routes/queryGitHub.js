@@ -2,14 +2,16 @@
  * 2020.05.04
  * 
  * git-hub API를 관리하는 router
- * 
- * Oauth token을 이용
+ * (Oauth token을 사용)
  * 
  * ------------------------note----------------------------
- * 로그인 과정에서 original request가 소실됨
- * session 등을 사용해 저장할 필요가 있음
+ * git-hub API 추가공부 필요
  * 
- * Oauth token을 가지고 githubAPI를 사용하는데 err
+ * git-hub에 query하는 과정이 2번 실행됨
+ * (경과시간이 길어서 HTTP연결이 끊겨서 생기는 문제로 추측)
+ * 
+ * 이미 로그인을 거친 뒤에도 계속해서 로그인을 실행하는것으로 보임
+ * session data가 너무 일찍 expire되는 것일수도 있음
  *********************************************************/
 
 const router = require('express').Router();
@@ -51,7 +53,6 @@ router.use('/', (req, res, next)=>{
             url: '/login/oauth/access_token',
             method: 'post',
             baseURL: 'https://github.com',
-            timeout: 3000,
             params:{
                 client_id: clientID,
                 client_secret: clientSecret,
@@ -63,16 +64,27 @@ router.use('/', (req, res, next)=>{
         }).then((response)=>{
             // store access_token to session Storage
             session.access_token = response.data.access_token;
+            console.log('git-hub Oauth token is stored successfully');
 
             // login process is ended
             // return to the original page
-            res.redirect(req.baseUrl + req.path);
+            res.redirect(session.originAccess);
+            console.log('redirect to original user access');
+
+            // delete used and no more needed session data
+            // session.remove(originAccess);
+            session.originAccess = req.hostname;
+            console.log('original URL in session storage is successfully changed to hostname');
         }).catch((err)=>{
+            console.log('err on login process');
             console.log(err);
-            res.send('err');
         });
     }else{
         // requires login
+
+        // store original URI that user want to access
+        session.originAccess = req.originalUrl;
+        console.log('original URL is saved');
 
         // redirect to login page
         let query = qs.stringify({
@@ -80,8 +92,8 @@ router.use('/', (req, res, next)=>{
             allow_signup: true
         });
         res.redirect('https://github.com/login/oauth/authorize?' + query);
+        console.log('redirect to git-hub login page');
     };
-    
 });
 
 // query data from git-hub using Oauth token
@@ -90,19 +102,19 @@ router.use('/', (req, res)=>{
     // 우선은 유저 정보 불러오는것부터.... 구현해둠.
     axios({
         baseURL: 'https://api.github.com',
-        url: '/user/',
+        url: 'user',
         method: 'get',
-        timeout: 3000,
+        // we will authorization with Oauth token
         headers:{
             Authorization: 'token ' + session.access_token
         }
     }).then((response)=>{
         // send response to client in json format
-        console.log(response);
-        res.json(response.data);
+        console.log('the response data is...');
+        console.log(response.data);
     }).catch((err)=>{
+        console.log('err while requesting github API');
         console.log(err);
-        res.send('err');
     });
 })
 

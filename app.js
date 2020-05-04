@@ -4,10 +4,10 @@
  * program을 총괄하는 기본 파일
  * 
  * -------------------note-----------------------
- * html_render_router 호출 시 err 발생
- * query_github_router내부에서 res.redirect하는 과정에서
- * HTTP Header관련 err
- * 현재 원인파악 안 됨 (html_render_router 주석처리)
+ * app.listen과 http.response에 대한 공부 필요
+ * 
+ * 현재 클라이언트에 전송되는 data는 없음
+ * 모두 console에 출력되기만 함.
  *************************************************/
 
 const express = require('express');
@@ -21,8 +21,7 @@ const html_render_router = require('./routes/renderHtml.js');
 const query_github_router = require('./routes/queryGitHub.js');
 
 
-//app.use('/', html_render_router);
+app.use('/', html_render_router);
 app.use('/github/', query_github_router);
-
 
 app.listen(port);
