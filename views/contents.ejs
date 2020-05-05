@@ -1,0 +1,16 @@
+<%######################################## 
+# 2020.05.05
+# 
+# test용 contents
+###########################################%>
+
+<h5>
+    Test res.locals in ejs
+</h5>
+<ul>
+     <% for(let property in user){ %>
+         <li>
+             <%= property + ": " + user[property] %>
+         </li>
+     <% } %>
+ </ul>
