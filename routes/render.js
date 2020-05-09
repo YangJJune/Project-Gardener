@@ -1,5 +1,5 @@
 /***********************************************
- * 2020.05.05
+ * 2020.05.09
  * 
  * html을 rendering하는 router
  * 모든 page에 공통적으로 '마지막'에 실행되는 router
@@ -17,16 +17,8 @@ const session = require('express-session');
 
 router.use('/', (req, res)=>{
 
-    let user = {
-        name: 'guest'
-    };
-    if(session.user){
-        user = session.user;
-    };
-
-    res.render('../views/index', {user: user});
-    console.log('rendering success');
-    console.log(' ');
+    res.render('../views/index', {user: session.user, contents: res.locals.contents});
+    console.log('rendering');
 });
 
 module.exports = router;

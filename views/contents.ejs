@@ -1,16 +1,20 @@
 <%######################################## 
-# 2020.05.05
+# 2020.05.09
 # 
 # test용 contents
 ###########################################%>
 
 <h5>
-    Test res.locals in ejs
+    Test contents in ejs
 </h5>
 <ul>
-     <% for(let property in user){ %>
-         <li>
-             <%= property + ": " + user[property] %>
-         </li>
-     <% } %>
+    <% if(contents){ %>
+        <% for(let property in contents){ %>
+            <li>
+                <%= property + ": " + contents[property] %>
+            </li>
+        <% } %>
+    <% }else{ %>
+        <%= 'no contents' %>
+    <% } %>
  </ul>

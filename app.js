@@ -1,16 +1,12 @@
 /*************************************************
- * 2020.05.05
+ * 2020.05.09
  * 
  * program을 총괄하는 기본 파일
- * 
  * -------------------note-----------------------
- * app.use('/')가 두 번씩 호출되고 있음.
- * 이유는 모름.....
- * 
  * session 만료 시기 조정 필요
  * 탭을 닫으면 만료되게 하고 싶음
  * 그리고 특정 property를 삭제하고 싶음
- * 현재 10분동안 session이 일괄적으로 유지되고 있음
+ * -- how to multiple session
  *************************************************/
 
 const express = require('express');
@@ -27,13 +23,16 @@ app.use(session({
     name: 'project-garden',
     cookie:{
         httpOnly: true,
-        scure: false,
-        maxAge: 600000
+        scure: false
     },
+    // 아래 parameter 재공부 필요
     resave: true,
     saveUninitialized: false
 }));
 
+
+// login/logout with git-hub Oauth
+app.use('/authorization/', require('./routes/authorization.js'));
 
 // request data from github
 // and store received data in res.locals
