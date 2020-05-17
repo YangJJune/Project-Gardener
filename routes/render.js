@@ -17,7 +17,7 @@ const session = require('express-session');
 
 router.use('/', (req, res)=>{
 
-    res.render('../views/index', {user: session.user, contents: res.locals.contents});
+    res.render('../views/index', {user: session.user, contents: session.contents});
     console.log('rendering');
 });
 

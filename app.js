@@ -1,12 +1,18 @@
 /*************************************************
- * 2020.05.09
+ * 2020.05.17
  * 
  * program을 총괄하는 기본 파일
  * -------------------note-----------------------
- * session 만료 시기 조정 필요
- * 탭을 닫으면 만료되게 하고 싶음
  * 그리고 특정 property를 삭제하고 싶음
  * -- how to multiple session
+ * resave, saveUninitialized 등의 속성 공부 필요
+ * 
+ * if else분기구조에서 주석처리할때, 현제의 포맷은 지저분하다
+ * 새로운 주석 합의가 필요하다
+ * 
+ * 하나의 라우터에 둘 이상의 콜백이 필요한 경우
+ * 지금처럼 람다를 써야 하는가? 아니면 함수를 정의해 둬야 하는가?
+ * 새로운 합의가 필요하다.
  *************************************************/
 
 const express = require('express');
@@ -25,7 +31,6 @@ app.use(session({
         httpOnly: true,
         scure: false
     },
-    // 아래 parameter 재공부 필요
     resave: true,
     saveUninitialized: false
 }));
@@ -45,5 +50,4 @@ app.use('/', require('./routes/render.js'));
 // listen
 app.listen(port, ()=>{
     console.log(`app listening on port ${port}!`);
-    console.log(' ');
 });
