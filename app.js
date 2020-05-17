@@ -13,19 +13,23 @@
  * 하나의 라우터에 둘 이상의 콜백이 필요한 경우
  * 지금처럼 람다를 써야 하는가? 아니면 함수를 정의해 둬야 하는가?
  * 새로운 합의가 필요하다.
+ * 
+ * err handler 필요하다
+ * 구조가 너무 꼬여.... 전담 router 제작 필요
  *************************************************/
 
 const express = require('express');
 const session = require('express-session');
 const app = express();
-const port = 3000;
+
+const secret = require('./secret.js');
 
 // we will use 'ejs' engine
 app.set('view engine', 'ejs');
 
 // for using express-session
 app.use(session({
-    secret: 'ignorance is bliss',
+    secret: secret.session_secret,
     name: 'project-garden',
     cookie:{
         httpOnly: true,
@@ -48,6 +52,6 @@ app.use('/', require('./routes/render.js'));
 
 
 // listen
-app.listen(port, ()=>{
-    console.log(`app listening on port ${port}!`);
+app.listen(secret.port_number, ()=>{
+    console.log(`app listening on port ${secret.port_number}!`);
 });
