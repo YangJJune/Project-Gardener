@@ -1,5 +1,5 @@
 /*************************************************
- * 2020.05.17
+ * 2020.05.18
  * 
  * program을 총괄하는 기본 파일
  * -------------------note-----------------------
@@ -18,19 +18,16 @@
  * 구조가 너무 꼬여.... 전담 router 제작 필요
  *************************************************/
 
-const express = require('express');
-const session = require('express-session');
+const express = require("express");
+const session = require("express-session");
 const app = express();
 
-const secret = require('./secret.js');
-
-// we will use 'ejs' engine
-app.set('view engine', 'ejs');
+const secret = require("./secret.js");
 
 // for using express-session
 app.use(session({
     secret: secret.session_secret,
-    name: 'project-garden',
+    name: "Project-Garden",
     cookie:{
         httpOnly: true,
         scure: false
@@ -41,14 +38,13 @@ app.use(session({
 
 
 // login/logout with git-hub Oauth
-app.use('/authorization/', require('./routes/authorization.js'));
+app.use("/authorization/", require("./routes/authorization.js"));
 
 // request data from github
-// and store received data in res.locals
-app.use('/github/', require('./routes/queryGitHub.js'));
+app.use("/github/", require("./routes/queryGitHub.js"));
 
 // render html using data in res.locals
-app.use('/', require('./routes/render.js'));
+app.use("/", require("./routes/sendData.js"));
 
 
 // listen

@@ -5,7 +5,6 @@
   "main": "app.js",
   "dependencies": {
     "axios": "^0.19.2",
-    "ejs": "^3.1.2",
     "express": "^4.17.1",
     "express-session": "^1.17.1",
     "pm2": "^4.4.0"
