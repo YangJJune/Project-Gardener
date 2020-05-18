@@ -3,31 +3,22 @@
  * 
  * program을 총괄하는 기본 파일
  * -------------------note-----------------------
- * 그리고 특정 property를 삭제하고 싶음
- * -- how to multiple session
- * resave, saveUninitialized 등의 속성 공부 필요
+ * session과 res.locals에 대한 공부가 필요함
  * 
- * if else분기구조에서 주석처리할때, 현제의 포맷은 지저분하다
- * 새로운 주석 합의가 필요하다
- * 
- * 하나의 라우터에 둘 이상의 콜백이 필요한 경우
- * 지금처럼 람다를 써야 하는가? 아니면 함수를 정의해 둬야 하는가?
- * 새로운 합의가 필요하다.
- * 
- * err handler 필요하다
- * 구조가 너무 꼬여.... 전담 router 제작 필요
+ * err handler에 대한 공부가 필요함
+ * - 모듈화
+ * - http status code
  *************************************************/
 
-const express = require("express");
-const session = require("express-session");
+const express = require('express');
+const session = require('express-session');
 const app = express();
-
-const secret = require("./secret.js");
+const secret = require('./secret.js');
 
 // for using express-session
 app.use(session({
     secret: secret.session_secret,
-    name: "Project-Garden",
+    name: 'Project-Garden',
     cookie:{
         httpOnly: true,
         scure: false
@@ -36,16 +27,17 @@ app.use(session({
     saveUninitialized: false
 }));
 
-
-// login/logout with git-hub Oauth
-app.use("/authorization/", require("./routes/authorization.js"));
-
 // request data from github
-app.use("/github/", require("./routes/queryGitHub.js"));
+app.use('/github/', require('./routes/queryGitHub.js'));
 
-// render html using data in res.locals
-app.use("/", require("./routes/sendData.js"));
+// terminate HTTP communication
+app.use('/', require('./routes/endSend.js'));
 
+// err handler
+app.use('/', (err, req, res, next)=>{
+    res.send('err occurred');
+    console.log(err);
+});
 
 // listen
 app.listen(secret.port_number, ()=>{
