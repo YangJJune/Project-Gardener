@@ -19,13 +19,11 @@ process manager: PM2
 **push는 한 번에 여러 파일이 아닌 기능 하나당 적절한 메시지와 함께 진행한다.**  
 _(함부로 add --all 이후 push하지 않는다.)_
 
-문자열은 큰따옴표가 아닌 작은따옴표로 작성한다.  
-file과 directory name은 camel case를 따른다.
+문자열은 큰따옴표가 아닌 **작은따옴표**로 작성한다.  
 
 #### Variables Naming
 
 - 단어 사이의 구분을 \_로
-
   - secret
   - session
   - res.locals
@@ -34,16 +32,15 @@ file과 directory name은 camel case를 따른다.
 - Camel Case
   - 일반 변수명
   - 일반 함수명
+  - file name
+  - directory name
 
 ## Manual
 
 ### Server Side
 
-- /authorization/  
-  git-hub Oauth token과 관련된 작업을 수행한다.
-
-- /github/:path  
-  git-hub에서 path에 따라 request한다.
+- /github/
+  url.query를 바탕으로 git-hub에 data를 request한다.
 
 ### Client Side
 
