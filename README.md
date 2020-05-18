@@ -19,9 +19,21 @@ process manager: PM2
 **push는 한 번에 여러 파일이 아닌 기능 하나당 적절한 메시지와 함께 진행한다.**  
 _(함부로 add --all 이후 push하지 않는다.)_
 
-문자열은 따옴표가 아닌 큰따옴표로 작성한다.  
-file과 directory name은 camel case를 따른다.  
-secret의 key는 \_로 단어를 구분한다.
+문자열은 큰따옴표가 아닌 작은따옴표로 작성한다.  
+file과 directory name은 camel case를 따른다.
+
+#### Variables Naming
+
+- 단어 사이의 구분을 \_로
+
+  - secret
+  - session
+  - res.locals
+  - URL query
+
+- Camel Case
+  - 일반 변수명
+  - 일반 함수명
 
 ## Manual
 
