@@ -39,7 +39,7 @@ _(함부로 add --all 이후 push하지 않는다.)_
 
 ### Server Side
 
-- /github/
+- /github/  
   url.query를 바탕으로 git-hub에 data를 request한다.
 
 ### Client Side
