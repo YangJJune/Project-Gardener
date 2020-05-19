@@ -1,42 +1,35 @@
 /*************************************************
- * 2020.05.18
+ * 2020.05.19
  * 
  * program을 총괄하는 기본 파일
  * -------------------note-----------------------
  * session과 res.locals에 대한 공부가 필요함
  * 
- * err handler에 대한 공부가 필요함
- * - 모듈화
- * - http status code
+ * res.send를 사용하지 않고 res.write를 사용한다.
+ * 
+ * 한 번의 통신에서 '*'경로가 두 번씩 호출된다.
+ * express router에 관한 공부가 필요한듯 싶다.
  *************************************************/
 
 const express = require('express');
-const session = require('express-session');
 const app = express();
 const secret = require('./secret.js');
 
-// for using express-session
-app.use(session({
-    secret: secret.session_secret,
-    name: 'Project-Garden',
-    cookie:{
-        httpOnly: true,
-        scure: false
-    },
-    resave: true,
-    saveUninitialized: false
-}));
+const githubAPIRouter = require('./routes/queryGitHub.js');
+const HTTPTerminator = require('./routes/HTTPTerminator.js');
+const errHandler = require('./routes/errHandler.js');
 
 // request data from github
-app.use('/github/', require('./routes/queryGitHub.js'));
+app.use('/github/', githubAPIRouter);
 
 // terminate HTTP communication
-app.use('/', require('./routes/endSend.js'));
+app.use('*', (req, res, next)=>{
+    HTTPTerminator(req, res, next);
+});
 
 // err handler
-app.use('/', (err, req, res, next)=>{
-    res.send('err occurred');
-    console.log(err);
+app.use('*', (err, req, res, next)=>{
+    errHandler(err, req, res, next);
 });
 
 // listen

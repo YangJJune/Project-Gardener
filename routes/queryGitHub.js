@@ -3,6 +3,10 @@
  * 
  * git-hub API를 관리하는 router
  * (Oauth token을 사용)
+ * 
+ * ## 중요 ##
+ * 이 라우터에 있는 모든 기능은 react로 옮겨질 예정
+ * >> express-session npm을 사용하지 않게 될 수도 있음
  * ------------------------note----------------------------
  * 로그인 이후 code의 노출로 redirection이 필요함
  * 
@@ -21,61 +25,39 @@ const qs = require('querystring');
 const axios = require('axios');
 const secret = require('../secret.js');
 
-async function getAccessToken(accessCode){
-    // get access_token (Oauth token) using 'code' parameter
-    // that is requested at getAccessCode()
-    let response = await axios({
-        url: '/login/oauth/access_token',
-        method: 'post',
-        baseURL: 'https://github.com',
-        params:{
-            client_id: secret.client_id,
-            client_secret: secret.client_secret,
-            // here the 'accessCode' parameter that
-            // is requested at getAccessCode() is used
-            code: accessCode
-        },
-        headers: {
-            accept: 'application/json',
+// for using express-session
+router.use(session({
+    secret: secret.session_secret,
+    name: 'Project-Garden',
+    cookie:{
+        httpOnly: true,
+        scure: false
+    },
+    resave: true,
+    saveUninitialized: false
+}));
+
+// async function wrapper
+const asyncWrapper = (fn) =>{
+    return (req, res, next) =>{
+        fn(req, res, next).catch((err) => next(err));
+    };
+};
+
+router.use('/getGardenData', asyncWrapper(async (req, res, next)=>{
+    // get 'Garden' data using 'userName' and 'path'
+    let response = axios({
+        baseURL: 'https://api.github.com',
+        url: '/repos/' + req.query.user_name + '/Garden/contents' + req.query.path,
+        method: 'get',
+        headers:{
+            Authorization: 'token ' + session.access_token
         }
     });
+    next();
+}));
 
-    if(response.data.access_token){
-        return response.data.access_token;
-    }else{
-        throw new Error('no access token');
-    };
-
-};
-
-function getAccessCode(res){
-    // redirect to login page to get 'code' parameter
-    res.redirect('https://github.com/login/oauth/authorize?' + qs.stringify({
-        client_id: secret.client_id,
-        allow_signup: true,
-        scope: 'repo'
-    }));
-};
-
-async function getGardenData(userName, path){
-    try{
-        // get 'Garden' data using 'userName' and 'path'
-        let response = axios({
-            baseURL: 'https://api.github.com',
-            url: '/repos/' + userName + '/Garden/contents' + path,
-            method: 'get',
-            headers:{
-                Authorization: 'token ' + session.access_token
-            }
-        });
-
-        return response.data;
-    }catch(err){
-        throw err;
-    };
-};
-
-async function getUserData(){
+router.use('/getUserData', asyncWrapper(async (req, res, next)=>{
     // get the authenticated user's information
     let response = await axios({
         baseURL: 'https://api.github.com',
@@ -86,14 +68,11 @@ async function getUserData(){
         }
     });
 
-    if(response.data){
-        return response.data;
-    }else{
-        throw new Error('no user data');
-    };
-};
+    session.user = response.data;
+    next();
+}));
 
-async function getReposList(){
+router.use('/getReposList', asyncWrapper(async (req, res, next)=>{
     // get repos List for the authenticated user
     let response = await axios({
         baseURL: 'https://api.github.com',
@@ -103,16 +82,11 @@ async function getReposList(){
             Authorization: 'token ' + session.access_token
         }
     });
+    next();
+}));
 
-    if(response.data){
-        return response.data;
-    }else{
-        throw new Error('no repos list');
-    };
-};
-
-async function createRepos(reposName){
-    // creating a repository named 'reposName'
+router.use('/createGarden', asyncWrapper(async (req, res, next)=>{
+    // creating a repository named 'Garden'
     let response = await axios({
         baseURL: 'https://api.github.com',
         url: '/user/repos',
@@ -132,56 +106,38 @@ async function createRepos(reposName){
             Authorization: 'token ' + session.access_token
         }
     });
+}));
 
-    if(response.data){
-        return response.data;
-    }else{
-        throw new Error('err on create repos');
-    }
-};
+router.use('/getAccessToken', asyncWrapper(async (req, res, next)=>{
+    // get access_token (Oauth token) using 'code' parameter
+    // that is requested at getAccessCode()
+    let response = await axios({
+        url: '/login/oauth/access_token',
+        method: 'post',
+        baseURL: 'https://github.com',
+        params:{
+            client_id: secret.client_id,
+            client_secret: secret.client_secret,
+            // here the 'accessCode' parameter that
+            // is requested at getAccessCode() is used
+            code: req.query.code
+        },
+        headers: {
+            accept: 'application/json',
+        }
+    });
 
-// request to git-hub
-router.use('/', async (req, res, next)=>{
-    try{
-        switch(req.query.request){
-            case 'getAccessToken':
-                session.access_token = await getAccessToken(req.query.code);
-                console.log('get access token');
-                console.log(session.access_token);
-                break;
-            case 'getAccessCode':
-                await getAccessCode(res);
-                console.log('get access code');
-                break;
-            case 'getGardenData':
-                res.locals.garden_data = await getGardenData(req.query.user_name, req.query.path);
-                res.write(res.locals.garden_data);
-                console.log(res.locals.garden_data);
-                break;
-            case 'getUserData':
-                session.user = await getUserData();
-                res.write(session.user);
-                console.log(session.user);
-                break;
-            case 'getReposList':
-                res.locals.repos_list = await getReposList();
-                res.write(res.locals.repos_list);
-                console.log(res.locals.repos_list);
-                break;
-            case 'createRepos':
-                await createRepos(req.query.repos_name);
-                console.log('create repos');
-                break;
-            default:
-                throw new Error('wrong request type');
-        };
+    session.access_token = response.data.access_token;
+    res.redirect('../');
+}));
 
-        // request is over
-        // go to the next router
-        next();
-    } catch (err){
-        next(err);
-    };
+router.use('/getAccessCode', (req, res)=>{
+    // redirect to login page to get 'code' parameter
+    res.redirect('https://github.com/login/oauth/authorize?' + qs.stringify({
+        client_id: secret.client_id,
+        allow_signup: true,
+        scope: 'repo'
+    }));
 });
 
 module.exports = router;
