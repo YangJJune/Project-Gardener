@@ -41,8 +41,18 @@ _(함부로 add --all 이후 push하지 않는다.)_
 
 #### Express
 
-- '*'  
-  homepage 정보와 각가지 js, css file 전송
+- homepage  
+
+request  
+```http
+GET /
+```  
+response  
+```JSON
+{
+  "data": "homepage data"
+}
+```
   
 #### DB
 
