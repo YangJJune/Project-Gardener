@@ -60,6 +60,7 @@ _(함부로 add --all 이후 push하지 않는다.)_
       // 블로그 이름
       "name": "garden1",  
       // 블로그 키워드
+      // 추천 알고리즘 등에 사용
       "topic": [  
         "study", "javascript", "web", "es6"
       ],
@@ -99,7 +100,12 @@ _(함부로 add --all 이후 push하지 않는다.)_
   // 이 카드 다음으로 '연결'(link)될 '카드'의 고유 ID
   // 하나의 카드가 여러 카드의 next_card가 될 수 있다.
   // 카드의 묶음 하나가 하나의 content가 된다.
-  "next_card": "some card's ID"
+  "next_card": "some card's ID",
+  // '카드'의 키워드
+  // 추천 알고리즘 등에 사용 
+  "topic": [
+    "Node.js", "mongodb", "study", "web", "personal_project"
+  ]
 }
 ```
 
