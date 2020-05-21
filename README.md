@@ -48,7 +48,7 @@ _(함부로 add --all 이후 push하지 않는다.)_
 #### DB
 
 - User information  
-```json
+```javascript
 {
   // User 이름
   "name": "guest",  
@@ -82,7 +82,7 @@ _(함부로 add --all 이후 push하지 않는다.)_
 }
 ```  
 - Card information
-```json
+```javascript
 {
   // 카드의 고유 ID
   "id": "card_ID",
