@@ -20,12 +20,11 @@ process manager: PM2
 **push는 한 번에 여러 파일이 아닌 기능 하나당 적절한 메시지와 함께 진행한다.**  
 _(함부로 add --all 이후 push하지 않는다.)_
 
-문자열은 큰따옴표가 아닌 **작은따옴표**로 작성한다.  
+문자열은 큰따옴표가 아닌 **작은따옴표**로 작성한다. (JSON 제외)  
 
 #### Variables Naming
 
 - 단어 사이의 구분을 \_로
-  - secret
   - session
   - res.locals
   - URL query
@@ -106,6 +105,17 @@ _(함부로 add --all 이후 push하지 않는다.)_
   "topic": [
     "Node.js", "mongodb", "study", "web", "personal_project"
   ]
+}
+```
+- Secret information
+```javascript
+{
+  // express-session의 secret
+  "session_secret": "asdf",
+  "port_number": 0000,
+  // git-hub으로부터 받은 id와 secret
+  "client_id": "asdf",
+  "client_secret": "asdfasdf"
 }
 ```
 
