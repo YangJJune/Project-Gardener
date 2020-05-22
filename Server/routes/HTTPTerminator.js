@@ -7,8 +7,8 @@
  ***********************************************/
 
 const HTTPTerminator = (req, res, next)=>{
-    res.end('send');
     console.log('terminate HTTP');
+    res.end('send');
 };
 
 module.exports = HTTPTerminator;
