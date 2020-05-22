@@ -15,12 +15,8 @@ const express = require('express');
 const app = express();
 const secret = require('./secret.js');
 
-const githubAPIRouter = require('./routes/queryGitHub.js');
 const HTTPTerminator = require('./routes/HTTPTerminator.js');
 const errHandler = require('./routes/errHandler.js');
-
-// request data from github
-app.use('/github/', githubAPIRouter);
 
 // terminate HTTP communication
 app.use('*', (req, res, next)=>{
