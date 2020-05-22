@@ -41,8 +41,18 @@ _(함부로 add --all 이후 push하지 않는다.)_
 
 #### Express
 
-- '*'  
-  homepage 정보와 각가지 js, css file 전송
+- homepage  
+
+request  
+```http
+GET /
+```  
+response  
+```JSON
+{
+  "data": "homepage data"
+}
+```
   
 #### DB
 
@@ -104,7 +114,9 @@ _(함부로 add --all 이후 push하지 않는다.)_
   // 추천 알고리즘 등에 사용 
   "topic": [
     "Node.js", "mongodb", "study", "web", "personal_project"
-  ]
+  ],
+  // 실제 글이 저장될 git-hub의 URL
+  "address" : "github.com/username/reposname/filename"
 }
 ```
 - Secret information
