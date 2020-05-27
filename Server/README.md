@@ -3,7 +3,7 @@
   
 ## Express
 
-- Creating a article list  
+- Creating an article list  
 
 request  
 ```http
@@ -37,6 +37,32 @@ response
         "date": "20000000"
       }
   ]
+}
+```
+- Creating an article  
+
+request  
+```http
+POST /createArticle
+```  
+parameter  
+```JSON
+{
+   "author": "author of the Article
+              (required)",
+   "category": "category of the Article
+               (required)",
+   "cards": "list of cards that make up the Article
+             (required)",
+   "topic" "list of topic that describes the Article
+            (required)"
+}
+```
+
+response  
+```JSON
+{
+   "date": "date the article was saved"
 }
 ```
   
