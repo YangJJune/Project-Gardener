@@ -24,15 +24,15 @@ response
   "list": [
       {
         "author": "guest",
-        "category": "study/js",
+        "category": "/study/js",
         "cards": ["/guest/Garden/study/js/intro.md", "/guest/Garden/study/js/intro2.md"],
         "topic": ["study", "web"],
         "date": "20000000"
       },
        {
         "author": "guest",
-        "category": "study/javascript/express.js",
-        "cards": ["/uest/Garden/study/javascript/express.js/readme.md"],
+        "category": "/study/javascript/express.js",
+        "cards": ["/guest/Garden/study/javascript/express.js/readme.md"],
         "topic": ["Node.js", "express.js", "study", "web"],
         "date": "20000000"
       }
@@ -133,7 +133,7 @@ response
   
   // Article의 블로그에서의 위치
   // git-hub repository URL의 일부이다.
-  "category": "study/javascript",
+  "category": "/study/javascript",
   
   // 이 Article에 포함되는 Card들의 path(git-hub repository URL)
   // 연결되는 순서대로 저장된다.
