@@ -3,7 +3,7 @@
   
 ## Express
 
-- Creating an article list  
+### Creating an article list  
 
 request  
 ```http
@@ -39,7 +39,8 @@ response
   ]
 }
 ```
-- Creating an article  
+
+### Creating an article  
 
 request  
 ```http
@@ -65,7 +66,61 @@ response
    "date": "date the article was saved"
 }
 ```
-  
+
+### Updating an article  
+
+request  
+```http
+POST /updateArticle
+```  
+parameter  
+```JSON
+{
+   "author": "author of the Article
+              (required)",
+   "category": "category of the Article
+               (required)",
+   "cards": "list of cards that make up the Article
+             (required)",
+   "topic" "list of topic that describes the Article
+            (required)"
+}
+```
+
+response  
+```JSON
+{
+   "date": "date the article was updated"
+}
+```
+
+### Deleting an article 
+
+request  
+```http
+POST /deleteArticle
+```  
+parameter  
+```JSON
+{
+   "author": "author of the Article
+              (required)",
+   "category": "category of the Article
+               (required)",
+   "cards": "list of cards that make up the Article
+             (required)",
+   "topic" "list of topic that describes the Article
+            (required)"
+}
+```
+
+response  
+```JSON
+{
+   "date": "date the article was deleted"
+}
+```
+
 ## DB
 
 - Article information
