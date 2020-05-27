@@ -5,7 +5,8 @@
 ## Details
 
 누구나 쉽게 글을 쓸 수 있도록 장려하고, 공부 등의 지속적인 글쓰기를 지원하는 블로그를 목표로 한다.  
-git-hub 저장소를 이용해 글을 저장, 관리한다.
+git-hub 저장소를 이용해 글을 저장, 관리한다.  
+하나의 Article(posting)은 여러 개의 Card(file, content)의 chain이다.  
 
 ## Environment
 
@@ -30,7 +31,7 @@ _(함부로 add --all 이후 push하지 않는다.)_
   - URL query
 
 - Camel Case
-  - 일반 변수명
-  - 일반 함수명
+  - variables name  
+  - function name
   - file name
   - directory name
