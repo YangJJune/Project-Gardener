@@ -1,9 +1,9 @@
 # Server Side Manual
   
   
-## Express
+# Express
 
-### Creating an article list  
+## 1. Creating an article list  
 
 request  
 ```http
@@ -40,7 +40,7 @@ response
 }
 ```
 
-### Creating an article  
+## 2. Creating an article  
 
 request  
 ```http
@@ -67,7 +67,7 @@ response
 }
 ```
 
-### Updating an article  
+## 3. Updating an article  
 
 request  
 ```http
@@ -94,7 +94,7 @@ response
 }
 ```
 
-### Deleting an article 
+## 4. Deleting an article 
 
 request  
 ```http
@@ -121,9 +121,9 @@ response
 }
 ```
 
-## DB
+# DB
 
-- Article information
+## 1. Article information
 ```javascript
 {
   // 카드 최초 작성자 및 admin 
