@@ -2,6 +2,11 @@
  * 2020.05.28
  * 
  * program을 총괄하는 기본 파일
+ * -----------------------------------------------
+ * ## 중요
+ * db CRUD 기능 정상작동 확인 안 함
+ * 
+ * createArticleList에서 list를 정렬하는 기능 구현 필요
  *************************************************/
 
 const express = require('express');
@@ -20,6 +25,7 @@ const asyncWrapper = (fn) =>{
     };
 };
 
+// create article list from db
 app.get('/createArticleList', asyncWrapper(async (req, res, next)=>{
     console.log('"create article list" request received');
 
@@ -28,6 +34,51 @@ app.get('/createArticleList', asyncWrapper(async (req, res, next)=>{
 
     res.status(200).json({
         list: list
+    });
+}));
+
+// insert article to db
+app.post('/createArticle', asyncWrapper(async (req, res, next)=>{
+    console.log('"create article" request received');
+
+    let article = {
+        author = req.body.author,
+        category = req.body.category,
+        cards = (req.body.cards)?req.body.card:[],
+        topic = (req.body.topic)?req.body.topic:[]
+    };
+
+    let date = await db.insertArticle(article);
+
+    res.status(200).json({
+        date: date
+    });
+}));
+
+// update article to db
+app.post('/updateArticle', asyncWrapper(async (req, res, next)=>{
+    console.log('"update article" request received');
+
+    let contents = {
+        cards = (req.body.cards)?req.body.card:[],
+        topic = (req.body.topic)?req.body.topic:[]
+    };
+
+    let date = await db.createArticle(req.body.id, contents);
+
+    res.status(200).json({
+        date: date
+    });
+}));
+
+// delete article to db
+app.post('/updateArticle', asyncWrapper(async (req, res, next)=>{
+    console.log('"delete article" request received');
+
+    let date = await db.deleteArticle(req.body.id);
+
+    res.status(200).json({
+        date: date
     });
 }));
 
