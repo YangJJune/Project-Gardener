@@ -81,10 +81,10 @@ parameter
 ```JSON
 {
    "ID": "ID of the Article
-          (required)"
+          (required)",
    "cards": "list of cards that make up the Article
              (default: [])",
-   "topic" "list of topic that describes the Article
+   "topic": "list of topic that describes the Article
             (default: [])"
 }
 ```
