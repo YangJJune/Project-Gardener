@@ -21,23 +21,25 @@ parameter
 ```
 
 response  
-```JSON
+```javascript
 {
   "list": [
       {
+        // article example 1
         "author": "guest",
         "category": "/study/js",
         "cards": ["/guest/Garden/study/js/intro.md", "/guest/Garden/study/js/intro2.md"],
         "topic": ["study", "web"],
         "date": "20000000"
       },
-       {
-        "author": "guest",
-        "category": "/study/javascript/express.js",
-        "cards": ["/guest/Garden/study/javascript/express.js/readme.md"],
-        "topic": ["Node.js", "express.js", "study", "web"],
-        "date": "20000000"
-      }
+     {
+      // article example 2
+      "author": "guest",
+      "category": "/study/javascript/express.js",
+      "cards": ["/guest/Garden/study/javascript/express.js/readme.md"],
+      "topic": ["Node.js", "express.js", "study", "web"],
+      "date": "20000000"
+    }
   ]
 }
 ```
