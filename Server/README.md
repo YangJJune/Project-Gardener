@@ -58,9 +58,9 @@ parameter
    "category": "category of the Article
                (required)",
    "cards": "list of cards that make up the Article
-             (required)",
+             (default: [])",
    "topic" "list of topic that describes the Article
-            (required)"
+            (default: [])"
 }
 ```
 
@@ -80,14 +80,12 @@ POST /updateArticle
 parameter  
 ```JSON
 {
-   "author": "author of the Article
-              (required)",
-   "category": "category of the Article
-               (required)",
+   "ID": "ID of the Article
+          (required)"
    "cards": "list of cards that make up the Article
-             (required)",
+             (default: [])",
    "topic" "list of topic that describes the Article
-            (required)"
+            (default: [])"
 }
 ```
 
@@ -107,14 +105,8 @@ POST /deleteArticle
 parameter  
 ```JSON
 {
-   "author": "author of the Article
-              (required)",
-   "category": "category of the Article
-               (required)",
-   "cards": "list of cards that make up the Article
-             (required)",
-   "topic" "list of topic that describes the Article
-            (required)"
+   "ID" : "ID of the Article
+          (required)"
 }
 ```
 
