@@ -32,14 +32,14 @@ response
         "topic": ["study", "web"],
         "date": "20000000"
       },
-     {
-      // article example 2
-      "author": "guest",
-      "category": "/study/javascript/express.js",
-      "cards": ["/guest/Garden/study/javascript/express.js/readme.md"],
-      "topic": ["Node.js", "express.js", "study", "web"],
-      "date": "20000000"
-    }
+      {
+        // article example 2
+        "author": "guest",
+        "category": "/study/javascript/express.js",
+        "cards": ["/guest/Garden/study/javascript/express.js/readme.md"],
+        "topic": ["Node.js", "express.js", "study", "web"],
+        "date": "20000000"
+     }
   ]
 }
 ```
