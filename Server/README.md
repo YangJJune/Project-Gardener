@@ -14,7 +14,9 @@ parameter
 {
    "option" : "Create a list by selecting only articles that match the options. 
               option is in JSON format, which can include 'author', 'category', 'topic', 'date'.
-              (default: {})"
+              (default: {})",
+   "sort" : "Sorts the created list by 'sort'. 'sort' should be 'date', '추가예정1', or '추가예정2'.
+             (default: 'date')"
 }
 ```
 
