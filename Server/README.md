@@ -80,7 +80,7 @@ POST /updateArticle
 parameter  
 ```JSON
 {
-   "ID": "ID of the Article
+   "id": "ID of the Article
           (required)",
    "cards": "list of cards that make up the Article
              (default: [])",
@@ -105,7 +105,7 @@ POST /deleteArticle
 parameter  
 ```JSON
 {
-   "ID" : "ID of the Article
+   "id" : "ID of the Article
           (required)"
 }
 ```
