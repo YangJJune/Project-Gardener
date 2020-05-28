@@ -130,6 +130,9 @@ response
 ## 1. Article information
 ```javascript
 {
+  // 고유 ID
+  "ID": "ae12cvl3l",
+  
   // 카드 최초 작성자 및 admin 
   // (해당 카드에 대한 모든 권한을 가진 사람)
   // Article의 Card(글 내용)은 'author'의 git-hub repository에 보관된다.
