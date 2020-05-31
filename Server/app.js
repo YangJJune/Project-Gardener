@@ -10,7 +10,7 @@
 
 const express = require('express');
 const app = express();
-const db = require('./module/mongodb');
+const articleCRUD = require('./module/articleCRUD');
 const portNum = 3000;
 
 // for using body-parser
@@ -28,7 +28,7 @@ const asyncWrapper = (fn) =>{
 app.get('/createArticleList', asyncWrapper(async (req, res, next)=>{
     console.log('"create article list" request received');
 
-    let list = await db.createArticleList(req.body.option);
+    let list = await articleCRUD.createArticleList(req.body.option);
     // req.body.sort를 이용해 list를 정렬
 
     res.status(200).json({
@@ -47,7 +47,7 @@ app.post('/createArticle', asyncWrapper(async (req, res, next)=>{
         topic = (req.body.topic)?req.body.topic:[]
     };
 
-    let date = await db.insertArticle(article);
+    let date = await articleCRUD.insertArticle(article);
 
     res.status(200).json({
         date: date
@@ -63,7 +63,7 @@ app.post('/updateArticle', asyncWrapper(async (req, res, next)=>{
         topic = (req.body.topic)?req.body.topic:[]
     };
 
-    let date = await db.createArticle(req.body.id, contents);
+    let date = await articleCRUD.createArticle(req.body.id, contents);
 
     res.status(200).json({
         date: date
@@ -74,7 +74,7 @@ app.post('/updateArticle', asyncWrapper(async (req, res, next)=>{
 app.post('/updateArticle', asyncWrapper(async (req, res, next)=>{
     console.log('"delete article" request received');
 
-    let date = await db.deleteArticle(req.body.id);
+    let date = await articleCRUD.deleteArticle(req.body.id);
 
     res.status(200).json({
         date: date
