@@ -26,6 +26,7 @@ response
   "list": [
       {
         // article example 1
+        "id": "asdf315",
         "author": "guest",
         "category": "/study/js",
         "cards": ["/guest/Garden/study/js/intro.md", "/guest/Garden/study/js/intro2.md"],
@@ -34,6 +35,7 @@ response
       },
       {
         // article example 2
+        "id": "fsdlfei5",
         "author": "guest",
         "category": "/study/javascript/express.js",
         "cards": ["/guest/Garden/study/javascript/express.js/readme.md"],
