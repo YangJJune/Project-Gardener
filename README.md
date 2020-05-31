@@ -35,3 +35,21 @@ _(함부로 add --all 이후 push하지 않는다.)_
   - function name
   - file name
   - directory name
+
+#### Comments
+
+- file 상단에 여러 줄 주석을 작성한다.  
+```javascript
+/*****************************
+* file에 대한 개괄적인 설명
+* ---------------------------
+* 발견된 error, 고려할 만 한 개선 사항
+* 혹은 추가적인 논의 사항 등을 기록해 둔다
+******************************/
+```
+
+- 함수 호출, 반복 조건문으로 인한 코드의 분기 등의 상황에서 한 줄 주석을 적극적으로 활용한다.  
+```javascript
+// for using express built in body-parser
+app.use(express.json());
+```
