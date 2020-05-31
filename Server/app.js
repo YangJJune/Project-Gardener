@@ -1,12 +1,11 @@
 /*************************************************
- * 2020.05.28
- * 
- * program을 총괄하는 기본 파일
+ * espress app 객체를 관리하는 file
+ * HTTP request에 따른 reponse를 정의한다.
  * -----------------------------------------------
- * ## 중요
- * db CRUD 기능 정상작동 확인 안 함
- * 
  * createArticleList에서 list를 정렬하는 기능 구현 필요
+ * ## 중요
+ * 
+ * db CRUD 기능 정상작동 확인 안 함
  *************************************************/
 
 const express = require('express');
@@ -71,7 +70,7 @@ app.post('/updateArticle', asyncWrapper(async (req, res, next)=>{
     });
 }));
 
-// delete article to db
+// delete article from db
 app.post('/updateArticle', asyncWrapper(async (req, res, next)=>{
     console.log('"delete article" request received');
 
