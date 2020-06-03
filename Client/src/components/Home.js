@@ -10,10 +10,6 @@ function Home({history, location}){
           });
           
           try {
-            // const { access_token } = await axios.post(`https://github.com/login/oauth/access_token`, {
-            //   code,
-            // });
-
             let response = await axios({
                 url: '/login/oauth/access_token',
                 method: 'post',
@@ -31,7 +27,6 @@ function Home({history, location}){
             });
             
             const access_token = response.data.access_token;
-            console.log(access_token);
             // localStorage.setItem('access_token', access_token);
             history.push('/');
           } catch (error) {
