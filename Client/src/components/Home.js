@@ -38,7 +38,7 @@ function Home({history, location}){
       }, [location, history]);
 
     return(
-        <h2>access_token</h2>
+        <h2>HomePage</h2>
     );
 }
 
