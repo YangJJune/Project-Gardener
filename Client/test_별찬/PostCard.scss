@@ -1,0 +1,41 @@
+.box {
+  display: flex;
+  flex-direction: column;
+  height: 350px;
+  width: 320px;
+  $padding-inside: 10px;
+
+  box-sizing: border-box;
+
+  .title {
+    text-align: left;
+    // padding-inline-start: 10px;
+    padding-inline-start: $padding-inside;
+    padding-inline-end: $padding-inside;
+
+    $green: #10f0531e;
+    font-size: 20px;
+    font-weight: bold;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background-color: $green;
+  }
+  .summary {
+    display: block;
+    height: 150px;
+    padding: $padding-inside * 2;
+    text-align: left;
+  }
+
+  .date {
+    $gray: #000000a9;
+    color: $gray;
+    font-size: 15px;
+  }
+
+  .more-info {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.6rem 1rem;
+  }
+}
