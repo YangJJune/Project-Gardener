@@ -27,8 +27,9 @@ function Home({history, location}){
             });
             
             const access_token = response.data.access_token;
+            console.log(access_token);
             // localStorage.setItem('access_token', access_token);
-            history.push('/');
+            history.push('/login');
           } catch (error) {
             history.push('/error');
           }
