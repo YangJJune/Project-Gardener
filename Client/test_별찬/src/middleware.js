@@ -2,6 +2,8 @@ const promiseMiddleware = (store) => (next) => (action) => {
   if (isPromise(action.payload)) {
     action.payload.then(
       (res) => {
+        console.log('response in middleware.js: ');
+        console.log(res);
         action.payload = res;
         store.dispatch(action);
       },

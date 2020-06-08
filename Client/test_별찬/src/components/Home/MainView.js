@@ -7,7 +7,6 @@ const mapStateToProps = (state) => ({
 });
 
 const MainView = (props) => {
-  console.log(`articles: ${props.articles} : MainView.js`);
   return (
     <div className='col-md-9'>
       <div className='feed-toggle'>
