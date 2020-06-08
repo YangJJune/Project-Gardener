@@ -1,13 +1,3 @@
-/*************************************************
- * 홈페이지와 관련된 모든 컴포넌트를
- * HTTP request에 따른 reponse를 정의한다.
- * -----------------------------------------------
- * createArticleList에서 list를 정렬하는 기능 구현 필요
- * ## 중요
- *
- *
- *************************************************/
-
 import React from 'react';
 import { connect } from 'react-redux';
 import Banner from './Banner';
