@@ -4,11 +4,11 @@ import './PostCard.scss';
 
 const PostCard = ({ title, summary, date, username }) => {
   return (
-    <div className="box">
-      <div className="title">{title}</div>
-      <div className="summary">{summary}</div>
-      <div className="more-info">
-        <div className="date">{date}</div>
+    <div className='box'>
+      <div className='title'>{title}</div>
+      <div className='summary'>{summary}</div>
+      <div className='more-info'>
+        <div className='date'>{date}</div>
         <div>{username}</div>
       </div>
     </div>
