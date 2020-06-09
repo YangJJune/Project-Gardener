@@ -1,5 +1,6 @@
 import React from 'react';
 import PostCard from './PostCard';
+import './PostCardList.scss';
 
 // classify the number of postCards, horizontally, into common display resolutions depending on screen display width.
 const getColumnCount = (width) => {
@@ -27,24 +28,23 @@ const PostCardList = ({ posts, width }) => {
         summary={post.summary}
         date={post.date}
         username={post.username}
+        className='post-card'
       />
     ));
 
   return (
-    <>
-      <div className='PostCardList'>
-        {
-          // check from left to right if operand is falsy
-          // if operand is falsy, return the value of it
-          // otherwise, if all of the operands are considered true, return div element.
-          // boolean false and empty array is not rendered.
-          postList && postList.length === 0 && (
-            <div className='empty-list'>아직 작성한 포스트가 없습니다.</div>
-          )
-        }
-        {postList}
-      </div>
-    </>
+    <div className='post-card-list'>
+      {
+        // check from left to right if operand is falsy
+        // if operand is falsy, return the value of it
+        // otherwise, if all of the operands are considered true, return div element.
+        // boolean false and empty array is not rendered.
+        postList && postList.length === 0 && (
+          <div className='empty-list'>아직 작성한 포스트가 없습니다.</div>
+        )
+      }
+      {postList}
+    </div>
   );
 };
 

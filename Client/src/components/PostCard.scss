@@ -1,15 +1,19 @@
 .box {
-  display: flex;
-  flex-direction: column;
-  height: 350px;
+  height: 100%;
   width: 320px;
   $padding-inside: 10px;
-
   box-sizing: border-box;
+  padding: 0;
+  border-left: 5px solid #10f0531e;
+  border-right: 5px solid #10f0531e;
+  border-bottom: 5px solid #10f0531e;
+
+  justify-self: center;
+
+  border-radius: 10px;
 
   .title {
     text-align: left;
-    // padding-inline-start: 10px;
     padding-inline-start: $padding-inside;
     padding-inline-end: $padding-inside;
 

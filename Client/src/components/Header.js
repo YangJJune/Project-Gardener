@@ -8,6 +8,8 @@
  *************************************************/
 import React from 'react';
 import { connect } from 'react-redux';
+import './Header.scss';
+import MagnifyIcon from 'mdi-react/MagnifyIcon';
 
 const mapStateToProps = (state) => ({
   appName: state.appName,
@@ -16,13 +18,23 @@ const mapStateToProps = (state) => ({
 const Header = ({ appName }) => {
   return (
     <nav>
-      <ul>
-        <li>{appName}</li>
-        <li>Home</li>
+      <ul className='nav big'>
+        <li className='app-name'>{appName}</li>
         <li>
-          <button>search here!</button>
+          <a href=''>Home</a>
         </li>
-        <li>Sign in</li>
+        <li>
+          <label className='search-label'>Search: </label>
+          <div className='search-bar'>
+            <input className='search-input' type='text'></input>
+            <button type='submit' className='search-button'>
+              <MagnifyIcon />
+            </button>
+          </div>
+        </li>
+        <li>
+          <a href=''>Sign in</a>
+        </li>
       </ul>
     </nav>
   );

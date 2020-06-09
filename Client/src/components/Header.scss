@@ -1,0 +1,41 @@
+.nav {
+  display: flex;
+  align-items: center;
+
+  list-style: none;
+  padding: 0;
+
+  .app-name {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #4bc78dd0;
+  }
+
+  li {
+    padding: 1rem 1rem;
+
+    a {
+      text-decoration: none;
+      font-size: 1.5rem;
+      font-weight: 5;
+    }
+
+    .search-label {
+      font-size: 1.3rem;
+    }
+
+    .search-bar {
+      display: inline-block;
+      input {
+        border: none;
+        border-bottom: 1px solid #070404fd;
+        font-size: 1.3rem;
+      }
+      button {
+        height: 35px;
+        padding-bottom: 0;
+        padding-top: 0;
+      }
+    }
+  }
+}

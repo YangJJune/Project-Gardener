@@ -17,41 +17,44 @@ function App() {
             exact
             path='/articles'
             render={() => (
-              <PostCardList
-                posts={[
-                  {
-                    title: '안녕',
-                    summary: ' 요약',
-                    date: '날짜',
-                    username: '사용자 이름',
-                  },
-                  {
-                    title: '안녕',
-                    summary: ' 요약',
-                    date: '날짜',
-                    username: '사용자 이름',
-                  },
-                  {
-                    title: '안녕',
-                    summary: ' 요약',
-                    date: '날짜',
-                    username: '사용자 이름',
-                  },
-                  {
-                    title: '안녕',
-                    summary: ' 요약',
-                    date: '날짜',
-                    username: '사용자 이름',
-                  },
-                  {
-                    title: '안녕',
-                    summary: ' 요약',
-                    date: '날짜',
-                    username: '사용자 이름',
-                  },
-                ]}
-                width={5}
-              />
+              <>
+                <Header />
+                <PostCardList
+                  posts={[
+                    {
+                      title: '안녕',
+                      summary: ' 요약',
+                      date: '날짜',
+                      username: '사용자 이름',
+                    },
+                    {
+                      title: '안녕',
+                      summary: ' 요약',
+                      date: '날짜',
+                      username: '사용자 이름',
+                    },
+                    {
+                      title: '안녕',
+                      summary: ' 요약',
+                      date: '날짜',
+                      username: '사용자 이름',
+                    },
+                    {
+                      title: '안녕',
+                      summary: ' 요약',
+                      date: '날짜',
+                      username: '사용자 이름',
+                    },
+                    {
+                      title: '안녕',
+                      summary: ' 요약',
+                      date: '날짜',
+                      username: '사용자 이름',
+                    },
+                  ]}
+                  width={5}
+                />
+              </>
             )}
           />
           <Route exact path='/header' component={Header} />
