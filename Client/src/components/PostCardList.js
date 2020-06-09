@@ -32,14 +32,14 @@ const PostCardList = ({ posts, width }) => {
 
   return (
     <>
-      <div className="PostCardList">
+      <div className='PostCardList'>
         {
           // check from left to right if operand is falsy
           // if operand is falsy, return the value of it
           // otherwise, if all of the operands are considered true, return div element.
           // boolean false and empty array is not rendered.
           postList && postList.length === 0 && (
-            <div className="empty-list">아직 작성한 포스트가 없습니다.</div>
+            <div className='empty-list'>아직 작성한 포스트가 없습니다.</div>
           )
         }
       </div>
@@ -47,7 +47,4 @@ const PostCardList = ({ posts, width }) => {
   );
 };
 
-PostCardList.defaultProps = {
-  posts: [],
-  width: 0,
-};
+export default PostCardList;
