@@ -42,6 +42,7 @@ const PostCardList = ({ posts, width }) => {
             <div className='empty-list'>아직 작성한 포스트가 없습니다.</div>
           )
         }
+        {postList}
       </div>
     </>
   );
