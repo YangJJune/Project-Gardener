@@ -4,7 +4,7 @@
  * 미완성
  * ## 중요
  *
- * ---아직 없음---
+ * anchor tag에 link url을 달지 않았다. => react router에서 합의 필요
  *************************************************/
 import React from 'react';
 import { connect } from 'react-redux';
