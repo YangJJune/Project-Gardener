@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Login from './components/Login';
 import Home from './components/Home';
 import PostCardList from './components/PostCardList';
+import ArticleView from './components/ArticleView';
 import Header from './components/Header';
 
 function App() {
@@ -57,6 +58,7 @@ function App() {
               </>
             )}
           />
+          <Route exact path='/view' component={ArticleView} />
           <Route exact path='/header' component={Header} />
         </Switch>
       </div>
