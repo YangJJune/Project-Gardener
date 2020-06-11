@@ -1,6 +1,5 @@
 import React from 'react';
 import GithubIcon from "mdi-react/GithubIcon";
-import './Login.scss';
 
 function Login(){
     const client_id = "543812307a50747ce819";

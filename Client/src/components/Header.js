@@ -15,6 +15,9 @@ const mapStateToProps = (state) => ({
   appName: state.appName,
 });
 
+const client_id = "543812307a50747ce819";
+const redirect_url = "http://localhost:3000/";
+
 const Header = ({ appName }) => {
   return (
     <nav>
@@ -33,7 +36,7 @@ const Header = ({ appName }) => {
           </div>
         </li>
         <li>
-          <a href=''>Sign in</a>
+          <a href={`https://github.com/login/oauth/authorize?scope=user&client_id=${client_id}&redirect_uri=${redirect_url}`}>Sign in</a>
         </li>
       </ul>
     </nav>

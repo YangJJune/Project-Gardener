@@ -29,7 +29,7 @@ function Home({history, location}){
             const access_token = response.data.access_token;
             console.log(access_token);
             // localStorage.setItem('access_token', access_token);
-            history.push('/login');
+            history.push('/articles');
           } catch (error) {
             history.push('/error');
           }
@@ -39,7 +39,7 @@ function Home({history, location}){
       }, [location, history]);
 
     return(
-        <h2>HomePage</h2>
+        <h2>Loding...</h2>
     );
 }
 

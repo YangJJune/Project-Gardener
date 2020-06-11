@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
-import Login from './components/Login';
+import Register from './components/Register';
 import Home from './components/Home';
 import PostCardList from './components/PostCardList';
 import ArticleView from './components/ArticleView';
@@ -13,7 +13,7 @@ function App() {
       <div>
         <Switch>
           <Route exact path='/' component={Home} />
-          <Route exact path='/login' component={Login} />
+          <Route exact path='/register' component={Register} />
           <Route
             exact
             path='/articles'
