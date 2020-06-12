@@ -7,6 +7,8 @@
  * defaultState에 nav bar title 추가
  *************************************************/
 import { createStore } from 'redux';
+// action creator can return Promise obj
+import thunkMiddleware from 'redux-thunk';
 
 const defaultState = {
   appName: 'PRJ::GRDNER',
@@ -14,11 +16,13 @@ const defaultState = {
 
 const reducer = (state = defaultState, action) => {
   switch (action.type) {
+    case 'SUBMIT_ARTICLE':
+      return state;
     default:
       return state;
   }
 };
 
-const store = createStore(reducer);
+const store = createStore(reducer, applyMiddleware(thunkMiddleware));
 
 export default store;

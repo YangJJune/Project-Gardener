@@ -5,6 +5,7 @@ import Login from './components/Login';
 import Home from './components/Home';
 import PostCardList from './components/PostCardList';
 import Header from './components/Header';
+import Writer from './components/Writer';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Switch>
           <Route exact path='/' component={Home} />
           <Route exact path='/login' component={Login} />
+          <Route path='/write' component = {Writer} />
           <Route
             exact
             path='/articles'
