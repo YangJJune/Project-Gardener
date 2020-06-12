@@ -6,19 +6,53 @@
  *
  * defaultState에 nav bar title 추가
  *************************************************/
-import { createStore } from 'redux';
+import { createStore, combineReducers } from 'redux';
+
+const LOGIN = 'LOGIN';
+const LOGOUT = 'LOGOUT';
 
 const defaultState = {
   appName: 'PRJ::GRDNER',
 };
 
-const reducer = (state = defaultState, action) => {
+const appNameReducer = (state = defaultState, action) => {
   switch (action.type) {
     default:
       return state;
   }
 };
 
-const store = createStore(reducer);
+const loginReducer = (state, action) => {
+  switch (action.type) {
+    case LOGIN:
+      localStorage.setItem(
+        'isLoggedIn',
+        JSON.stringify(action.payload.isLoggedIn)
+      );
+      localStorage.setItem('userName', JSON.stringify(action.payload.userName));
+      console.log(action.payload.isLoggedIn);
+      return {
+        ...state,
+        isLoggedIn: action.payload.isLoggedIn,
+        userName: action.payload.userName,
+      };
+    case LOGOUT:
+      localStorage.clear();
+      return {
+        ...state,
+        isLoggedIn: false,
+        userName: null,
+      };
+    default:
+      return state;
+  }
+};
+
+const combinedReducers = combineReducers({
+  appNameReducer,
+  loginReducer,
+});
+
+const store = createStore(combinedReducers);
 
 export default store;
