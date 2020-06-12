@@ -1,9 +1,10 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
-import Login from './components/Login';
+import Register from './components/Register';
 import Home from './components/Home';
 import PostCardList from './components/PostCardList';
+import ArticleView from './components/ArticleView';
 import Header from './components/Header';
 import Writer from './components/Writer';
 
@@ -13,8 +14,8 @@ function App() {
       <div>
         <Switch>
           <Route exact path='/' component={Home} />
-          <Route exact path='/login' component={Login} />
           <Route path='/write' component = {Writer} />
+          <Route exact path='/register' component={Register} />
           <Route
             exact
             path='/articles'
@@ -59,6 +60,7 @@ function App() {
               </>
             )}
           />
+          <Route exact path='/view' component={ArticleView} />
           <Route exact path='/header' component={Header} />
         </Switch>
       </div>

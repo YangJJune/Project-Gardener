@@ -4,7 +4,7 @@
  * 미완성
  * ## 중요
  *
- * ---아직 없음---
+ * anchor tag에 link url을 달지 않았다. => react router에서 합의 필요
  *************************************************/
 import React from 'react';
 import { connect } from 'react-redux';
@@ -14,6 +14,9 @@ import MagnifyIcon from 'mdi-react/MagnifyIcon';
 const mapStateToProps = (state) => ({
   appName: state.appName,
 });
+
+const client_id = "543812307a50747ce819";
+const redirect_url = "http://localhost:3000/";
 
 const Header = ({ appName }) => {
   return (
@@ -33,7 +36,7 @@ const Header = ({ appName }) => {
           </div>
         </li>
         <li>
-          <a href=''>Sign in</a>
+          <a href={`https://github.com/login/oauth/authorize?scope=user&client_id=${client_id}&redirect_uri=${redirect_url}`}>Sign in</a>
         </li>
       </ul>
     </nav>
