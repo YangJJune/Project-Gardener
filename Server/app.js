@@ -10,8 +10,12 @@
 
 const express = require('express');
 const app = express();
+const cors = require('cors');
 const articleCRUD = require('./module/articleCRUD');
 const portNum = 3000;
+
+// enable ALL CORS
+app.use(cors());
 
 // for using body-parser
 app.use(express.json());
