@@ -32,7 +32,7 @@ const asyncWrapper = (fn) =>{
 app.get('/createArticleList', asyncWrapper(async (req, res, next)=>{
     console.log('"create article list" request received');
 
-    let list = await articleCRUD.createArticleList(req.body.option);
+    let list = await articleCRUD.createArticleList(req.params.option);
     // req.body.sort를 이용해 list를 정렬
 
     res.status(200).json({
@@ -41,14 +41,14 @@ app.get('/createArticleList', asyncWrapper(async (req, res, next)=>{
 }));
 
 // insert article to db
-app.post('/createArticle', asyncWrapper(async (req, res, next)=>{
+app.get('/createArticle', asyncWrapper(async (req, res, next)=>{
     console.log('"create article" request received');
 
     let article = {
-        author = req.body.author,
-        category = req.body.category,
-        cards = (req.body.cards)?req.body.card:[],
-        topic = (req.body.topic)?req.body.topic:[]
+        author = req.params.author,
+        category = req.params.category,
+        cards = (req.params.cards)?req.params.card:[],
+        topic = (req.params.topic)?req.params.topic:[]
     };
 
     let date = await articleCRUD.insertArticle(article);
@@ -59,15 +59,15 @@ app.post('/createArticle', asyncWrapper(async (req, res, next)=>{
 }));
 
 // update article to db
-app.post('/updateArticle', asyncWrapper(async (req, res, next)=>{
+app.get('/updateArticle', asyncWrapper(async (req, res, next)=>{
     console.log('"update article" request received');
 
     let contents = {
-        cards = (req.body.cards)?req.body.card:[],
-        topic = (req.body.topic)?req.body.topic:[]
+        cards = (req.params.cards)?req.params.card:[],
+        topic = (req.params.topic)?req.params.topic:[]
     };
 
-    let date = await articleCRUD.createArticle(req.body.id, contents);
+    let date = await articleCRUD.createArticle(req.params.id, contents);
 
     res.status(200).json({
         date: date
@@ -75,10 +75,10 @@ app.post('/updateArticle', asyncWrapper(async (req, res, next)=>{
 }));
 
 // delete article from db
-app.post('/updateArticle', asyncWrapper(async (req, res, next)=>{
+app.get('/updateArticle', asyncWrapper(async (req, res, next)=>{
     console.log('"delete article" request received');
 
-    let date = await articleCRUD.deleteArticle(req.body.id);
+    let date = await articleCRUD.deleteArticle(req.params.id);
 
     res.status(200).json({
         date: date
