@@ -1,0 +1,23 @@
+.loginStyle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 90vh;
+}
+
+.box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.3);
+    transition: 0.3s;
+    width: 25%;
+    height: 45%;
+}
+
+.loginBox {
+    box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.3);
+    width: 45%;
+    height: 10%;
+}

@@ -6,7 +6,9 @@
  *
  * defaultState에 nav bar title 추가
  *************************************************/
-import { createStore, combineReducers } from 'redux';
+import { createStore, combineReducers, applyMiddleware } from 'redux';
+// action creator can return Promise obj
+import thunkMiddleware from 'redux-thunk';
 
 const LOGIN = 'LOGIN';
 const LOGOUT = 'LOGOUT';
@@ -23,15 +25,19 @@ const appNameReducer = (state = appInfo, action) => {
   }
 };
 
+const defaultLoginState = {
+  isLoggedIn: false,
+  userName: null,
+};
 // handles login and logout process
-const loginReducer = (state, action) => {
+const loginReducer = (state = defaultLoginState, action) => {
   switch (action.type) {
     case LOGIN:
       localStorage.setItem(
         'isLoggedIn',
         JSON.stringify(action.payload.isLoggedIn)
       );
-      localStorage.setItem('username', JSON.stringify(action.payload.userName));
+      localStorage.setItem('username', JSON.stringify(action.payload.username));
       console.log(action.payload.isLoggedIn);
       return {
         ...state,
@@ -50,12 +56,39 @@ const loginReducer = (state, action) => {
   }
 };
 
-// combine all of reducers used currently
-const combinedReducers = combineReducers({
+const defaultPostState = null;
+// 게시물과 관련된 reducer
+const postReducer = (state = defaultPostState, action) => {
+  switch (action.type) {
+    case 'SUBMIT_ARTICLE':
+      return state;
+    default:
+      return state;
+  }
+};
+
+//사용자 정보에 접근하는 reducer
+// TODO defaultState 추가
+
+const defaultUserName = {
+  username: null,
+};
+const userInfoReducer = (state = defaultUserName, action) => {
+  switch (action.type) {
+    case 'LOAD_USERNAME':
+      return { ...state, username: action.payload.username };
+    default:
+      return state;
+  }
+};
+
+const rootReducer = combineReducers({
   appNameReducer,
   loginReducer,
+  postReducer,
+  userInfoReducer,
 });
 
-const store = createStore(combinedReducers);
+const store = createStore(rootReducer, applyMiddleware(thunkMiddleware));
 
 export default store;

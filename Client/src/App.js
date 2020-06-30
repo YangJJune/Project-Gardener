@@ -6,6 +6,7 @@ import Home from './components/Home';
 import PostCardList from './components/PostCardList';
 import ArticleView from './components/ArticleView';
 import Header from './components/Header';
+import Writer from './components/Writer';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
       <div>
         <Switch>
           <Route exact path='/' component={Home} />
+          <Route path='/write' component = {Writer} />
           <Route exact path='/register' component={Register} />
           <Route
             exact

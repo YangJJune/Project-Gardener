@@ -16,7 +16,8 @@ parameter
               option is in JSON format, which can include 'author', 'category', 'topic', 'date'.
               (default: {})",
    "sort" : "Sorts the created list by 'sort'. 'sort' should be 'date', '추가예정1', or '추가예정2'.
-             (default: 'date')"
+             (default: 'date')  
+             (아직 구현되지 않음)"  
 }
 ```
 
@@ -29,7 +30,7 @@ response
         "id": "asdf315",
         "author": "guest",
         "category": "/study/js",
-        "cards": ["/guest/Garden/study/js/intro.md", "/guest/Garden/study/js/intro2.md"],
+        "title": "title_sample",
         "topic": ["study", "web"],
         "date": "20000000"
       },
@@ -38,7 +39,7 @@ response
         "id": "fsdlfei5",
         "author": "guest",
         "category": "/study/javascript/express.js",
-        "cards": ["/guest/Garden/study/javascript/express.js/readme.md"],
+        "title": "title_sample_2",
         "topic": ["Node.js", "express.js", "study", "web"],
         "date": "20000000"
      }
@@ -50,7 +51,7 @@ response
 
 request  
 ```http
-POST /createArticle
+GET /createArticle
 ```  
 parameter  
 ```JSON
@@ -59,8 +60,8 @@ parameter
               (required)",
    "category": "category of the Article
                (required)",
-   "cards": "list of cards that make up the Article
-             (default: [])",
+   "title": "title of the Article
+             (required)",
    "topic" "list of topic that describes the Article
             (default: [])"
 }
@@ -77,15 +78,13 @@ response
 
 request  
 ```http
-POST /updateArticle
+GET /updateArticle
 ```  
 parameter  
 ```JSON
 {
    "id": "ID of the Article
           (required)",
-   "cards": "list of cards that make up the Article
-             (default: [])",
    "topic": "list of topic that describes the Article
             (default: [])"
 }
@@ -102,7 +101,7 @@ response
 
 request  
 ```http
-POST /deleteArticle
+GET /deleteArticle
 ```  
 parameter  
 ```JSON
@@ -136,9 +135,8 @@ response
   // git-hub repository URL의 일부이다.
   "category": "/study/javascript",
   
-  // 이 Article에 포함되는 Card들의 path(git-hub repository URL)
-  // 연결되는 순서대로 저장된다.
-  "cards": ["/guest/Garden/study/javascript/intro.md", "/guest/Garden/study/javascript/intro2.md"],
+  // 이 Article의 제목
+  "title": "some title",
   
   // Article의 키워드
   // 추천 알고리즘 등에 사용 
