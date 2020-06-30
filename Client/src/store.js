@@ -11,17 +11,19 @@ import { createStore, combineReducers } from 'redux';
 const LOGIN = 'LOGIN';
 const LOGOUT = 'LOGOUT';
 
-const defaultState = {
+const appInfo = {
   appName: 'PRJ::GRDNER',
 };
 
-const appNameReducer = (state = defaultState, action) => {
+// handles static data related to app info
+const appNameReducer = (state = appInfo, action) => {
   switch (action.type) {
     default:
       return state;
   }
 };
 
+// handles login and logout process
 const loginReducer = (state, action) => {
   switch (action.type) {
     case LOGIN:
@@ -29,7 +31,7 @@ const loginReducer = (state, action) => {
         'isLoggedIn',
         JSON.stringify(action.payload.isLoggedIn)
       );
-      localStorage.setItem('userName', JSON.stringify(action.payload.userName));
+      localStorage.setItem('username', JSON.stringify(action.payload.userName));
       console.log(action.payload.isLoggedIn);
       return {
         ...state,
@@ -48,6 +50,7 @@ const loginReducer = (state, action) => {
   }
 };
 
+// combine all of reducers used currently
 const combinedReducers = combineReducers({
   appNameReducer,
   loginReducer,
