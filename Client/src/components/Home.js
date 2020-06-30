@@ -1,22 +1,17 @@
 import React, { useEffect } from 'react';
 import axios from 'axios';
 import qs from 'qs';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { fetchHttp } from '../action';
+import { fetchIfNotFetching } from '../middleware';
 
-const mapStateToProps = (state) => ({
-  isLoggedIn: state.isLoggedIn,
-  userName: state.userName,
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  loadUserInfo: (payload) => dispatch({ type: 'LOGIN' }, payload),
-});
-
-function Home({ history, location }) {
+function Home({ history, location, fetchHttp }) {
   const dispatch = useDispatch();
-  const dispatchLogin = (payload) => dispatch({ type: 'LOGIN', payload });
-
   useEffect(() => {
+    const { code } = qs.parse(location.search, {
+      ignoreQueryPrefix: true,
+    });
+
     async function getToken() {
       const { code } = qs.parse(location.search, {
         ignoreQueryPrefix: true,
@@ -30,8 +25,6 @@ function Home({ history, location }) {
           params: {
             client_id: '543812307a50747ce819',
             client_secret: 'abf2475dbb515a7d50590dc42e9d5517f0cee774',
-            // here the 'accessCode' parameter that
-            // is requested at getAccessCode() is used
             code,
           },
           headers: {
@@ -39,9 +32,20 @@ function Home({ history, location }) {
           },
         });
 
-        const access_token = response.data.access_token;
+        const { access_token } = response.data;
         console.log(access_token);
-        // localStorage.setItem('access_token', access_token);
+        const user = await axios({
+          baseURL: 'https://api.github.com',
+          url: '/user',
+          method: 'get',
+          headers: {
+            Authorization: 'token ' + access_token,
+          },
+        });
+
+        const username = user.data.login;
+        console.log(username);
+        dispatch({ type: 'LOAD_USERNAME', payload: { username: username } });
         history.push('/articles');
       } catch (error) {
         history.push('/error');
@@ -49,9 +53,9 @@ function Home({ history, location }) {
     }
 
     getToken();
-  }, [location, history]);
+  }, [location, history, dispatch]);
 
-  return <h2>Loding...</h2>;
+  return <h2>Loading...</h2>;
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Home);
+export default Home;
