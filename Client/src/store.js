@@ -6,7 +6,7 @@
  *
  * defaultState에 nav bar title 추가
  *************************************************/
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux'
 // action creator can return Promise obj
 import thunkMiddleware from 'redux-thunk';
 
