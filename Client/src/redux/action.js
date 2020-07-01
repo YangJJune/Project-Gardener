@@ -9,14 +9,10 @@
  * axios 입력을 작성하지 않음
  *
  * fetch GHToken과 fetch UserInfo를 합쳐서
- * 하나의 login함수로 개편하는 것에 대해 고민해보자
+ * 하나의 login함수로 개편하는 것은 불가능하다.
  ********************************************/
 
 import axios from 'axios';
-import {
-  loginMsgGenerator,
-  userInfoMsgGenerator,
-} from '../helpers/requestHelper';
 
 // the action associated with getting "GitHub access token"
 export const REQUEST_GH_TOKEN = 'REQUEST_GH_TOKEN';
@@ -54,24 +50,24 @@ const receiveUserInfo = (userName) => {
 const fetchGHToken = (code, msgGenerator) => {
   return async (dispatch) => {
     dispatch(requestGHToken());
-    const token = await axios(loginMsgGenerator(code));
+    const token = (await axios(msgGenerator(code))).data.access_token;
     dispatch(receiveGHToken(token));
   };
 };
 
 const fetchUserInfo = (msgGenerator) => {
-  return async (dispatch, getState) => {
+  return (dispatch, getState) => {
     const { accessToken } = getState().loginReducer;
     dispatch(requestUserInfo());
-    const userInfo = await axios(userInfoMsgGenerator(accessToken));
-    dispatch(receiveUserInfo(userInfo.login));
+    const userInfo = axios(msgGenerator(accessToken));
+    dispatch(receiveUserInfo(userInfo.data.login));
   };
 };
 
 export const fetchGHTokenIfNotFetching = (code, msgGenerator) => {
   return (dispatch, getState) => {
     if (getState().loginReducer.isFetching === false) {
-      return dispatch(fetchGHToken(msgGenerator(code)));
+      return dispatch(fetchGHToken(code, msgGenerator));
     }
   };
 };
@@ -81,14 +77,6 @@ export const fetchUserInfoIfNotFetching = (msgGenerator) => {
     if (getState().loginReducer.isFetching === false) {
       return dispatch(fetchUserInfo(msgGenerator));
     }
-  };
-};
-
-export const authorizeByFetching = ({ code }) => {
-  return (dispatch) => {
-    return new Promise(() => {
-      dispatch(fetchGHTokenIfNotFetching(code, loginMsgGenerator));
-    }).then(dispatch(fetchUserInfoIfNotFetching(userInfoMsgGenerator)));
   };
 };
 
