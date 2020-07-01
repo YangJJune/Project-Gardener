@@ -21,8 +21,8 @@ import { REQUEST_ARTICLE_LIST, RECEIVE_ARTICLE_LIST } from './action';
 const defaultUserState = {
   isLoggedIn: false,
   isFetching: false,
-  userName: 'guest',
-  accessToken: 'ghtoken',
+  userName: null,
+  accessToken: null,
 };
 export const loginReducer = (state = defaultUserState, action) => {
   switch (action.type) {
