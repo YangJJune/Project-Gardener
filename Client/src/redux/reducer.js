@@ -1,13 +1,15 @@
-const LOGIN = 'LOGIN';
-const LOGOUT = 'LOGOUT';
-
-const LOAD_USERINFO = 'LOAD_USERINFO';
+import {
+  LOGIN,
+  LOGOUT,
+  LOAD_USERINFO,
+  SUBMIT_ARTICLE,
+} from '../constants/actionType';
 
 const appInfo = {
   appName: 'PRJ::GRDNER',
 };
 // handles static data related to app info
-const appNameReducer = (state = appInfo, action) => {
+export const appNameReducer = (state = appInfo, action) => {
   switch (action.type) {
     default:
       return state;
@@ -19,7 +21,7 @@ const defaultLoginState = {
   userName: null,
 };
 // handles login and logout process
-const loginReducer = (state = defaultLoginState, action) => {
+export const loginReducer = (state = defaultLoginState, action) => {
   switch (action.type) {
     case LOGIN:
       localStorage.setItem(
@@ -47,9 +49,9 @@ const loginReducer = (state = defaultLoginState, action) => {
 
 const defaultPostState = null;
 // 게시물과 관련된 reducer
-const postReducer = (state = defaultPostState, action) => {
+export const postReducer = (state = defaultPostState, action) => {
   switch (action.type) {
-    case 'SUBMIT_ARTICLE':
+    case SUBMIT_ARTICLE:
       return state;
     default:
       return state;
@@ -63,7 +65,7 @@ const defaultUserName = {
   userName: null,
   accessToken: null,
 };
-const userInfoReducer = (state = defaultUserName, action) => {
+export const userInfoReducer = (state = defaultUserName, action) => {
   switch (action.type) {
     case LOAD_USERINFO:
       return {

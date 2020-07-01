@@ -14,8 +14,6 @@ const client_id = '543812307a50747ce819';
 const redirect_url = 'http://localhost:3000/';
 
 const Header = () => {
-  const state1 = useSelector((state) => state);
-  console.log(state1);
   const { appName, userName, accessToken } = useSelector((state) => ({
     appName: state.appNameReducer.appName,
     userName: state.userInfoReducer.userName,

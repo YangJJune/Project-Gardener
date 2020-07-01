@@ -8,6 +8,12 @@
  *************************************************/
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 // action creator can return Promise obj
+import {
+  appNameReducer,
+  loginReducer,
+  postReducer,
+  userInfoReducer,
+} from './reducer';
 import thunkMiddleware from 'redux-thunk';
 
 // export store

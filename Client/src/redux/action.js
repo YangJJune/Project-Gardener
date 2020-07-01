@@ -1,7 +1,6 @@
 import axios from 'axios';
 
-export const REQUEST_HTTP = 'REQUEST_HTTP';
-export const RESPONSE_HTTP = 'RESPONSE_HTTP';
+import { REQUEST_HTTP, RESPONSE_HTTP } from '../constants/actionType';
 
 export const requestHttp = (request) => () => ({
   type: REQUEST_HTTP,

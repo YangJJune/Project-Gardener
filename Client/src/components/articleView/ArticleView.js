@@ -1,12 +1,9 @@
 import React from 'react';
-import Header from './Header';
+import Header from '../header/Header';
 import './ArticleView.scss';
 
-function ArticleView(){
-
-    return(
-        <Header />
-    )
+function ArticleView() {
+  return <Header />;
 }
 
 export default ArticleView;

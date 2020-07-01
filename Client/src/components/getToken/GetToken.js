@@ -2,16 +2,14 @@ import React, { useEffect } from 'react';
 import axios from 'axios';
 import qs from 'qs';
 import { useDispatch } from 'react-redux';
-import { fetchHttp } from '../action';
-import { fetchIfNotFetching } from '../middleware';
+import { fetchHttp } from '../../redux/action';
+import { fetchIfNotFetching } from '../../middleware';
+
+import { LOAD_USERINFO } from '../../constants/actionType';
 
 function Home({ history, location, fetchHttp }) {
   const dispatch = useDispatch();
   useEffect(() => {
-    const { code } = qs.parse(location.search, {
-      ignoreQueryPrefix: true,
-    });
-
     async function getToken() {
       const { code } = qs.parse(location.search, {
         ignoreQueryPrefix: true,
@@ -46,7 +44,7 @@ function Home({ history, location, fetchHttp }) {
         const userName = user.data.login;
         console.log(userName);
         dispatch({
-          type: 'LOAD_USERINFO',
+          type: LOAD_USERINFO,
           payload: { userName: userName, accessToken: accessToken },
         });
         history.push('/articles');
