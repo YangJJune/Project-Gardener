@@ -7,6 +7,9 @@
  * 
  * ## 중요 ##
  * axios 입력을 작성하지 않음
+ * 
+ * fetch GHToken과 fetch UserInfo를 합쳐서
+ * 하나의 login함수로 개편하는 것에 대해 고민해보자
  ********************************************/
 
 import axios from 'axios';

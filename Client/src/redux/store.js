@@ -14,10 +14,6 @@
  *      articleList : array,
  *   }
  * }
- * 
- * 현재 store를 하나만 사용하고 있지만,
- * userInfo와 articleList를 별도의 store로
- * 나누는 것에 관한 논의가 필요
  *************************************************/
 
 import { createStore, combineReducers, applyMiddleware } from 'redux';
