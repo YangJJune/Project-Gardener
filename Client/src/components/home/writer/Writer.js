@@ -2,16 +2,20 @@
  * Article을 작성을 위한 Component
  * 'submit'버튼 클릭 시 'submitArticle' event를 trigger한다.
  * -------------------------------
- * styling 미구현
+ * note
+ * html form tag와, action attribute를 적극 활용해보자
+ * 
+ * TODO
+ * Styling
  *
- * ## 파일 '생성'기능
+ * TODO
+ * Article update, delete 기능 구현
  * (update시 sha params 필요,)
  * (delete시 sha params이 필요하고, HTTP method는 DELETE)
  ********************************/
 
 import React from 'react';
 import { connect } from 'react-redux';
-import axios from 'axios';
 
 const submitArticle = (title, category, topic, contents) => {
   // axios({
@@ -62,8 +66,8 @@ class Writer extends React.Component {
           submit
         </button>
       </div>
-    );
+    )
   }
 }
 
-export default connect(null, { submitArticle })(Writer);
+export default connect(null, { submitArticle })(Writer)

@@ -5,28 +5,27 @@
  * ## 중요
  * anchor tag에 link url을 달지 않았다. => react router에서 합의 필요
  *************************************************/
-import React from 'react';
-import { useSelector } from 'react-redux';
-import './Header.scss';
-import MagnifyIcon from 'mdi-react/MagnifyIcon';
+import React from 'react'
+import { useSelector } from 'react-redux'
+import './Header.scss'
+import MagnifyIcon from 'mdi-react/MagnifyIcon'
 
-const client_id = '543812307a50747ce819';
-const redirect_url = 'http://localhost:3000/';
+const client_id = '543812307a50747ce819'
+const redirect_url = 'http://localhost:3000/'
 
 const Header = () => {
   const { appName, userName, accessToken } = useSelector((state) => ({
     appName: state.appNameReducer.appName,
     userName: state.userInfoReducer.userName,
     accessToken: state.userInfoReducer.accessToken,
-  }));
-  console.log(appName);
-  console.log(userName);
-  console.log(accessToken);
+  }))
 
   return (
     <nav>
       <ul className='nav big'>
-        <li className='app-name'>{appName}</li>
+        <li className='app-name'>
+          {appName}
+          </li>
         <li>
           <a href=''>Home</a>
         </li>
@@ -48,7 +47,7 @@ const Header = () => {
         </li>
       </ul>
     </nav>
-  );
-};
+  )
+}
 
-export default Header;
+export default Header

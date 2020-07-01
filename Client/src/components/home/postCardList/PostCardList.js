@@ -1,13 +1,13 @@
 /*************************************************
  * PostCard를 모아 글 목록으로 보여주는 컴포넌트
  * 글이 없을 경우 다른 메시지를 띄운다.
- * -----------------------------------------------
  *************************************************/
 import React from 'react';
 import PostCard from './postCard/PostCard';
 import './PostCardList.scss';
 
-// classify the number of postCards, horizontally, into common display resolutions depending on screen display width.
+// classify the number of postCards, horizontally, 
+// into common display resolutions depending on screen display width.
 const getColumnCount = (width) => {
   const xWide = 1920;
   const wide = 1600;
