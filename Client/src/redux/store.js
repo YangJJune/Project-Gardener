@@ -16,9 +16,9 @@
  * }
  *************************************************/
 
-import { createStore, combineReducers, applyMiddleware } from 'redux';
+import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import thunkMiddleware from 'redux-thunk';
-import {loginReducer, articleListReducer } from './reducer';
+import { loginReducer, articleListReducer } from './reducer';
 
 // export store
 const rootReducer = combineReducers({
@@ -26,6 +26,12 @@ const rootReducer = combineReducers({
   articleListReducer,
 });
 
-const store = createStore(rootReducer, applyMiddleware(thunkMiddleware));
+// const store = createStore(rootReducer, applyMiddleware(thunkMiddleware));
+//enable debugging
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const store = createStore(
+  rootReducer,
+  composeEnhancers(applyMiddleware(thunkMiddleware))
+);
 
 export default store;
