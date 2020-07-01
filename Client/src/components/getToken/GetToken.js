@@ -3,7 +3,7 @@ import axios from 'axios';
 import qs from 'qs';
 import { useDispatch } from 'react-redux';
 import { fetchHttp } from '../action';
-import { fetchIfNotFetching } from '../middleware';
+import { fetchIfNotFetching } from '../../middleware';
 
 function Home({ history, location, fetchHttp }) {
   const dispatch = useDispatch();

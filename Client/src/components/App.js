@@ -21,7 +21,6 @@ function App() {
             path='/articles'
             render={() => (
               <>
-                <Header />
                 <PostCardList
                   posts={[
                     {
