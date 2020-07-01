@@ -13,6 +13,8 @@ import thunkMiddleware from 'redux-thunk';
 const LOGIN = 'LOGIN';
 const LOGOUT = 'LOGOUT';
 
+const LOAD_USERINFO = 'LOAD_USERINFO';
+
 const appInfo = {
   appName: 'PRJ::GRDNER',
 };
@@ -71,12 +73,17 @@ const postReducer = (state = defaultPostState, action) => {
 // TODO defaultState 추가
 
 const defaultUserName = {
-  username: null,
+  userName: null,
+  accessToken: null,
 };
 const userInfoReducer = (state = defaultUserName, action) => {
   switch (action.type) {
-    case 'LOAD_USERNAME':
-      return { ...state, username: action.payload.username };
+    case LOAD_USERINFO:
+      return {
+        ...state,
+        userName: action.payload.userName,
+        accessToken: action.payload.accessToken,
+      };
     default:
       return state;
   }
