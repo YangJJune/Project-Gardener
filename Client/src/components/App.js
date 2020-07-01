@@ -1,3 +1,9 @@
+/***************************************
+ * root component
+ * -------------------------------------
+ * routing을 합의된 대로 변경 필요
+ **************************************/
+
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
