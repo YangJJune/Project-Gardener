@@ -47,8 +47,8 @@ const receiveUserInfo = (userName) => {
   }
 }
 
-const fetchGHToken = async (code) => {
-  return (dispatch) => {
+const fetchGHToken = (code) => {
+  return async (dispatch) => {
     dispatch(requestGHToken())
     const token = await axios()
     dispatch(receiveGHToken(token))
