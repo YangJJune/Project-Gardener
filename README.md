@@ -12,9 +12,8 @@ git-hub 저장소를 이용해 글을 저장, 관리한다.
 
 middleware: express  
 database: mongodb  
-front: react  
+front: react-redux  
 git-hub API: REST API v3  
-process manager: PM2
 
 ## Coding Conventions
 
@@ -51,6 +50,10 @@ _(함부로 add --all 이후 push하지 않는다.)_
  * ---------------------------
  * 발견된 error, 고려할 만 한 개선 사항
  * 혹은 추가적인 논의 사항 등을 기록해 둔다
+ * 
+ * XXX는 문제가 발생했을음 나타낸다.
+ * FIXME로 수정이 필요한 부분을 명시한다.
+ * TODO는 개선 사항을 의미한다.
  ******************************/
 ```
 
