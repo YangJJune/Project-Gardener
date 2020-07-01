@@ -67,9 +67,9 @@ export const articleListReducer = (state = defaultUserState, action) => {
 /*
 const defaultPostState = null;
 // 게시물과 관련된 reducer
-const postReducer = (state = defaultPostState, action) => {
+export const postReducer = (state = defaultPostState, action) => {
   switch (action.type) {
-    case 'SUBMIT_ARTICLE':
+    case SUBMIT_ARTICLE:
       return state;
     default:
       return state;
@@ -80,12 +80,17 @@ const postReducer = (state = defaultPostState, action) => {
 // TODO defaultState 추가
 
 const defaultUserName = {
-  username: null,
+  userName: null,
+  accessToken: null,
 };
-const userInfoReducer = (state = defaultUserName, action) => {
+export const userInfoReducer = (state = defaultUserName, action) => {
   switch (action.type) {
-    case 'LOAD_USERNAME':
-      return { ...state, username: action.payload.username };
+    case LOAD_USERINFO:
+      return {
+        ...state,
+        userName: action.payload.userName,
+        accessToken: action.payload.accessToken,
+      };
     default:
       return state;
   }

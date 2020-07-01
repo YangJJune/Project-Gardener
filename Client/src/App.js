@@ -1,12 +1,12 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
-import Register from './register/Register';
-import Home from './getToken/GetToken';
-import PostCardList from './postCardList/PostCardList';
-import ArticleView from './articleView/ArticleView';
-import Header from './header/Header';
-import Writer from './writer/Writer';
+import Register from './Register';
+import Home from './Home';
+import PostCardList from './PostCardList';
+import ArticleView from './components';
+import Header from './Header';
+import Writer from './Writer';
 
 function App() {
   return (
@@ -21,37 +21,38 @@ function App() {
             path='/articles'
             render={() => (
               <>
+                <Header />
                 <PostCardList
                   posts={[
                     {
                       title: '안녕',
                       summary: ' 요약',
                       date: '날짜',
-                      username: '사용자 이름',
+                      userName: '사용자 이름',
                     },
                     {
                       title: '안녕',
                       summary: ' 요약',
                       date: '날짜',
-                      username: '사용자 이름',
+                      userName: '사용자 이름',
                     },
                     {
                       title: '안녕',
                       summary: ' 요약',
                       date: '날짜',
-                      username: '사용자 이름',
+                      userName: '사용자 이름',
                     },
                     {
                       title: '안녕',
                       summary: ' 요약',
                       date: '날짜',
-                      username: '사용자 이름',
+                      userName: '사용자 이름',
                     },
                     {
                       title: '안녕',
                       summary: ' 요약',
                       date: '날짜',
-                      username: '사용자 이름',
+                      userName: '사용자 이름',
                     },
                   ]}
                   width={5}

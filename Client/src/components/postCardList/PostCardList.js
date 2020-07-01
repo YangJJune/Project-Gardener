@@ -32,7 +32,7 @@ const PostCardList = ({ posts, width }) => {
         title={post.title}
         summary={post.summary}
         date={post.date}
-        username={post.username}
+        userName={post.userName}
         className='post-card'
       />
     ));

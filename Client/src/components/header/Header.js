@@ -14,14 +14,15 @@ const client_id = '543812307a50747ce819';
 const redirect_url = 'http://localhost:3000/';
 
 const Header = () => {
-  const state1 = useSelector((state) => state);
-  console.log(state1);
-  const { appName, username } = useSelector((state) => ({
+  const { appName, userName, accessToken } = useSelector((state) => ({
     appName: state.appNameReducer.appName,
-    username: state.userInfoReducer.username,
+    userName: state.userInfoReducer.userName,
+    accessToken: state.userInfoReducer.accessToken,
   }));
   console.log(appName);
-  console.log(username);
+  console.log(userName);
+  console.log(accessToken);
+
   return (
     <nav>
       <ul className='nav big'>
@@ -42,7 +43,7 @@ const Header = () => {
           <a
             href={`https://github.com/login/oauth/authorize?scope=user&client_id=${client_id}&redirect_uri=${redirect_url}`}
           >
-            {username || 'Sign in'}
+            {userName || 'Sign in'}
           </a>
         </li>
       </ul>
