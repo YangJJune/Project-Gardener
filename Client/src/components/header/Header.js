@@ -14,19 +14,20 @@ const client_id = '543812307a50747ce819';
 const redirect_url = 'http://localhost:3000/';
 
 const Header = () => {
-  const { appName, userName, accessToken } = useSelector((state) => ({
-    appName: state.appNameReducer.appName,
-    userName: state.userInfoReducer.userName,
-    accessToken: state.userInfoReducer.accessToken,
+  const state = useSelector((state) => state);
+  console.log(state);
+  const { userName, accessToken } = useSelector((state) => ({
+    userName: state.loginReducer.userName,
+    accessToken: state.loginReducer.accessToken,
   }));
-  console.log(appName);
+
   console.log(userName);
   console.log(accessToken);
 
   return (
     <nav>
       <ul className='nav big'>
-        <li className='app-name'>{appName}</li>
+        <li className='app-name'>PRJ:GRDNER</li>
         <li>
           <a href=''>Home</a>
         </li>
