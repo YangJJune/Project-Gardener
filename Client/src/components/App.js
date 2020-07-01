@@ -1,12 +1,12 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
-import Register from './components/Register';
-import Home from './components/Home';
-import PostCardList from './components/PostCardList';
-import ArticleView from './components/ArticleView';
-import Header from './components/Header';
-import Writer from './components/Writer';
+import Register from './Register';
+import Home from './Home';
+import PostCardList from './PostCardList';
+import ArticleView from './ArticleView';
+import Header from './Header';
+import Writer from './Writer';
 
 function App() {
   return (
