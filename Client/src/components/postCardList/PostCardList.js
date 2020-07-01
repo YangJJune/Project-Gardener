@@ -4,7 +4,7 @@
  * -----------------------------------------------
  *************************************************/
 import React from 'react';
-import PostCard from './PostCard';
+import PostCard from './postCard/PostCard';
 import './PostCardList.scss';
 
 // classify the number of postCards, horizontally, into common display resolutions depending on screen display width.
@@ -32,7 +32,7 @@ const PostCardList = ({ posts, width }) => {
         title={post.title}
         summary={post.summary}
         date={post.date}
-        username={post.username}
+        userName={post.userName}
         className='post-card'
       />
     ));

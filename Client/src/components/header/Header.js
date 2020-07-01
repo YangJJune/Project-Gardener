@@ -3,22 +3,26 @@
  * -----------------------------------------------
  * 미완성
  * ## 중요
- *
  * anchor tag에 link url을 달지 않았다. => react router에서 합의 필요
  *************************************************/
 import React from 'react';
-import { connect } from 'react-redux';
+import { useSelector } from 'react-redux';
 import './Header.scss';
 import MagnifyIcon from 'mdi-react/MagnifyIcon';
 
-const mapStateToProps = (state) => ({
-  appName: state.appName,
-});
+const client_id = '543812307a50747ce819';
+const redirect_url = 'http://localhost:3000/';
 
-const client_id = "543812307a50747ce819";
-const redirect_url = "http://localhost:3000/";
+const Header = () => {
+  const { appName, userName, accessToken } = useSelector((state) => ({
+    appName: state.appNameReducer.appName,
+    userName: state.userInfoReducer.userName,
+    accessToken: state.userInfoReducer.accessToken,
+  }));
+  console.log(appName);
+  console.log(userName);
+  console.log(accessToken);
 
-const Header = ({ appName }) => {
   return (
     <nav>
       <ul className='nav big'>
@@ -36,11 +40,15 @@ const Header = ({ appName }) => {
           </div>
         </li>
         <li>
-          <a href={`https://github.com/login/oauth/authorize?scope=user&client_id=${client_id}&redirect_uri=${redirect_url}`}>Sign in</a>
+          <a
+            href={`https://github.com/login/oauth/authorize?scope=user&client_id=${client_id}&redirect_uri=${redirect_url}`}
+          >
+            {userName || 'Sign in'}
+          </a>
         </li>
       </ul>
     </nav>
   );
 };
 
-export default connect(mapStateToProps)(Header);
+export default Header;
