@@ -3,6 +3,8 @@ import {
   LOGOUT,
   LOAD_USERINFO,
   SUBMIT_ARTICLE,
+  REQUEST_HTTP,
+  RESPONSE_HTTP,
 } from '../constants/actionType';
 
 const appInfo = {
@@ -73,6 +75,26 @@ export const userInfoReducer = (state = defaultUserName, action) => {
         userName: action.payload.userName,
         accessToken: action.payload.accessToken,
       };
+    default:
+      return state;
+  }
+};
+
+const communicateHttp = (
+  state = { isFetching: false, httpHeader: {}, httpBody: {} },
+  action
+) => {
+  switch (action.type) {
+    case REQUEST_HTTP:
+      return Object.assign({}, state, {
+        isFetching: true,
+      });
+    case RESPONSE_HTTP:
+      return Object.assign({}, state, {
+        isFetching: false,
+        httpHeader: action.payload.headers,
+        httpBody: action.payload.data,
+      });
     default:
       return state;
   }

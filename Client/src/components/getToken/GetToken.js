@@ -2,12 +2,11 @@ import React, { useEffect } from 'react';
 import axios from 'axios';
 import qs from 'qs';
 import { useDispatch } from 'react-redux';
-import { fetchHttp } from '../../redux/action';
 import { fetchIfNotFetching } from '../../middleware';
 
 import { LOAD_USERINFO } from '../../constants/actionType';
 
-function Home({ history, location, fetchHttp }) {
+function Home({ history, location }) {
   const dispatch = useDispatch();
   useEffect(() => {
     async function getToken() {
@@ -16,6 +15,21 @@ function Home({ history, location, fetchHttp }) {
       });
 
       try {
+        // const request = {
+        //   url: '/login/oauth/access_token',
+        //   method: 'post',
+        //   baseURL: 'https://cors-anywhere.herokuapp.com/github.com/',
+        //   params: {
+        //     client_id: '543812307a50747ce819',
+        //     client_secret: 'abf2475dbb515a7d50590dc42e9d5517f0cee774',
+        //     code,
+        //   },
+        //   headers: {
+        //     accept: 'application/json',
+        //   },
+        // };
+
+        // fetchIfNotFetching(request);
         let response = await axios({
           url: '/login/oauth/access_token',
           method: 'post',
