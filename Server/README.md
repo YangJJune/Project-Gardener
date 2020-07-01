@@ -3,11 +3,11 @@
   
 # Express
 
-## 1. Creating an article list  
+## 1. Get an article list  
 
 request  
 ```http
-GET /createArticleList
+GET /getArticleList
 ```  
 parameter  
 ```JSON
