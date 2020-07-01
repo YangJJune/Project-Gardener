@@ -2,9 +2,13 @@
  * espress app 객체를 관리하는 file
  * HTTP request에 따른 reponse를 정의한다.
  * -----------------------------------------------
+ * TODO
  * createArticleList에서 list를 정렬하는 기능 구현 필요
- * ## 중요
  * 
+ * TODO
+ * logger를 적용시켜보자
+ * 
+ * XXX
  * db CRUD 기능 정상작동 확인 안 함
  *************************************************/
 
@@ -28,8 +32,8 @@ const asyncWrapper = (fn) =>{
     };
 };
 
-// create article list from db
-app.get('/createArticleList', asyncWrapper(async (req, res, next)=>{
+// get article list from db
+app.get('/getArticleList', asyncWrapper(async (req, res, next)=>{
     console.log('"create article list" request received');
 
     let list = await articleCRUD.createArticleList(req.params.option);
@@ -75,7 +79,7 @@ app.get('/updateArticle', asyncWrapper(async (req, res, next)=>{
 }));
 
 // delete article from db
-app.get('/updateArticle', asyncWrapper(async (req, res, next)=>{
+app.get('/deleteArticle', asyncWrapper(async (req, res, next)=>{
     console.log('"delete article" request received');
 
     let date = await articleCRUD.deleteArticle(req.params.id);

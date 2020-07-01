@@ -1,13 +1,14 @@
 /********************************************
  * redux action과 action creator를 정의하는 파일
- * --------------------------------------------
+ *
  * fetch "gethub access token"
  * fetch "user info"
  * fetch "article list"
- *
- * ## 중요 ##
+ * --------------------------------------------
+ * FIXME
  * axios 입력을 작성하지 않음
  *
+ * TODO
  * fetch GHToken과 fetch UserInfo를 합쳐서
  * 하나의 login함수로 개편하는 것은 불가능하다.
  ********************************************/
