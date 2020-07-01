@@ -1,27 +1,33 @@
 /*************************************************
- * redux의 store, reducer를 정의하는 파일
+ * redux의 store를 정의하는 파일
  * -----------------------------------------------
- * 미완성
- * ## 중요
- *
- * defaultState에 nav bar title 추가
+ * state 구조
+ * state = {
+ *   userInfo : {
+ *      isLoggedIn : boolean,
+ *      isFetching : boolean,
+ *      userName : string,
+ *      accessToken : string,
+ *   },
+ *   articleList : {
+ *      isFetching : boolean,
+ *      articleList : array,
+ *   }
+ * }
+ * 
+ * 현재 store를 하나만 사용하고 있지만,
+ * userInfo와 articleList를 별도의 store로
+ * 나누는 것에 관한 논의가 필요
  *************************************************/
+
 import { createStore, combineReducers, applyMiddleware } from 'redux';
-// action creator can return Promise obj
-import {
-  appNameReducer,
-  loginReducer,
-  postReducer,
-  userInfoReducer,
-} from './reducer';
 import thunkMiddleware from 'redux-thunk';
+import {loginReducer, articleListReducer } from './reducer';
 
 // export store
 const rootReducer = combineReducers({
-  appNameReducer,
   loginReducer,
-  postReducer,
-  userInfoReducer,
+  articleListReducer,
 });
 
 const store = createStore(rootReducer, applyMiddleware(thunkMiddleware));
