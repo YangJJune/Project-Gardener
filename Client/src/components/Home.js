@@ -32,20 +32,23 @@ function Home({ history, location, fetchHttp }) {
           },
         });
 
-        const { access_token } = response.data;
-        console.log(access_token);
+        const accessToken = response.data.access_token;
+        console.log(accessToken);
         const user = await axios({
           baseURL: 'https://api.github.com',
           url: '/user',
           method: 'get',
           headers: {
-            Authorization: 'token ' + access_token,
+            Authorization: 'token ' + accessToken,
           },
         });
 
-        const username = user.data.login;
-        console.log(username);
-        dispatch({ type: 'LOAD_USERNAME', payload: { username: username } });
+        const userName = user.data.login;
+        console.log(userName);
+        dispatch({
+          type: 'LOAD_USERINFO',
+          payload: { userName: userName, accessToken: accessToken },
+        });
         history.push('/articles');
       } catch (error) {
         history.push('/error');
