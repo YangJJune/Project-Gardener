@@ -17,54 +17,17 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-const submitArticle = (title, category, topic, contents) => {
-  // axios({
-  //     baseURL: 'https://api.github.com',
-  //     url: '/repos/' + username + '/Garden/contents/' + category + '/' + title + '.md',
-  //     method: 'put',
-  //     headers:{
-  //         Authorization: 'token ' + session.access_token
-  //     },
-  //     params: {
-  //         message: message,
-  //         content: contents
-  //     }
-  // });
-
-  return {
-    type: 'SUBMIT_ARTICLE',
-    payload: {
-      title: title,
-      topic: topic,
-      contents: contents,
-    },
-  };
-};
-
 class Writer extends React.Component {
   render() {
     return (
       <div>
-        <label>Title</label>
-        <input id='title_input' />
-        <label>Category</label>
-        <input id='category_input' />
-        <label>Topic</label>
-        <input id='topic_input' />
-        <label>contents</label>
-        <textarea id='contents_input' row='50' cols='50' />
-        <button
-          onClick={() =>
-            this.props.submitArticle(
-              document.getElementById('title_input').value,
-              document.getElementById('category_input').value,
-              document.getElementById('topic_input').value,
-              document.getElementById('contents_input').value
-            )
-          }
-        >
-          submit
-        </button>
+        <label for='title'>Title</label>
+        <input id='title' name='title' />
+        <label for='category'>Category</label>
+        <input id='category' name='category' />
+        <label for='content'>content</label>
+        <textarea id='content' row='50' cols='50' />
+        <input type='submit' value='Save' />
       </div>
     )
   }
