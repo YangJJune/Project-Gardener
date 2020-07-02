@@ -57,10 +57,10 @@ const fetchGHToken = (code, msgGenerator) => {
 };
 
 const fetchUserInfo = (msgGenerator) => {
-  return (dispatch, getState) => {
+  return async (dispatch, getState) => {
     const { accessToken } = getState().loginReducer;
     dispatch(requestUserInfo());
-    const userInfo = axios(msgGenerator(accessToken));
+    const userInfo = await axios(msgGenerator(accessToken));
     dispatch(receiveUserInfo(userInfo.data.login));
   };
 };
@@ -78,6 +78,19 @@ export const fetchUserInfoIfNotFetching = (msgGenerator) => {
     if (getState().loginReducer.isFetching === false) {
       return dispatch(fetchUserInfo(msgGenerator));
     }
+  };
+};
+
+// TESTME: only network request for retriving [access_token] worked. also need to make sure when it comes to getting username.
+export const authorizeByFetching = ({
+  code,
+  loginMsgGenerator,
+  userInfoMsgGenerator,
+}) => {
+  return (dispatch) => {
+    return dispatch(
+      fetchGHTokenIfNotFetching(code, loginMsgGenerator)
+    ).then(() => fetchUserInfoIfNotFetching(userInfoMsgGenerator));
   };
 };
 
