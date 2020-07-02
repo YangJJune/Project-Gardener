@@ -39,16 +39,17 @@ const dbName = 'Project-Gardener';
 const client = new MongoClient(url, {useUnifiedTopology: true});
 
 // send article list
-router.get('/', asyncCallbackWrapper(async function createArticleList(req, res, next){
-  await client.connect()
-  const collection = client.db(dbName).collection(Article)
-  const filter = req.params.filter
-  let list = collection.find(filter)
+router.get('/', 
+  asyncCallbackWrapper(async function createArticleList(req, res, next){
+    await client.connect()
+    const collection = client.db(dbName).collection(Article)
+    const filter = req.params.filter
+    let list = collection.find(filter)
 
-  res.status(200).json({
-    list : list
-  }) 
-  client.close()
+    res.status(200).json({
+      list : list
+    }) 
+    client.close()
   })
 )
 
