@@ -43,7 +43,7 @@ router.get('/',
   asyncCallbackWrapper(async function createArticleList(req, res, next){
     await client.connect()
     const collection = client.db(dbName).collection(Article)
-    const filter = req.params.filter
+    const filter = (req.params.filter)?req.params.filter:{}
     let list = collection.find(filter)
 
     res.status(200).json({
