@@ -10,7 +10,7 @@
  *
  * TODO
  * fetch GHToken과 fetch UserInfo를 합쳐서
- * 하나의 login함수로 개편하는 것은 불가능하다.
+ * 하나의 login함수로 개선
  ********************************************/
 
 import axios from 'axios';
