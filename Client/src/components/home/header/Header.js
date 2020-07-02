@@ -15,14 +15,14 @@ const redirect_url = 'http://localhost:3000/';
 
 const Header = () => {
   const state = useSelector((state) => state);
-  console.log(state);
+  // console.log(state);
   const { userName, accessToken } = useSelector((state) => ({
     userName: state.loginReducer.userName,
     accessToken: state.loginReducer.accessToken,
   }));
 
-  console.log(userName);
-  console.log(accessToken);
+  // console.log(userName);
+  // console.log(accessToken);
 
   return (
     <nav>

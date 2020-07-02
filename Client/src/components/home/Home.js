@@ -20,8 +20,6 @@ import PostCardList from './postCardList/PostCardList'
 function Home({match}) {
   return (
     <BrowserRouter basename={match.url}>
-        {console.log('match')}
-        {console.log(match)}
         <Header />
         <Switch>
             <Route path='/write' component={Writer} />
