@@ -13,7 +13,6 @@
 import React, { useEffect } from 'react'
 
 function Login({ history, location }) {
-  const dispatch = useDispatch();
   useEffect(() => {
       // 로그인 진행
     }

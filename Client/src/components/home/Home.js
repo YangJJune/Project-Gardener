@@ -11,22 +11,24 @@
  *******************************************/
 
 import React from 'react'
-import { Switch, Route } from 'react-router-dom'
+import { BrowserRouter, Switch, Route } from 'react-router-dom'
 import Header from './header/Header'
 import Writer from './writer/Writer'
 import Viewr from './viewer/Viewer'
 import PostCardList from './postCardList/PostCardList'
 
-function Home() {
+function Home({match}) {
   return (
-    <section>
+    <BrowserRouter basename={match.url}>
+        {console.log('match')}
+        {console.log(match)}
         <Header />
         <Switch>
             <Route path='/write' component={Writer} />
             <Route path='/view' component={Viewr} />
             <Route path='/' component={PostCardList} />
         </Switch>
-    </section>
+    </BrowserRouter>
   )
 }
 
