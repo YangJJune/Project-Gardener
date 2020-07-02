@@ -11,15 +11,18 @@
  *******************************************/
 
 import React, { useEffect } from 'react'
+import {Redirect} from 'react-router-dom'
 
 function Login({ history, location }) {
   useEffect(() => {
       // 로그인 진행
+      console.log('login is ended')
     }
-  );
+  )
 
   return (
-    <h2>Loading...</h2>
+    // redirect to main page
+    <Redirect to='/' />
   )
 }
 
