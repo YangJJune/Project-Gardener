@@ -88,9 +88,9 @@ export const authorizeByFetching = ({
   userInfoMsgGenerator,
 }) => {
   return (dispatch) => {
-    return dispatch(
-      fetchGHTokenIfNotFetching(code, loginMsgGenerator)
-    ).then(() => dispatch(fetchUserInfoIfNotFetching(userInfoMsgGenerator)));
+    return dispatch(fetchGHTokenIfNotFetching(code, loginMsgGenerator))
+      .then(() => dispatch(fetchUserInfoIfNotFetching(userInfoMsgGenerator)))
+      .catch((errorMsg) => console.error(errorMsg));
   };
 };
 
