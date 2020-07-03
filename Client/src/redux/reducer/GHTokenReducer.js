@@ -7,7 +7,7 @@
  * ... 연산은 얕은 복사가 이뤄짐
  ******************************************/
 
- import {REQUEST_GH_TOKEN, RECEIVE_GH_TOKEN } from '../action/GHToeknAction'
+ import {REQUEST_GH_TOKEN, RECEIVE_GH_TOKEN } from '../action/GHTokenAction'
  import {defaultState} from '../defaultState'
 
  export const GHTokenReducer = 
