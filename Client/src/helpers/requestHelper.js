@@ -18,8 +18,7 @@ const client_secret = 'c2f3928f26a250f4ec24e1c3cb54016ec3c6929f'
 export const generateLoginUrl = () =>
   'https://github.com/login/oauth/authorize?' +
   stringify({
-    client_id: '543812307a50747ce819',
-    redirect_url: 'http://localhost:3000/',
+    client_id: client_id,
     scope: 'repo',
     allow_signup: true,
   });
@@ -32,7 +31,6 @@ export const generateGHTokenRequest = (code) => ({
     client_id: client_id,
     client_secret: client_secret,
     code: code,
-    redirect_url: 'http://localhost:3000/',
   },
   headers: {
     accept: 'application/json',
