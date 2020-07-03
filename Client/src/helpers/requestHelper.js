@@ -1,7 +1,7 @@
 /*********************************************
  * axios request obj를 generator하는 helper들을 정의
  * action file의 fetcher의 입력으로 사용한다.
- * 
+ *
  * generateLoginUrl  (axios가 아닌 url 제작 용)
  * generateGHTokenRequest
  * generateUserNameRequest
@@ -10,51 +10,43 @@
  * login scope의 적절성을 고민해봐야 함
  *********************************************/
 
-import stringify from 'qs-stringify'
+import stringify from 'qs-stringify';
 
 const client_id = '70ba6f9a8f3f794fcb4c'
 const client_secret = 'c2f3928f26a250f4ec24e1c3cb54016ec3c6929f'
 
-export const generateLoginUrl = 
-  function generateLoginUrl(){
-    return 'https://github.com/login/oauth/authorize?' 
-      + stringify(
-        {
-          client_id: client_id,
-          scope: 'repo',
-          allow_signup: true,
-        }
-      )
-    }
+export const generateLoginUrl = () =>
+  'https://github.com/login/oauth/authorize?' +
+  stringify({
+    client_id: '543812307a50747ce819',
+    redirect_url: 'http://localhost:3000/',
+    scope: 'repo',
+    allow_signup: true,
+  });
 
-export const generateGHTokenRequest = 
-  function generateGHTokenRequest(code){
-    return {
-      baseURL: 'https://github.com',
-      url: '/login/oauth/access_token',
-      method: 'post',
-      params:{
-          client_id: client_id,
-          client_secret: client_secret,
-          code: code,
-      },
-      headers: {
-          accept: 'application/json',
-      }
-    }
-  }
+export const generateGHTokenRequest = (code) => ({
+  baseURL: 'https://github.com',
+  url: '/login/oauth/access_token',
+  method: 'post',
+  params: {
+    client_id: client_id,
+    client_secret: client_secret,
+    code: code,
+    redirect_url: 'http://localhost:3000/',
+  },
+  headers: {
+    accept: 'application/json',
+  },
+})
 
-export const generateUserNameRequest = 
-  function generateUserNameRequest(accessToken){
-    return {
-      baseURL: 'https://api.github.com',
-      url: '/user',
-      method: 'get',
-      headers:{
-          Authorization: 'token ' + accessToken
-      }
-    }
-  }
+export const generateUserNameRequest = (token) => ({
+  baseURL: 'https://api.github.com',
+  url: '/user',
+  method: 'get',
+  headers:{
+      Authorization: 'token ' + token,
+  },
+})
 
 /*
 const loginRequestBody = {
