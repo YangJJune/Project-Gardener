@@ -9,7 +9,7 @@
     accessToken: null,
 }
 
- export default GHToken = 
+const GHToken = 
     function GHToeknReducer(state = defaultState, action){
         switch (action.type) {
             case REQUEST_GH_TOKEN:
@@ -25,3 +25,5 @@
                 return state
           }
     }
+
+ export default GHToken

@@ -12,7 +12,7 @@ import React, { useEffect } from 'react';
 import PostCard from './postCard/PostCard';
 import './PostCardList.scss';
 import { useSelector, useDispatch } from 'react-redux';
-import { generateArticleListRequest } from '../../../helpers/requestHelper';
+import { generateArticleListRequest } from '../../../helpers/requestToGHHelper';
 import { fetchArticleListIfNotFetching } from '../../../redux/action/articleListAction';
 
 // classify the number of postCards, horizontally,

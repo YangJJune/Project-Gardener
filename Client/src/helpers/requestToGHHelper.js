@@ -1,5 +1,5 @@
 /*********************************************
- * 각종 helper 모음
+ * Git-hub request와 관련된 helper 모음
  *
  * generateLoginUrl
  * loginGH
@@ -47,17 +47,12 @@ const generateUserNameRequest = (token) => ({
 });
 
 export const loginGH = function (code) {
-  return (dispatch) => {
+  return async (dispatch) => {
+    //dispatch(await fetchGHTokenIfNotFetching(code, generateGHTokenRequest))
+    //dispatch(await fetchUserNameIfNotFetching(generateUserNameRequest))
+
     return dispatch(
       fetchGHTokenIfNotFetching(code, generateGHTokenRequest)
     ).then(() => dispatch(fetchUserNameIfNotFetching(generateUserNameRequest)));
   };
 };
-
-// if filter is set to null, url would be 'articles'
-// otherwise, it'd be articles;
-export const generateArticleListRequest = (filter) => ({
-  baseURl: 'http://localhost:3000',
-  url: '/articles',
-  params: filter,
-});
