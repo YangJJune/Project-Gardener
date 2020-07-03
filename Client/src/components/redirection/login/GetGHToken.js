@@ -11,19 +11,21 @@
  *******************************************/
 
 import React, { useEffect } from 'react'
-import {Redirect} from 'react-router-dom'
+import connect from 'react-redux'
+import Redirect from 'react-router-dom'
+import generateGHTokenRequest from '../../../helpers/requestHelper'
+import fetchGHTokenIfNotFetching from '../../../redux/action/GHTokenAction'
 
-function Login({ history, location }) {
+function GetGHToken({ fetchGHTokenIfNotFetching }) {
   useEffect(() => {
-      // 로그인 진행
-      console.log('login is ended')
+      fetchGHTokenIfNotFetching(generateGHTokenRequest())
     }
   )
 
   return (
-    // redirect to main page
+    // redirect to get user information page
     <Redirect to='/' />
   )
 }
 
-export default Login
+export default connect(null, {fetchGHTokenIfNotFetching})(GetGHToken)
