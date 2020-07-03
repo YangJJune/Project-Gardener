@@ -4,25 +4,24 @@
  * 글을 보여주거나, 글을 작성한다.
  *******************************************/
 
-import React from 'react'
-import { Switch, Route } from 'react-router-dom'
-import Header from './header/Header'
-import Writer from './writer/Writer'
-import Viewr from './viewer/Viewer'
-import PostCardList from './postCardList/PostCardList'
+import React from 'react';
+import { Switch, Route } from 'react-router-dom';
+import Header from './header/Header';
+import Writer from './writer/Writer';
+import Viewer from './viewer/Viewer';
+import PostCardList from './postCardList/PostCardList';
 
-function Home({match}) {
+function Home({ match }) {
   return (
     <section>
       <Header />
       <Switch>
-          <Route path={match.path + '/write'} component={Writer} />
-          <Route path={match.path + '/view'} component={Viewr} />
-          <Route path={match.path} component={PostCardList} />
+        <Route path={match.path + '/write'} component={Writer} />
+        <Route path={match.path + '/view'} component={Viewer} />
+        <Route path={match.path} component={PostCardList} />
       </Switch>
     </section>
-    
-  )
+  );
 }
 
-export default Home
+export default Home;
