@@ -33,4 +33,4 @@ class Writer extends React.Component {
   }
 }
 
-export default connect(null, { submitArticle })(Writer)
+export default connect(null, {  })(Writer)

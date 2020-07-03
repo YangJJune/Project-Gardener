@@ -27,3 +27,16 @@ export const userInfoMsgGenerator = (accessToken) => ({
     Authorization: 'token ' + accessToken,
   },
 });
+
+// TESTME: only network request for retriving [access_token] worked. also need to make sure when it comes to getting username.
+export const authorizeByFetching = ({
+  code,
+  loginMsgGenerator,
+  userInfoMsgGenerator,
+}) => {
+  return (dispatch) => {
+    return dispatch(fetchGHTokenIfNotFetching(code, loginMsgGenerator))
+      .then(() => dispatch(fetchUserInfoIfNotFetching(userInfoMsgGenerator)))
+      .catch((errorMsg) => console.error(errorMsg));
+  };
+};
