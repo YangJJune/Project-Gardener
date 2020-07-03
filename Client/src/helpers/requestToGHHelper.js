@@ -48,11 +48,12 @@ const generateUserNameRequest = (token) => ({
 
 export const loginGH = function (code) {
   return async (dispatch) => {
-    //dispatch(await fetchGHTokenIfNotFetching(code, generateGHTokenRequest))
-    //dispatch(await fetchUserNameIfNotFetching(generateUserNameRequest))
-
+    await dispatch(fetchGHTokenIfNotFetching(code, generateGHTokenRequest))
+    await dispatch(fetchUserNameIfNotFetching(generateUserNameRequest))
+    /*
     return dispatch(
       fetchGHTokenIfNotFetching(code, generateGHTokenRequest)
     ).then(() => dispatch(fetchUserNameIfNotFetching(generateUserNameRequest)));
+    */
   };
 };
