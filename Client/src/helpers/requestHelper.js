@@ -1,8 +1,13 @@
 /*********************************************
  * axios request obj를 generator하는 helper들을 정의
+ * action file의 fetcher의 입력으로 사용한다.
  * 
  * generateLoginUrl  (axios가 아닌 url 제작 용)
  * generateGHTokenRequest
+ * generateUserNameRequest
+ * -------------------------------------------
+ * XXX
+ * login scope의 적절성을 고민해봐야 함
  *********************************************/
 
 import stringify from 'qs-stringify'
