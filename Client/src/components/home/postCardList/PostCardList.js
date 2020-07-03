@@ -38,24 +38,24 @@ const PostCardList = ({ width }) => {
   const posts = useSelector((state) => state.articleList.articleList);
   const dispatch = useDispatch();
   const emptyFilter = {};
-  useEffect(() => {
-    dispatch(
-      fetchArticleListIfNotFetching(emptyFilter, generateArticleListRequest)
-    );
-  });
+  // XXX: error occurs when you use this
+  // useEffect(() => {
+  //   dispatch(
+  //     fetchArticleListIfNotFetching(emptyFilter, generateArticleListRequest)
+  //   );
+  // });
 
-  // error occurs when you render this component
-  const postList = posts
-    .slice(0, posts.length)
-    .map((post) => (
-      <PostCard
-        title={post.title}
-        summary={post.category}
-        date={post.topic}
-        userName={post.author}
-        className='post-card'
-      />
-    ));
+  // const postList = posts
+  //   .slice(0, posts.length)
+  //   .map((post) => (
+  //     <PostCard
+  //       title={post.title}
+  //       summary={post.category}
+  //       date={post.topic}
+  //       userName={post.author}
+  //       className='post-card'
+  //     />
+  //   ));
 
   return (
     <div className='post-card-list'>
