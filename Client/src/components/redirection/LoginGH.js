@@ -10,7 +10,6 @@
 
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { Redirect } from 'react-router-dom';
 import qs from 'qs';
 import { loginGH } from '../../helpers/requestToGHHelper';
 
