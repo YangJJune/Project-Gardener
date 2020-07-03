@@ -5,15 +5,16 @@
  * ## 중요
  * anchor tag에 link url을 달지 않았다. => react router에서 합의 필요
  *************************************************/
-import React from 'react'
-import {connect} from 'react-redux'
-import {Link} from 'react-router-dom'
-import {generateLoginUrl} from '../../../helpers/requestHelper'
-import './Header.scss'
-import MagnifyIcon from 'mdi-react/MagnifyIcon'
+import React from 'react';
+import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { generateLoginUrl } from '../../../helpers/requestHelper';
+import './Header.scss';
+import MagnifyIcon from 'mdi-react/MagnifyIcon';
 
+export const Header = () => {
+  const userName = useSelector((state) => state.userName.userName);
 
-function Header({userName}) {
   return (
     <nav>
       <ul className='nav big'>
@@ -31,15 +32,11 @@ function Header({userName}) {
           </div>
         </li>
         <li>
-          <a href={generateLoginUrl()}>
-            { userName || 'Sign in'}
-          </a>
+          <a href={generateLoginUrl()}>{userName || 'Sign in'}</a>
         </li>
       </ul>
     </nav>
-  )
-}
+  );
+};
 
-export default connect(function getUserNameFromRedux(state){
-  return {userName: state.userName.userName}
-})(Header)
+export default Header;
