@@ -9,7 +9,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import './Header.scss';
 import MagnifyIcon from 'mdi-react/MagnifyIcon';
-import {toUrlParams} from '../../../helpers/urlParams'
+import stringify from 'qs-stringify'
 
 const client_id = '543812307a50747ce819';
 const redirect_url = 'http://localhost:3000/';
@@ -25,7 +25,7 @@ const Header = () => {
   // console.log(userName);
   // console.log(accessToken);
 
-  const loginUrl = 'https://github.com/login/oauth/authorize?' + toUrlParams({
+  const loginUrl = 'https://github.com/login/oauth/authorize?' + stringify({
     client_id: '543812307a50747ce819',
     redirect_url: 'http://localhost:3000/',
     scope: 'repo',
