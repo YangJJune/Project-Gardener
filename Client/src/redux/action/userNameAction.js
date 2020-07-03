@@ -8,6 +8,8 @@
  * axios 입력을 작성하지 않음
  ********************************************/
 
+import axios from 'axios'
+
 // define action
 export const REQUEST_USER_NAME = 'REQUEST_USER_NAME'
 export const RECEIVE_USER_NAME = 'RECEIVE_USER_NAME'
@@ -28,8 +30,6 @@ const receiveUserName = (name) => {
 }
 
 // define fetcher
-import axios from 'axios'
-
 const fetchUserName = (requestGenerator) => {
   return async (dispatch, getState) => {
     const { accessToken } = getState().userInfo.accessToken

@@ -15,11 +15,11 @@ const redirect_url = 'http://localhost:3000/';
 
 const Header = () => {
   const state = useSelector((state) => state);
-  // console.log(state);
-  const { userName, accessToken } = useSelector((state) => ({
-    userName: state.loginReducer.userName,
-    accessToken: state.loginReducer.accessToken,
-  }));
+  // // console.log(state);
+  // const { userName, accessToken } = useSelector((state) => ({
+  //   userName: state.userInfo.userName,
+  //   accessToken: state.userInfo.accessToken,
+  // }));
 
   // console.log(userName);
   // console.log(accessToken);
@@ -44,7 +44,7 @@ const Header = () => {
           <a
             href={`https://github.com/login/oauth/authorize?scope=user&client_id=${client_id}&redirect_uri=${redirect_url}`}
           >
-            {userName || 'Sign in'}
+            {/*userName || */'Sign in'}
           </a>
         </li>
       </ul>

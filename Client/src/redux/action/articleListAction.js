@@ -8,6 +8,8 @@
  * axios 입력을 작성하지 않음
  ********************************************/
 
+import axios from 'axios'
+
 // define action
 export const REQUEST_ARTICLE_LIST = 'REQUEST_ARTICLE_LIST'
 export const RECEIVE_ARTICLE_LIST = 'RECEIVE_ARTICLE_LIST'
@@ -28,8 +30,6 @@ const receiveArticleList = (list) => {
 }
 
 // define fetcher
-import axios from 'axios'
-
 const fetchArticleList = (filter, requestGenerator) => {
   return async (dispatch) => {
     dispatch(requestArticleList())
