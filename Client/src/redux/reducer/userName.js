@@ -9,7 +9,7 @@ const defaultState = {
   userName: null,
 };
 
-export const userName = (state = defaultState, action) => {
+export default userName = (state = defaultState, action) => {
   switch (action.type) {
     case REQUEST_USER_NAME:
       return { ...state, isFetching: true };

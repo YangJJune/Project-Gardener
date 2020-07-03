@@ -3,11 +3,11 @@
 ************************/
 
 import {combineReducers} from 'redux'
-import {articleList} from './articleList'
-import {GHToken} from './GHToken'
-import {userName} from './userName'
+import articleList from './articleList'
+import GHToken from './GHToken'
+import userName from './userName'
 
-export const rootReducer = combineReducers({
+export default rootReducer = combineReducers({
   articleList,
   GHToken,
   userName,

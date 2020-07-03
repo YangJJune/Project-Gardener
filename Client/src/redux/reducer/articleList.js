@@ -9,7 +9,7 @@ const defaultState = {
   articleList: [],
 }
 
-export const articleList = 
+export default articleList = 
   function articleListReducer(state = defaultState, action){
     switch (action.type) {
       case REQUEST_ARTICLE_LIST:
