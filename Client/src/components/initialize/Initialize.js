@@ -7,6 +7,7 @@
  *******************************************/
 
 import React from 'react'
+import {Link} from 'react-router-dom'
 import GithubIcon from "mdi-react/GithubIcon"
 import './Initialize.scss'
 
@@ -15,13 +16,10 @@ function Initialize(){
       <div className="RegisterStyle">
         <div className="RegisterOutSideBox">
           <h1>처음 오셨군요!</h1>
-          <a
-            className="RegisterInSideBox"
-            href={``}
-          >
+          <Link to='' className="RegisterInSideBox">
             <GithubIcon />
             <span>정원 만들기</span>
-          </a>
+          </Link>
         </div>
       </div>
     )

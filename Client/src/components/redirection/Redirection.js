@@ -2,26 +2,21 @@
  * redirection을 관리하는 component
  * URL에 따라 적절한 redriection을 진행한다.
  * 
- * Login
- * QueryGitHub
- * QueryDB
+ * GetGHToken
+ * GetUserName
  *******************************************/
 
 import React from 'react'
-import {BrowserRouter, Switch, Route} from 'react-router-dom'
-import Login from './login/Login'
-import QueryDB from './queryDB/QueryDB'
-import QueryGitHub from './queryGitHub/QueryGitHub'
+import {Switch, Route} from 'react-router-dom'
+import GetGHToken from './GetGHToken'
+import GetUserName from './GetUserName'
 
 function Redirection({ match }) {
   return (
-    <BrowserRouter basename={match.url}>
-        <Switch>
-            <Route path='/login' component={Login} />
-            <Route path='/queryDB' component={QueryDB} />
-            <Route path='/queryGitHub' component={QueryGitHub} />
-        </Switch>
-    </BrowserRouter>
+    <Switch>
+        <Route path={match.path + '/getGHToken'} component={GetGHToken} />
+        <Route path={match.path + '/getUserName'} component={GetUserName} />
+    </Switch>
   )
 }
 

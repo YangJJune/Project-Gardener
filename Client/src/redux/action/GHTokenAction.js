@@ -40,7 +40,7 @@ const fetchGHToken = (code, requestGenerator) => {
 
 export const fetchGHTokenIfNotFetching = (code, requestGenerator) => {
   return (dispatch, getState) => {
-    if (getState().userInfo.isFetching === false) {
+    if (getState().GHToken.isFetching === false) {
       return dispatch(fetchGHToken(code, requestGenerator))
     }
   }

@@ -12,16 +12,15 @@
 
 import stringify from 'qs-stringify'
 
-const client_id = '543812307a50747ce819'
-const client_secret = 'abf2475dbb515a7d50590dc42e9d5517f0cee774'
+const client_id = '70ba6f9a8f3f794fcb4c'
+const client_secret = 'c2f3928f26a250f4ec24e1c3cb54016ec3c6929f'
 
 export const generateLoginUrl = 
   function generateLoginUrl(){
     return 'https://github.com/login/oauth/authorize?' 
       + stringify(
         {
-          client_id: '543812307a50747ce819',
-          redirect_url: 'http://localhost:3000/',
+          client_id: client_id,
           scope: 'repo',
           allow_signup: true,
         }
@@ -38,7 +37,6 @@ export const generateGHTokenRequest =
           client_id: client_id,
           client_secret: client_secret,
           code: code,
-          redirect_url: 'http://localhost:3000/',
       },
       headers: {
           accept: 'application/json',

@@ -41,7 +41,7 @@ const fetchUserName = (requestGenerator) => {
 
 export const fetchUserNameIfNotFetching = (requestGenerator) => {
   return (dispatch, getState) => {
-    if (getState().userInfo.isFetching === false) {
+    if (getState().userName.isFetching === false) {
       return dispatch(fetchUserName(requestGenerator));
     }
   }
