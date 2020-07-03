@@ -8,7 +8,7 @@
  ******************************************/
 
 import {REQUEST_USER_NAME, RECEIVE_USER_NAME } from '../action/userNameAction'
-import {defaultState} from '../action/defaultState'
+import {defaultState} from '../defaultState'
 
 export const userNameReducer = 
     function userNameReducer(state = defaultState, action){

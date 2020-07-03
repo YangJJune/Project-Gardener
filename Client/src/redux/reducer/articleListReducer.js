@@ -6,7 +6,7 @@
  ******************************************/
 
 import {REQUEST_ARTICLE_LIST, RECEIVE_ARTICLE_LIST} from '../action/articleListAction'
-import {defaultState} from '../action/defaultState'
+import {defaultState} from '../defaultState'
 
 export const articleListReducer = 
   function articleListReducer(state = defaultState, action){

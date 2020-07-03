@@ -8,7 +8,7 @@
  ******************************************/
 
  import {REQUEST_GH_TOKEN, RECEIVE_GH_TOKEN } from '../action/GHToeknAction'
- import {defaultState } from '../action/defaultState'
+ import {defaultState} from '../defaultState'
 
  export const GHTokenReducer = 
     function GHToeknReducer(state = defaultState, action){
