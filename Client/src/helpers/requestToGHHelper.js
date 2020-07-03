@@ -23,7 +23,7 @@ export const generateLoginUrl = () =>
     allow_signup: true,
   });
 
-const generateGHTokenRequest = (code) => ({
+const GHTokenRequestGenerator = (code) => ({
   baseURL: 'https://cors-anywhere.herokuapp.com/github.com/',
   url: '/login/oauth/access_token',
   method: 'post',
@@ -37,7 +37,7 @@ const generateGHTokenRequest = (code) => ({
   },
 });
 
-const generateUserNameRequest = (token) => ({
+const userNameRequestGenerator = (token) => ({
   baseURL: 'https://cors-anywhere.herokuapp.com/api.github.com',
   url: '/user',
   method: 'get',
@@ -48,12 +48,9 @@ const generateUserNameRequest = (token) => ({
 
 export const loginGH = function (code) {
   return async (dispatch) => {
-    await dispatch(fetchGHTokenIfNotFetching(code, generateGHTokenRequest))
-    await dispatch(fetchUserNameIfNotFetching(generateUserNameRequest))
-    /*
-    return dispatch(
-      fetchGHTokenIfNotFetching(code, generateGHTokenRequest)
-    ).then(() => dispatch(fetchUserNameIfNotFetching(generateUserNameRequest)));
-    */
+    await dispatch(fetchGHTokenIfNotFetching(code, GHTokenRequestGenerator))
+    await dispatch(fetchUserNameIfNotFetching(userNameRequestGenerator))
   };
 };
+
+const 
