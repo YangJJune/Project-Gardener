@@ -1,7 +1,7 @@
 /*********************************************
  * axios request obj를 generator하는 helper들을 정의
  * action file의 fetcher의 입력으로 사용한다.
- * 
+ *
  * generateLoginUrl  (axios가 아닌 url 제작 용)
  * generateGHTokenRequest
  * generateUserNameRequest
@@ -10,53 +10,34 @@
  * login scope의 적절성을 고민해봐야 함
  *********************************************/
 
-import stringify from 'qs-stringify'
+import stringify from 'qs-stringify';
 
-const client_id = '543812307a50747ce819'
-const client_secret = 'abf2475dbb515a7d50590dc42e9d5517f0cee774'
+const client_id = '543812307a50747ce819';
+const client_secret = 'abf2475dbb515a7d50590dc42e9d5517f0cee774';
 
-export const generateLoginUrl = 
-  function generateLoginUrl(){
-    return 'https://github.com/login/oauth/authorize?' 
-      + stringify(
-        {
-          client_id: '543812307a50747ce819',
-          redirect_url: 'http://localhost:3000/',
-          scope: 'repo',
-          allow_signup: true,
-        }
-      )
-    }
+export const generateLoginUrl = () =>
+  'https://github.com/login/oauth/authorize?' +
+  stringify({
+    client_id: '543812307a50747ce819',
+    redirect_url: 'http://localhost:3000/',
+    scope: 'repo',
+    allow_signup: true,
+  });
 
-export const generateGHTokenRequest = 
-  function generateGHTokenRequest(code){
-    return {
-      baseURL: 'https://github.com',
-      url: '/login/oauth/access_token',
-      method: 'post',
-      params:{
-          client_id: client_id,
-          client_secret: client_secret,
-          code: code,
-          redirect_url: 'http://localhost:3000/',
-      },
-      headers: {
-          accept: 'application/json',
-      }
-    }
-  }
-
-export const generateUserNameRequest = 
-  function generateUserNameRequest(accessToken){
-    return {
-      baseURL: 'https://api.github.com',
-      url: '/user',
-      method: 'get',
-      headers:{
-          Authorization: 'token ' + accessToken
-      }
-    }
-  }
+export const generateGHTokenRequest = (code) => ({
+  baseURL: 'https://github.com',
+  url: '/login/oauth/access_token',
+  method: 'post',
+  params: {
+    client_id: client_id,
+    client_secret: client_secret,
+    code: code,
+    redirect_url: 'http://localhost:3000/',
+  },
+  headers: {
+    accept: 'application/json',
+  },
+});
 
 /*
 const loginRequestBody = {
