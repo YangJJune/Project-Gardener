@@ -19,7 +19,7 @@ export const userName =
             case RECEIVE_USER_NAME:
                 return { ...state,
                     isFetching: false,
-                    userName: action.paylod.userName,
+                    userName: action.payload.userName,
                 }
             default:
                 return state

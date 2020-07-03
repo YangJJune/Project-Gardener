@@ -32,8 +32,8 @@ const receiveUserName = (name) => {
 // define fetcher
 const fetchUserName = (requestGenerator) => {
   return async (dispatch, getState) => {
-    const { accessToken } = getState().userInfo.accessToken
-    dispatch(requestUserName());
+    const accessToken = getState().GHToken.accessToken
+    dispatch(requestUserName())
     const userName = (await axios(requestGenerator(accessToken))).data.login
     dispatch(receiveUserName(userName))
   }

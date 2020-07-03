@@ -1,16 +1,16 @@
 /*********************************************
- * axios request obj를 generator하는 helper들을 정의
- * action file의 fetcher의 입력으로 사용한다.
+ * 각종 helper 모음
  *
- * generateLoginUrl  (axios가 아닌 url 제작 용)
- * generateGHTokenRequest
- * generateUserNameRequest
+ * generateLoginUrl
+ * loginGH
  * -------------------------------------------
  * XXX
  * login scope의 적절성을 고민해봐야 함
  *********************************************/
 
-import stringify from 'qs-stringify';
+import stringify from 'qs-stringify'
+import {fetchGHTokenIfNotFetching} from '../redux/action/GHTokenAction'
+import {fetchUserNameIfNotFetching} from '../redux/action/userNameAction'
 
 const client_id = '70ba6f9a8f3f794fcb4c'
 const client_secret = 'c2f3928f26a250f4ec24e1c3cb54016ec3c6929f'
@@ -23,8 +23,8 @@ export const generateLoginUrl = () =>
     allow_signup: true,
   });
 
-export const generateGHTokenRequest = (code) => ({
-  baseURL: 'https://github.com',
+const generateGHTokenRequest = (code) => ({
+  baseURL: 'https://cors-anywhere.herokuapp.com/github.com/',
   url: '/login/oauth/access_token',
   method: 'post',
   params: {
@@ -37,8 +37,8 @@ export const generateGHTokenRequest = (code) => ({
   },
 })
 
-export const generateUserNameRequest = (token) => ({
-  baseURL: 'https://api.github.com',
+const generateUserNameRequest = (token) => ({
+  baseURL: 'https://cors-anywhere.herokuapp.com/api.github.com',
   url: '/user',
   method: 'get',
   headers:{
@@ -46,47 +46,10 @@ export const generateUserNameRequest = (token) => ({
   },
 })
 
-/*
-const loginRequestBody = {
-  url: '/login/oauth/access_token',
-  method: 'post',
-  baseURL: 'https://cors-anywhere.herokuapp.com/github.com/',
-};
-export const loginMsgGenerator = (code) => ({
-  ...loginRequestBody,
-  params: {
-    client_id: '543812307a50747ce819',
-    client_secret: 'abf2475dbb515a7d50590dc42e9d5517f0cee774',
-    code: code,
-  },
-  headers: {
-    accept: 'application/json',
-  },
-});
-
-const userInfoRequestBody = {
-  baseURL: 'https://api.github.com',
-  url: '/user',
-  method: 'get',
-};
-
-export const userInfoMsgGenerator = (accessToken) => ({
-  ...userInfoRequestBody,
-  headers: {
-    Authorization: 'token ' + accessToken,
-  },
-});
-
-// TESTME: only network request for retriving [access_token] worked. also need to make sure when it comes to getting username.
-export const authorizeByFetching = ({
-  code,
-  loginMsgGenerator,
-  userInfoMsgGenerator,
-}) => {
-  return (dispatch) => {
-    return dispatch(fetchGHTokenIfNotFetching(code, loginMsgGenerator))
-      .then(() => dispatch(fetchUserInfoIfNotFetching(userInfoMsgGenerator)))
-      .catch((errorMsg) => console.error(errorMsg));
-  };
-};
-*/
+export const loginGH = 
+  function (code){
+    return (dispatch) => {
+      return dispatch(fetchGHTokenIfNotFetching(code, generateGHTokenRequest))
+        .then(() => dispatch(fetchUserNameIfNotFetching(generateUserNameRequest)))
+    }
+  }
