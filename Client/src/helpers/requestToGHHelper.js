@@ -66,7 +66,7 @@ export const reposListRequestGenerator = (token) => ({
 })
 
 export const createGardenRequestGenerator = (token) => ({
-  baseURL: 'https://cors-anywhere.herokuapp.com/api.github.com',
+  baseURL: 'https://api.github.com',
   url: `/user/repos`,
   method: 'post',
   data: {
