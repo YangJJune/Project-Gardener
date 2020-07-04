@@ -44,7 +44,7 @@ const PostCardList = ({ width }) => {
     dispatch(
       fetchArticleListIfNotFetching(emptyFilter, articleListRequestGenerator)
     );
-  });
+  }, []);
 
   const postList = posts
     .slice(0, posts.length)
