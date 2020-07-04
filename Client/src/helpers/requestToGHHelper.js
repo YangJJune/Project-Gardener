@@ -85,7 +85,7 @@ export const createFileRequestGenerator = ({
   method: 'put',
   data: {
     message: msg,
-    content: content,
+    content: btoa(content),
   },
   headers: {
     Accept: 'application/vnd.github.v3+json',
