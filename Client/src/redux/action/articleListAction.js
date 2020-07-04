@@ -33,8 +33,7 @@ const receiveArticleList = (list) => {
 const fetchArticleList = (filter, requestGenerator) => {
   return async (dispatch) => {
     dispatch(requestArticleList());
-    const list = (await axios(requestGenerator(filter))).data.articleList
-      .articleList;
+    const list = (await axios(requestGenerator(filter))).data.list;
     dispatch(receiveArticleList(list));
   };
 };

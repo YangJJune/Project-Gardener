@@ -45,12 +45,11 @@ router.get('/',
     await client.connect()
     const collection = client.db(dbName).collection(collectionName)
     const filter = (req.params.filter)?req.params.filter:{}
-    let list = collection.find(filter)
+    const articleList = await collection.find(filter).toArray()
 
-    res.status(200).send({
-      list : list
-    }) 
-    client.close()
+    res.status(200).json({
+      list : articleList
+    })
   })
 )
 
@@ -65,13 +64,12 @@ router.put('/:author/:title/:category',
       category : req.params.category,
       topic : (req.params.topic)?req.params.topic:[]
     }
-    let result = await collection.insertOne(article)
+    const result = await collection.insertOne(article)
 
-    res.status(200).send({
+    res.status(200).json({
       msg : 'successfully created',
       result : result
-    }) 
-    client.close()
+    })
   })
 )
 
@@ -80,13 +78,12 @@ router.delete('/:id',
   asyncCallbackWrapper(async function deleteArticle(req, res, next){
     await client.connect()
     const collection = client.db(dbName).collection(collectionName)
-    let result = await collection.deleteOne({_id : req.params.id})
+    const result = await collection.deleteOne({_id : req.params.id})
     
-    res.status(200).send({
+    res.status(200).json({
       msg : 'successfully deleted',
       result : result
     })
-    client.close()
   })
 )
 
