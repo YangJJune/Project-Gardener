@@ -18,7 +18,7 @@ app.use(cors())
 
 // routing to article router
 const { articleRouter } = require('./routes/articleRouter')
-app.all('/articles', articleRouter)
+app.use('/articles', articleRouter)
 
 // handle error
 const {catch404, errHandler} = require('./helper/helper')

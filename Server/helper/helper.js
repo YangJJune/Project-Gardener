@@ -9,7 +9,7 @@
 // 404 error catcher
 exports.catch404 = function catch404(req, res, next){
     // throw 404 error
-    let err = new Error('404 Occurred');
+    let err = new Error(`404 Occurred at ${req.originalUrl}`);
     err.status = 404;
     next(err);
 }
