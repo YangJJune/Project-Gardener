@@ -64,6 +64,7 @@ export const createGardenRequestGenerator = (token) => ({
     name: 'Garden',
     description: 'for Project-Garden OAuth app',
     private: true,
+    auto_init: true,
   },
   headers: {
     Accept: 'application/vnd.github.v3+json',
