@@ -25,7 +25,7 @@ const {catch404, errHandler} = require('./helper/helper')
 app.use([catch404, errHandler]);
 
 // listen
-const portNum = 3000;
+const portNum = 3030;
 app.listen(portNum, ()=>{
     console.log(`app listening on port ${portNum}!`);
 });
