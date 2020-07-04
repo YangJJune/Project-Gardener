@@ -44,7 +44,8 @@ const PostCardList = ({ width }) => {
     dispatch(
       fetchArticleListIfNotFetching(emptyFilter, articleListRequestGenerator)
     );
-  });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const postList = posts
     .slice(0, posts.length)
