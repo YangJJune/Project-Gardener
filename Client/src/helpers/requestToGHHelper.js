@@ -4,6 +4,7 @@
  * generateLoginUrl
  * loginGH
  * checkGardenRequestGenerator
+ * createGardenRequestGenerator
  * -------------------------------------------
  * XXX
  * login scope의 적절성을 고민해봐야 함
@@ -58,6 +59,21 @@ export const checkGardenRequestGenerator = (userName, token) => ({
   baseURL: 'https://cors-anywhere.herokuapp.com/api.github.com',
   url: '/repos/' + userName + '/Garden',
   method: 'get',
+  headers: {
+    Accept: 'application/vnd.github.v3+json',
+    Authorization: 'token ' + token,
+  },
+})
+
+export const createGardenRequestGenerator = (token) => ({
+  baseURL: 'https://cors-anywhere.herokuapp.com/api.github.com',
+  url: '/user/repos',
+  method: 'post',
+  data: {
+    name: 'Garden',
+    description: 'for Project-Garden OAuth app',
+    private: true,
+  },
   headers: {
     Accept: 'application/vnd.github.v3+json',
     Authorization: 'token ' + token,
