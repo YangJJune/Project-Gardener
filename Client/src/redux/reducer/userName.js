@@ -2,7 +2,7 @@
  * Git-hub user name과 관계된 reducer를 정의
  ******************************************/
 
-import { REQUEST_USER_NAME, RECEIVE_USER_NAME } from '../action/userNameAction';
+import { REQUEST_USER_NAME, RECEIVE_USER_NAME } from '../action/loginAction';
 
 const defaultState = {
   isFetching: false,
@@ -20,4 +20,4 @@ const userName = (state = defaultState, action) => {
   }
 };
 
-export default userName
+export default userName;
