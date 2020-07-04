@@ -7,6 +7,11 @@
  * for delayed redirecion, use history not Redirect
  * 만약 Redirect 컴포넌트로 delayed redirection이 
  * 가능한 방법을 찾는다면 알려주길 바람.
+ * 
+ * XXX
+ * garden을 check하는데 사용한 방법은 error를 수반함.
+ * 아래의 방법으로 교체하는게 좋아 보임
+ * https://docs.github.com/en/rest/reference/repos#create-a-repository-for-the-authenticated-user
  *******************************************/
 
 import React, { useEffect } from 'react';
@@ -25,7 +30,7 @@ export default function CheckGarden({ history }) {
     }catch{
         garden = null
     }
-    console.log(garden)
+    
     if(garden)
         history.replace('/')
     else
