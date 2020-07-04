@@ -10,7 +10,8 @@
   },
   "devDependencies": {},
   "scripts": {
-    "start": "node app.js"
+    "start": "node app.js",
+    "db": "mongo.exe mongodb://localhost:27017"
   },
   "repository": {
     "type": "git",
