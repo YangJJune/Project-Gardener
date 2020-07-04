@@ -37,7 +37,7 @@ const PostCardList = ({ width }) => {
   // const columnCount = getColumnCount(width);
 
   const posts = useSelector((state) => state.articleList.articleList);
-  const dispatch = useDispatch(); //this won't change on renders
+  const dispatch = useDispatch(); //the reference won't change on renders
 
   useEffect(() => {
     const emptyFilter = {};
