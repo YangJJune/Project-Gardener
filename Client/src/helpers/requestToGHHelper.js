@@ -72,7 +72,6 @@ export const createGardenRequestGenerator = (token) => ({
 });
 
 export const createFileRequestGenerator = ({
-<<<<<<< HEAD
   author,
   category,
   title,
@@ -81,26 +80,11 @@ export const createFileRequestGenerator = ({
   token,
 }) => ({
   baseURL: 'https://api.github.com',
-  url: `/repos/${author}/Garden/contents/${category}${title}.md`,
+  url: `/repos/${author}/Garden/contents/${category}/${title}.md`,
   method: 'put',
   data: {
     message: msg,
     content: content,
-=======
-  author, category, title, msg, content, token
-  }) => (
-  {
-    baseURL: 'https://api.github.com',
-    url: `/repos/${author}/Garden/contents/${category}/${title}.md`,
-    method: 'put',
-    data: {
-      message: msg,
-      content: content,
-    },
-    headers: {
-      Accept: 'application/vnd.github.v3+json',
-      Authorization: 'token ' + token,
->>>>>>> d80ec2be4f029839a95621d1e37d316d595a136e
   },
   headers: {
     Accept: 'application/vnd.github.v3+json',
