@@ -85,7 +85,7 @@ export const createFileRequestGenerator = ({
   }) => (
   {
     baseURL: 'https://api.github.com',
-    url: `/repos/${author}/Garden/contents/${category}${title}.md`,
+    url: `/repos/${author}/Garden/contents/${category}/${title}.md`,
     method: 'put',
     data: {
       message: msg,
