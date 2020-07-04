@@ -2,16 +2,14 @@
  * Article을 작성을 위한 Component
  * 'submit'버튼 클릭 시 'submitArticle' event를 trigger한다.
  * -------------------------------
- * note
- * html form tag와, action attribute를 적극 활용해보자
+ * XXX
+ * 작동 했다 안 했다 반복 중...
  * 
  * TODO
  * Styling
- *
+ * 
  * TODO
- * Article update, delete 기능 구현
- * (update시 sha params 필요,)
- * (delete시 sha params이 필요하고, HTTP method는 DELETE)
+ * DB(REST API SERVER)에 정보 저장
  ********************************/
 
 import React, {useState} from 'react'
@@ -21,7 +19,7 @@ import {createFileRequestGenerator} from '../../../helpers/requestToGHHelper'
 
 export default function Writer ({history}) {
   const userName = useSelector((state) => state.userName.userName)
-  const GHToken = useSelector((state) => state.GHToken.GHToken)
+  const GHToken = useSelector((state) => state.GHToken.accessToken)
 
   const [articleTitle, setArticleTitle] = useState('')
   const [articleCategory, setArticleCategory] = useState('')
@@ -32,8 +30,9 @@ export default function Writer ({history}) {
       // create new file in Git-hub rpos
       await axios(createFileRequestGenerator({
         userName: userName, 
-        path: articleCategory, 
-        msg: 'from Project-Garden', 
+        category: articleCategory,
+        fileName: `${articleTitle}.md`,
+        msg: `from Project-Garden at ${new Date.now()}`, 
         content: articleContent,
         token: GHToken,
       }))

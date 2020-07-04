@@ -80,9 +80,9 @@ export const createGardenRequestGenerator = (token) => ({
   },
 })
 
-export const createFileRequestGenerator = ({userName, path, msg, content, token}) => ({
-  baseURL: 'https://cors-anywhere.herokuapp.com/api.github.com',
-  url: `/repos/${userName}/Garden/contents/${path}`,
+export const createFileRequestGenerator = ({userName, category, fileName, msg, content, token}) => ({
+  baseURL: 'https://api.github.com',
+  url: `/repos/${userName}/Garden/contents/${category}/${fileName}`,
   method: 'put',
   data: {
     message: msg,
