@@ -4,6 +4,7 @@
  * 404 catcher
  * err handler
  * async callback wrapper
+ * originalUrlLogger
  ********************************************/
 
 // 404 error catcher
@@ -35,3 +36,8 @@ exports.asyncCallbackWrapper = function asyncCallbackWrapper(callback){
             })
     };
 };
+
+exports.originalUrlLogger = function originalUrlLogger(req, res, next){
+    console.log(`get request ${req.method} ${req.originalUrl}`)
+    next()
+}
