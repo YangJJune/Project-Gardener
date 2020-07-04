@@ -12,8 +12,6 @@
  *********************************************/
 
 import stringify from 'qs-stringify';
-import { fetchGHTokenIfNotFetching } from '../redux/action/GHTokenAction';
-import { fetchUserNameIfNotFetching } from '../redux/action/userNameAction';
 
 const client_id = '70ba6f9a8f3f794fcb4c';
 const client_secret = 'c2f3928f26a250f4ec24e1c3cb54016ec3c6929f';
@@ -25,7 +23,7 @@ export const generateLoginUrl = () =>
     allow_signup: true,
   })}`;
 
-const GHTokenRequestGenerator = (code) => ({
+export const GHTokenRequestGenerator = (code) => ({
   baseURL: 'https://cors-anywhere.herokuapp.com/github.com/',
   url: `/login/oauth/access_token`,
   method: 'post',
@@ -39,7 +37,7 @@ const GHTokenRequestGenerator = (code) => ({
   },
 });
 
-const userNameRequestGenerator = (token) => ({
+export const userNameRequestGenerator = (token) => ({
   baseURL: 'https://cors-anywhere.herokuapp.com/api.github.com',
   url: `/user`,
   method: 'get',
@@ -47,13 +45,6 @@ const userNameRequestGenerator = (token) => ({
     Authorization: 'token ' + token,
   },
 });
-
-export const loginGH = function loginGH(code) {
-  return async (dispatch) => {
-    await dispatch(fetchGHTokenIfNotFetching(code, GHTokenRequestGenerator))
-    await dispatch(fetchUserNameIfNotFetching(userNameRequestGenerator))
-  };
-};
 
 export const reposListRequestGenerator = (token) => ({
   baseURL: 'https://cors-anywhere.herokuapp.com/api.github.com',
@@ -63,7 +54,7 @@ export const reposListRequestGenerator = (token) => ({
     Accept: 'application/vnd.github.v3+json',
     Authorization: 'token ' + token,
   },
-})
+});
 
 export const createGardenRequestGenerator = (token) => ({
   baseURL: 'https://api.github.com',
@@ -78,21 +69,25 @@ export const createGardenRequestGenerator = (token) => ({
     Accept: 'application/vnd.github.v3+json',
     Authorization: 'token ' + token,
   },
-})
+});
 
 export const createFileRequestGenerator = ({
-  author, category, title, msg, content, token
-  }) => (
-  {
-    baseURL: 'https://api.github.com',
-    url: `/repos/${author}/Garden/contents/${category}${title}.md`,
-    method: 'put',
-    data: {
-      message: msg,
-      content: content,
-    },
-    headers: {
-      Accept: 'application/vnd.github.v3+json',
-      Authorization: 'token ' + token,
+  author,
+  category,
+  title,
+  msg,
+  content,
+  token,
+}) => ({
+  baseURL: 'https://api.github.com',
+  url: `/repos/${author}/Garden/contents/${category}${title}.md`,
+  method: 'put',
+  data: {
+    message: msg,
+    content: content,
   },
-})
+  headers: {
+    Accept: 'application/vnd.github.v3+json',
+    Authorization: 'token ' + token,
+  },
+});
