@@ -37,15 +37,15 @@ const PostCardList = ({ width }) => {
   // const columnCount = getColumnCount(width);
 
   const posts = useSelector((state) => state.articleList.articleList);
-  const dispatch = useDispatch();
-  const emptyFilter = {};
-  // XXX: error occurs when you use this
+  const dispatch = useDispatch(); //this won't change on renders
+
   useEffect(() => {
+    const emptyFilter = {};
+
     dispatch(
       fetchArticleListIfNotFetching(emptyFilter, articleListRequestGenerator)
     );
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [dispatch]);
 
   const postList = posts
     .slice(0, posts.length)
