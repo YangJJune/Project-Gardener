@@ -31,6 +31,6 @@ export default function CheckGarden({ history }) {
   });
 
   return (
-    <h3>loading...</h3>
+    <h3>checking Garden...</h3>
   );
 }

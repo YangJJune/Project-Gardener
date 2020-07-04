@@ -28,6 +28,6 @@ export default function LoginGH({ location, history }) {
   return (
     // redirect to get user information page
     //<Redirect to='/' />
-    <h3>loading...</h3>
+    <h3>logging in...</h3>
   );
 }
