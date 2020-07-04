@@ -15,6 +15,7 @@
  * REST API가 정상 작동하지 않음
  * auth user의 repos 목록을 반환하고,
  * repos를 create하지 않음
+ * https://docs.github.com/en/rest/reference/repos#create-a-repository-for-the-authenticated-user
  *******************************************/
 
 import React, { useEffect } from 'react';
