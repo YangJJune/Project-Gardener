@@ -11,11 +11,6 @@
  * 어쩌면, 이런 이유 때문에 git-hub의
  * auth web-flow가 중간에 한 번의
  * redirection을 거칠수도 있다.
- * 
- * XXX
- * test필요
- * 작성자(이산)은 이미 Garden을 가지고 있어서
- * (삭제하고 하면 되지만) test를 하지 않음
  *******************************************/
 
 import React from 'react'

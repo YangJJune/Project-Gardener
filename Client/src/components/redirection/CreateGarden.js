@@ -9,6 +9,12 @@
  * XXX
  * 해당 page의 URL이 initialize에서 노출됨
  * 보안상의 문제가 생길 수 있음
+ * 
+ * XXX
+ * test해본 결과.....
+ * REST API가 정상 작동하지 않음
+ * auth user의 repos 목록을 반환하고,
+ * repos를 create하지 않음
  *******************************************/
 
 import React, { useEffect } from 'react';
@@ -20,7 +26,10 @@ export default function CreateGarden({ history }) {
   const GHToken = useSelector((state) => state.GHToken.accessToken)
 
   const createGardenAndRdirect = async function createGardenAndRdirect(){
-    await axios(createGardenRequestGenerator(GHToken))
+    // 정상 작동 안 함
+    const response = (await axios(createGardenRequestGenerator(GHToken))).data
+    console.log(response)
+    
     history.replace('/')
   }
   
