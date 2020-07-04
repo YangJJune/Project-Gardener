@@ -16,6 +16,7 @@ import React, {useState} from 'react'
 import {useSelector} from 'react-redux'
 import axios from 'axios'
 import {createFileRequestGenerator} from '../../../helpers/requestToGHHelper'
+import {createArticleRequestGenerator} from '../../../helpers/requestToDBHelper'
 
 export default function Writer ({history}) {
   const userName = useSelector((state) => state.userName.userName)
@@ -27,18 +28,20 @@ export default function Writer ({history}) {
 
   const writeArticleAndMove = 
     async function writeArticleAndMove(){
-      // create new file in Git-hub rpos
-      await axios(createFileRequestGenerator({
-        userName: userName, 
+      const article = {
+        author: userName, 
         category: articleCategory,
-        fileName: `${articleTitle}.md`,
-        msg: `from Project-Garden at ${new Date.now()}`, 
+        title: articleTitle,
+        msg: `from Project-Garden`, 
         content: articleContent,
         token: GHToken,
-      }))
+      }
+
+      // create new file in Git-hub rpos
+      await axios(createFileRequestGenerator(article))
 
       // insert new article to DB (REST API Server)
-      // await axios()
+      await axios(createArticleRequestGenerator(article))
 
       // move to main page
       history.push('/')
