@@ -16,9 +16,12 @@ const app = express()
 const cors = require('cors')
 app.use(cors())
 
+const {originalUrlLogger} = require('./helper/helper')
+app.use([originalUrlLogger])
+
 // routing to article router
 const { articleRouter } = require('./routes/articleRouter')
-app.all('/articles', articleRouter)
+app.use('/articles', articleRouter)
 
 // handle error
 const {catch404, errHandler} = require('./helper/helper')

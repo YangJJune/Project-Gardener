@@ -36,13 +36,14 @@ const {asyncCallbackWrapper, catch404, errHandler} = require('../helper/helper')
 const MongoClient = require('mongodb').MongoClient;
 const url = 'mongodb://localhost:27017';
 const dbName = 'Project-Gardener';
+const collectionName = 'Article';
 const client = new MongoClient(url, {useUnifiedTopology: true});
 
 // send article list
 router.get('/', 
   asyncCallbackWrapper(async function createArticleList(req, res, next){
     await client.connect()
-    const collection = client.db(dbName).collection(Article)
+    const collection = client.db(dbName).collection(collectionName)
     const filter = (req.params.filter)?req.params.filter:{}
     let list = collection.find(filter)
 
@@ -57,7 +58,7 @@ router.get('/',
 router.put('/:author/:title/:category', 
   asyncCallbackWrapper(async function createArticle(req, res, next){ 
     await client.connect() 
-    const collection = client.db(dbName).collection(Article)
+    const collection = client.db(dbName).collection(collectionName)
     const article = {
       author : req.params.author,
       title : req.params.title,
@@ -78,7 +79,7 @@ router.put('/:author/:title/:category',
 router.delete('/:id',
   asyncCallbackWrapper(async function deleteArticle(req, res, next){
     await client.connect()
-    const collection = client.db(dbName).collection(Article)
+    const collection = client.db(dbName).collection(collectionName)
     let result = await collection.deleteOne({_id : req.params.id})
     
     res.status(200).json({

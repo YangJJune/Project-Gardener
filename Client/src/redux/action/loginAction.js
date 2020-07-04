@@ -1,18 +1,18 @@
 /********************************************
- * Git-hub access token과 관계된
+ * Git-hub access token, user name과 관계된
  * action, action creator, fetcher를 정의
  *
- * redux-state의 userInfo field와 연관
- * --------------------------------------------
- * FIXME
- * axios 입력을 작성하지 않음
+ * loginGH
  ********************************************/
 
 import axios from 'axios';
-import {
-  GHTokenRequestGenerator,
-  userNameRequestGenerator,
+import { 
+  GHTokenRequestGenerator, userNameRequestGenerator,
 } from '../../helpers/requestToGHHelper';
+
+///////////////////////////////////////////////////////////////
+/////////////// associated with Git-hub token /////////////////
+///////////////////////////////////////////////////////////////
 
 // define action
 export const REQUEST_GH_TOKEN = 'REQUEST_GH_TOKEN';
@@ -42,7 +42,7 @@ const fetchGHToken = (code, requestGenerator) => {
   };
 };
 
-export const fetchGHTokenIfNotFetching = (code, requestGenerator) => {
+const fetchGHTokenIfNotFetching = (code, requestGenerator) => {
   return (dispatch, getState) => {
     if (getState().GHToken.isFetching === false) {
       return dispatch(fetchGHToken(code, requestGenerator));
@@ -50,15 +50,9 @@ export const fetchGHTokenIfNotFetching = (code, requestGenerator) => {
   };
 };
 
-/********************************************
- * Git-hub user name과 관계된
- * action, action creator, fetcher를 정의
- *
- * redux-state의 userInfo field와 연관
- * --------------------------------------------
- * FIXME
- * axios 입력을 작성하지 않음
- ********************************************/
+///////////////////////////////////////////////////////////////
+////////////////// associated with user name //////////////////
+///////////////////////////////////////////////////////////////
 
 // define action
 export const REQUEST_USER_NAME = 'REQUEST_USER_NAME';
@@ -89,7 +83,7 @@ const fetchUserName = (requestGenerator) => {
   };
 };
 
-export const fetchUserNameIfNotFetching = (requestGenerator) => {
+const fetchUserNameIfNotFetching = (requestGenerator) => {
   return (dispatch, getState) => {
     if (getState().userName.isFetching === false) {
       return dispatch(fetchUserName(requestGenerator));

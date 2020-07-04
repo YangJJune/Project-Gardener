@@ -9,7 +9,7 @@ const defaultState = {
   accessToken: null,
 };
 
-const GHToken = function GHToeknReducer(state = defaultState, action) {
+const GHToken = function GHTokenReducer(state = defaultState, action) {
   switch (action.type) {
     case REQUEST_GH_TOKEN:
       return { ...state, isFetching: true };
