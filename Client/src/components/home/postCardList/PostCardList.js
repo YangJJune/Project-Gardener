@@ -13,7 +13,7 @@ import PostCard from './postCard/PostCard';
 import './PostCardList.scss';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { generateArticleListRequest } from '../../../helpers/requestToDBHelper';
+import { articleListRequestGenerator } from '../../../helpers/requestToDBHelper';
 import { fetchArticleListIfNotFetching } from '../../../redux/action/articleListAction';
 
 // classify the number of postCards, horizontally,
@@ -42,7 +42,7 @@ const PostCardList = ({ width }) => {
   // XXX: error occurs when you use this
   useEffect(() => {
     dispatch(
-      fetchArticleListIfNotFetching(emptyFilter, generateArticleListRequest)
+      fetchArticleListIfNotFetching(emptyFilter, articleListRequestGenerator)
     );
   });
 
