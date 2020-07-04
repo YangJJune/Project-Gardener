@@ -3,7 +3,7 @@
  *
  * generateLoginUrl
  * loginGH
- * checkGardenRequestGenerator
+ * reposListRequestGenerator
  * createGardenRequestGenerator
  * -------------------------------------------
  * XXX
@@ -55,9 +55,9 @@ export const loginGH = function loginGH(code) {
   };
 };
 
-export const checkGardenRequestGenerator = (userName, token) => ({
+export const reposListRequestGenerator = (token) => ({
   baseURL: 'https://cors-anywhere.herokuapp.com/api.github.com',
-  url: '/repos/' + userName + '/Garden',
+  url: '/user/repos',
   method: 'get',
   headers: {
     Accept: 'application/vnd.github.v3+json',
