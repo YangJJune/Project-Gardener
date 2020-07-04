@@ -47,7 +47,7 @@ router.get('/',
     const filter = (req.params.filter)?req.params.filter:{}
     let list = collection.find(filter)
 
-    res.status(200).json({
+    res.status(200).send({
       list : list
     }) 
     client.close()
@@ -67,7 +67,7 @@ router.put('/:author/:title/:category',
     }
     let result = await collection.insertOne(article)
 
-    res.status(200).json({
+    res.status(200).send({
       msg : 'successfully created',
       result : result
     }) 
@@ -82,7 +82,7 @@ router.delete('/:id',
     const collection = client.db(dbName).collection(collectionName)
     let result = await collection.deleteOne({_id : req.params.id})
     
-    res.status(200).json({
+    res.status(200).send({
       msg : 'successfully deleted',
       result : result
     })
