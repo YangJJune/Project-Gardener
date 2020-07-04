@@ -14,23 +14,55 @@
  * (delete시 sha params이 필요하고, HTTP method는 DELETE)
  ********************************/
 
-import React from 'react';
-import { connect } from 'react-redux';
+import React, {useState} from 'react'
+import {useSelector} from 'react-redux'
+import axios from 'axios'
+import {createFileRequestGenerator} from '../../../helpers/requestToGHHelper'
 
-class Writer extends React.Component {
-  render() {
-    return (
-      <div>
-        <label for='title'>Title</label>
-        <input id='title' name='title' />
-        <label for='category'>Category</label>
-        <input id='category' name='category' />
-        <label for='content'>content</label>
-        <textarea id='content' row='50' cols='50' />
-        <input type='submit' value='Save' />
-      </div>
-    )
-  }
+export default function Writer ({history}) {
+  const userName = useSelector((state) => state.userName.userName)
+  const GHToken = useSelector((state) => state.GHToken.GHToken)
+
+  const [articleTitle, setArticleTitle] = useState('')
+  const [articleCategory, setArticleCategory] = useState('')
+  const [articleContent, setArticleContent] = useState('')
+
+  const writeArticleAndMove = 
+    async function writeArticleAndMove(){
+      // create new file in Git-hub rpos
+      await axios(createFileRequestGenerator({
+        userName: userName, 
+        path: articleCategory, 
+        msg: 'from Project-Garden', 
+        content: articleContent,
+        token: GHToken,
+      }))
+
+      // insert new article to DB (REST API Server)
+      // await axios()
+
+      // move to main page
+      history.push('/')
+    }
+  
+  return (
+    <div>
+      <label>Title</label>
+      <input 
+        type='text' value={articleTitle} required
+        onChange={(e)=> {setArticleTitle(e.target.value)}}
+      />
+      <label>Category</label>
+      <input 
+        type='text' value={articleCategory} required 
+        onChange={(e)=> {setArticleCategory(e.target.value)}}
+      />
+      <label>content</label>
+      <textarea 
+        value={articleContent} row='50' cols='50' required 
+        onChange={(e)=> {setArticleContent(e.target.value)}}
+      />
+      <button onClick={writeArticleAndMove}>Save</button>
+    </div>
+  )
 }
-
-export default connect(null, {  })(Writer)

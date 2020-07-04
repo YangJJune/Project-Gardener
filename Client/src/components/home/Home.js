@@ -16,8 +16,8 @@ function Home({ match }) {
     <section>
       <Header />
       <Switch>
-        <Route path={match.path + '/writer'} component={Writer} />
-        <Route path={match.path + '/viewer'} component={Viewer} />
+        <Route path={match.path + 'writer'} component={Writer} />
+        <Route path={match.path + 'viewer'} component={Viewer} />
         <Route path={match.path} component={PostCardList} />
       </Switch>
     </section>

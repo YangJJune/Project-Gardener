@@ -5,6 +5,7 @@
  * loginGH
  * reposListRequestGenerator
  * createGardenRequestGenerator
+ * createFileRequestGenerator
  * -------------------------------------------
  * XXX
  * login scope의 적절성을 고민해봐야 함
@@ -18,16 +19,15 @@ const client_id = '70ba6f9a8f3f794fcb4c';
 const client_secret = 'c2f3928f26a250f4ec24e1c3cb54016ec3c6929f';
 
 export const generateLoginUrl = () =>
-  'https://github.com/login/oauth/authorize?' +
-  stringify({
+  `https://github.com/login/oauth/authorize?${stringify({
     client_id: client_id,
     scope: 'repo',
     allow_signup: true,
-  });
+  })}`;
 
 const GHTokenRequestGenerator = (code) => ({
   baseURL: 'https://cors-anywhere.herokuapp.com/github.com/',
-  url: '/login/oauth/access_token',
+  url: `/login/oauth/access_token`,
   method: 'post',
   params: {
     client_id: client_id,
@@ -41,7 +41,7 @@ const GHTokenRequestGenerator = (code) => ({
 
 const userNameRequestGenerator = (token) => ({
   baseURL: 'https://cors-anywhere.herokuapp.com/api.github.com',
-  url: '/user',
+  url: `/user`,
   method: 'get',
   headers: {
     Authorization: 'token ' + token,
@@ -57,7 +57,7 @@ export const loginGH = function loginGH(code) {
 
 export const reposListRequestGenerator = (token) => ({
   baseURL: 'https://cors-anywhere.herokuapp.com/api.github.com',
-  url: '/user/repos',
+  url: `/user/repos`,
   method: 'get',
   headers: {
     Accept: 'application/vnd.github.v3+json',
@@ -67,12 +67,26 @@ export const reposListRequestGenerator = (token) => ({
 
 export const createGardenRequestGenerator = (token) => ({
   baseURL: 'https://cors-anywhere.herokuapp.com/api.github.com',
-  url: '/user/repos',
+  url: `/user/repos`,
   method: 'post',
   data: {
     name: 'Garden',
     description: 'for Project-Garden OAuth app',
     private: true,
+  },
+  headers: {
+    Accept: 'application/vnd.github.v3+json',
+    Authorization: 'token ' + token,
+  },
+})
+
+export const createFileRequestGenerator = ({userName, path, msg, content, token}) => ({
+  baseURL: 'https://cors-anywhere.herokuapp.com/api.github.com',
+  url: `/repos/${userName}/Garden/contents/${path}`,
+  method: 'put',
+  data: {
+    message: msg,
+    content: content,
   },
   headers: {
     Accept: 'application/vnd.github.v3+json',

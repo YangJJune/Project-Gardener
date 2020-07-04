@@ -11,6 +11,7 @@
 import React, { useEffect } from 'react';
 import PostCard from './postCard/PostCard';
 import './PostCardList.scss';
+import {Link} from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux';
 import { generateArticleListRequest } from '../../../helpers/requestToGHHelper';
 import { fetchArticleListIfNotFetching } from '../../../redux/action/articleListAction';
@@ -70,6 +71,9 @@ const PostCardList = ({ width }) => {
       }
       {postList} */}
       {'hello'}
+      <Link to='/writer'>
+        go to writer
+      </Link>
     </div>
   );
 };
