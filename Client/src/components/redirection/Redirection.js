@@ -8,11 +8,13 @@
 import React from 'react'
 import {Switch, Route} from 'react-router-dom'
 import LoginGH from './LoginGH'
+import CheckGarden from './CheckGarden'
 
 function Redirection({ match }) {
   return (
     <Switch>
         <Route path={match.path + '/loginGH'} component={LoginGH} />
+        <Route path={match.path + '/checkGarden'} component={CheckGarden} />
     </Switch>
   )
 }

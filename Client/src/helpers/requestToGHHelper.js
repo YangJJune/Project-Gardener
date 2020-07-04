@@ -3,6 +3,7 @@
  *
  * generateLoginUrl
  * loginGH
+ * checkGardenRequestGenerator
  * -------------------------------------------
  * XXX
  * login scope의 적절성을 고민해봐야 함
@@ -46,11 +47,19 @@ const userNameRequestGenerator = (token) => ({
   },
 });
 
-export const loginGH = function (code) {
+export const loginGH = function loginGH(code) {
   return async (dispatch) => {
     await dispatch(fetchGHTokenIfNotFetching(code, GHTokenRequestGenerator))
     await dispatch(fetchUserNameIfNotFetching(userNameRequestGenerator))
   };
 };
 
-const 
+export const checkGardenRequestGenerator = (userName, token) => ({
+  baseURL: 'https://cors-anywhere.herokuapp.com/api.github.com',
+  url: '/repos/' + userName + '/Garden',
+  method: 'get',
+  headers: {
+    Accept: 'application/vnd.github.v3+json',
+    Authorization: 'token ' + token,
+  },
+})
