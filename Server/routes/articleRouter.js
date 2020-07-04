@@ -50,6 +50,7 @@ router.get('/',
     res.status(200).json({
       list : articleList
     })
+    client.close()
   })
 )
 
@@ -70,6 +71,7 @@ router.put('/:author/:title/:category',
       msg : 'successfully created',
       result : result
     })
+    client.close()
   })
 )
 
@@ -84,6 +86,7 @@ router.delete('/:id',
       msg : 'successfully deleted',
       result : result
     })
+    client.close()
   })
 )
 
