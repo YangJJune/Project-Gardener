@@ -11,9 +11,9 @@
 import React, { useEffect } from 'react';
 import PostCard from './postCard/PostCard';
 import './PostCardList.scss';
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { generateArticleListRequest } from '../../../helpers/requestToGHHelper';
+import { generateArticleListRequest } from '../../../helpers/requestToDBHelper';
 import { fetchArticleListIfNotFetching } from '../../../redux/action/articleListAction';
 
 // classify the number of postCards, horizontally,
@@ -40,23 +40,23 @@ const PostCardList = ({ width }) => {
   const dispatch = useDispatch();
   const emptyFilter = {};
   // XXX: error occurs when you use this
-  // useEffect(() => {
-  //   dispatch(
-  //     fetchArticleListIfNotFetching(emptyFilter, generateArticleListRequest)
-  //   );
-  // });
+  useEffect(() => {
+    dispatch(
+      fetchArticleListIfNotFetching(emptyFilter, generateArticleListRequest)
+    );
+  });
 
-  // const postList = posts
-  //   .slice(0, posts.length)
-  //   .map((post) => (
-  //     <PostCard
-  //       title={post.title}
-  //       summary={post.category}
-  //       date={post.topic}
-  //       userName={post.author}
-  //       className='post-card'
-  //     />
-  //   ));
+  const postList = posts
+    .slice(0, posts.length)
+    .map((post) => (
+      <PostCard
+        title={post.title}
+        summary={post.category}
+        date={post.topic}
+        userName={post.author}
+        className='post-card'
+      />
+    ));
 
   return (
     <div className='post-card-list'>
@@ -70,10 +70,8 @@ const PostCardList = ({ width }) => {
         )
       }
       {postList} */}
-      {'hello'}
-      <Link to='/writer'>
-        go to writer
-      </Link>
+      {postList}
+      <Link to='/writer'>go to writer</Link>
     </div>
   );
 };

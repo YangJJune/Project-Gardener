@@ -11,8 +11,8 @@
 // otherwise, it'd be articles;
 // 주석 해석이 안 되는디.... 내가 맞게 해서한거라면 삭제해야 하나? - 이산
 export const generateArticleListRequest = (filter) => ({
-    baseURl: 'http://localhost:3000',
-    url: '/articles',
-    method: 'get',
-    params: filter,
-  });
+  baseURL: 'http://localhost:3000',
+  url: '/articles',
+  method: 'get',
+  params: filter,
+});
