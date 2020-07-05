@@ -10,19 +10,18 @@ import {Link} from 'react-router-dom'
 import {useSelector} from 'react-redux'
 
 export default function Viewer() {
-  const {article, isFetching} = useSelector((state) => state.selectedArticle)
-  const userName = useSelector((state) => state.userName.userName)
+  const {article, isFetching} = useSelector(state => state.selectedArticle)
+  const userName = useSelector(state => state.userName.userName)
   
-  const deleteArticleBtnGenerator = 
-    function deleteArticleBtnGenerator(){
-      if(userName === article.author){
-        return (
-          <Link to='/redirection/deleteArticle'>
-            delete article
-          </Link>
-        )
-      }
+  function deleteArticleBtnGenerator(){
+    if(userName === article.author){
+      return (
+        <Link to='/redirection/deleteArticle'>
+          delete article
+        </Link>
+      )
     }
+  }
 
   // now fetching content
   if(isFetching)
