@@ -4,9 +4,6 @@
  * -----------------------------------------------
  * TODO
  * logger를 적용시켜보자
- * 
- * XXX
- * articleRouter 기능 정상작동 확인 안 함
  *************************************************/
 
 const express = require('express')
@@ -20,15 +17,21 @@ const {originalUrlLogger} = require('./helper/helper')
 app.use([originalUrlLogger])
 
 // routing to article router
-const { articleRouter } = require('./routes/articleRouter')
+const {articleRouter} = require('./routes/articleRouter')
 app.use('/articles', articleRouter)
 
 // handle error
 const {catch404, errHandler} = require('./helper/helper')
 app.use([catch404, errHandler]);
 
-// listen
+// start server
 const portNum = 3030;
-app.listen(portNum, ()=>{
-    console.log(`app listening on port ${portNum}!`);
-});
+app.listen(portNum, 
+    async function initServer(){
+        // init articleRouter
+        await articleRouter.init()
+
+        console.log(`app listening on port ${portNum}!`)
+        console.log('-------------------------------------------------------')
+    }
+);
