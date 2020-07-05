@@ -15,9 +15,6 @@
  * 
  * TODO
  * update article을 추가해야 한다.
- * 
- * XXX
- * 사용자 인증을 거치지 않음
  *************************************************/
 
 const express = require('express')

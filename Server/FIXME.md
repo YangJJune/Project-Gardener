@@ -5,6 +5,7 @@
 - app.js
     - cors 한정
     - server start 단계에서의 error handler 추가
+    - 사용자 인증 필요
 - routes
     - articleRouter.js
         - assert 활용
