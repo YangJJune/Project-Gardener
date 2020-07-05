@@ -2,6 +2,11 @@
  * mongodb Article collection에 접속하는 router
  * 반드시 init()을 호출해서 
  * db에 connect하고 사용해야 한다.
+ * 
+ * router
+ * GET /
+ * PUT /:author/:title/:category
+ * DELETE /:id
  * -----------------------------------------------
  * FIXME
  * create article list에서 filter의 topic이 일치하는

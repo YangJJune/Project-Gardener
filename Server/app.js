@@ -1,6 +1,9 @@
 /*************************************************
  * espress app 객체를 관리하는 file
  * HTTP request에 따른 reponse를 정의한다.
+ * 
+ * router
+ * ALL /articles
  *************************************************/
 
 const express = require('express')
