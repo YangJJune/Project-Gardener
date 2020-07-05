@@ -2,13 +2,11 @@
  * Git-hub request와 관련된 helper 모음
  *
  * generateLoginUrl
- * loginGH
+ * GHTokenRequestGenerator
+ * userNameRequestGenerator
  * reposListRequestGenerator
  * createGardenRequestGenerator
  * createFileRequestGenerator
- * -------------------------------------------
- * XXX
- * login scope의 적절성을 고민해봐야 함
  *********************************************/
 
 import stringify from 'qs-stringify';
@@ -37,26 +35,26 @@ export const GHTokenRequestGenerator = (code) => ({
   },
 });
 
-export const userNameRequestGenerator = (token) => ({
+export const userNameRequestGenerator = (accessToken) => ({
   baseURL: 'https://cors-anywhere.herokuapp.com/api.github.com',
   url: `/user`,
   method: 'get',
   headers: {
-    Authorization: 'token ' + token,
+    Authorization: 'token ' + accessToken,
   },
 });
 
-export const reposListRequestGenerator = (token) => ({
+export const reposListRequestGenerator = (accessToken) => ({
   baseURL: 'https://cors-anywhere.herokuapp.com/api.github.com',
   url: `/user/repos`,
   method: 'get',
   headers: {
     Accept: 'application/vnd.github.v3+json',
-    Authorization: 'token ' + token,
+    Authorization: 'token ' + accessToken,
   },
 });
 
-export const createGardenRequestGenerator = (token) => ({
+export const createGardenRequestGenerator = (accessToken) => ({
   baseURL: 'https://api.github.com',
   url: `/user/repos`,
   method: 'post',
@@ -68,18 +66,13 @@ export const createGardenRequestGenerator = (token) => ({
   },
   headers: {
     Accept: 'application/vnd.github.v3+json',
-    Authorization: 'token ' + token,
+    Authorization: 'token ' + accessToken,
   },
 });
 
-export const createFileRequestGenerator = ({
-  author,
-  category,
-  title,
-  msg,
-  content,
-  token,
-}) => ({
+export const createFileRequestGenerator = ({ 
+    author, category, title, msg, content, accessToken 
+  }) => ({
   baseURL: 'https://api.github.com',
   url: `/repos/${author}/Garden/contents/${category}/${title}.md`,
   method: 'put',
@@ -89,6 +82,6 @@ export const createFileRequestGenerator = ({
   },
   headers: {
     Accept: 'application/vnd.github.v3+json',
-    Authorization: 'token ' + token,
+    Authorization: 'token ' + accessToken,
   },
 });

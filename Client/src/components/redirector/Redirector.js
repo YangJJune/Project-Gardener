@@ -2,7 +2,10 @@
  * redirection을 관리하는 component
  * URL에 따라 적절한 redriection을 진행한다.
  * 
- * LoginGH
+ * router
+ * /loginGH
+ * /checkGarden
+ * /createGarden
  *******************************************/
 
 import React from 'react'
@@ -11,7 +14,7 @@ import LoginGH from './LoginGH'
 import CheckGarden from './CheckGarden'
 import CreateGarden from './CreateGarden'
 
-function Redirection({ match }) {
+function Redirector({ match }) {
   return (
     <Switch>
         <Route path={match.path + '/loginGH'} component={LoginGH} />
@@ -21,4 +24,4 @@ function Redirection({ match }) {
   )
 }
 
-export default Redirection
+export default Redirector

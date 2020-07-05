@@ -1,0 +1,19 @@
+# Client Side FIXME
+
+- index
+    - git-hub login scope의 적절성 확인 
+    (현재 `scope`: `repo`)
+    - 사용자에게 노출되는 Redirection page가 있음
+- readme
+    - 목차 추가
+    - routing 구조 명시
+    - redux state 명시
+- redux
+    - ducks pattern 적용
+    - store.js
+        - compose 활용
+        - reduer에 Reducer접미 적용 여부 결정
+- components
+    - redirector
+        - LoginGH.js
+            - URL의 code가 일정시간 노출됨

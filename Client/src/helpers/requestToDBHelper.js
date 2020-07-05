@@ -3,30 +3,25 @@
  *
  * articleListRequestGenerator
  * createArticleRequestGenerator
- * -------------------------------------------
- * XXX
- * login scope의 적절성을 고민해봐야 함
  *********************************************/
 
-const baseUrl = 'http://localhost:3030';
+const serverUrl = 'http://localhost:3030';
 
 export const articleListRequestGenerator = (filter) => ({
-  baseURL: baseUrl,
+  baseURL: serverUrl,
   url: '/articles',
   method: 'get',
   params: filter,
 });
 
-export const createArticleRequestGenerator = ({
-  author,
-  title,
-  category,
-  topic,
-}) => ({
-  baseURL: baseUrl,
-  url: `/articles/${author}/${title}/${category}`,
-  method: 'put',
-  params: {
-    topic: topic,
-  },
-});
+export const createArticleRequestGenerator = ({ 
+    author, title, category, topic 
+  }) => ({
+    baseURL: serverUrl,
+    url: `/articles/${author}/${title}/${category}`,
+    method: 'put',
+    params: {
+      topic: topic,
+    },
+  }
+)
