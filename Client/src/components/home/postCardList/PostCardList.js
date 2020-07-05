@@ -6,12 +6,17 @@
  * posts, with 등의 정보를 porps로 부모로부터 받는게
  * 아닌, redux에 connect해서 redux state로부터
  * 가져와야 한다.
+ *
  *************************************************/
-import React from 'react';
+import React, { useEffect } from 'react';
 import PostCard from './postCard/PostCard';
 import './PostCardList.scss';
+import { Link } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { articleListRequestGenerator } from '../../../helpers/requestToDBHelper';
+import { fetchArticleListIfNotFetching } from '../../../redux/action/articleListAction';
 
-// classify the number of postCards, horizontally, 
+// classify the number of postCards, horizontally,
 // into common display resolutions depending on screen display width.
 const getColumnCount = (width) => {
   const xWide = 1920;
@@ -27,20 +32,32 @@ const getColumnCount = (width) => {
   return 5;
 };
 
-const PostCardList = ({ posts, width }) => {
+const PostCardList = ({ width }) => {
   // // this scope has access to jsx
   // const columnCount = getColumnCount(width);
-  // const postList = posts
-  //   .slice(0, posts.length)
-  //   .map((post) => (
-  //     <PostCard
-  //       title={post.title}
-  //       summary={post.summary}
-  //       date={post.date}
-  //       userName={post.userName}
-  //       className='post-card'
-  //     />
-  //   ));
+
+  const posts = useSelector((state) => state.articleList.articleList);
+  const dispatch = useDispatch(); //the reference won't change on renders
+
+  useEffect(() => {
+    const emptyFilter = {};
+
+    dispatch(
+      fetchArticleListIfNotFetching(emptyFilter, articleListRequestGenerator)
+    );
+  }, [dispatch]);
+
+  const postList = posts
+    .slice(0, posts.length)
+    .map((post) => (
+      <PostCard
+        title={post.title}
+        summary={post.category}
+        date={post.topic}
+        userName={post.author}
+        className='post-card'
+      />
+    ));
 
   return (
     <div className='post-card-list'>
@@ -54,7 +71,8 @@ const PostCardList = ({ posts, width }) => {
         )
       }
       {postList} */}
-      hello world
+      {postList}
+      <Link to='/writer'>go to writer</Link>
     </div>
   );
 };

@@ -2,35 +2,69 @@
  * Article을 작성을 위한 Component
  * 'submit'버튼 클릭 시 'submitArticle' event를 trigger한다.
  * -------------------------------
- * note
- * html form tag와, action attribute를 적극 활용해보자
+ * XXX
+ * 작동 했다 안 했다 반복 중...
  * 
  * TODO
  * Styling
- *
+ * 
  * TODO
- * Article update, delete 기능 구현
- * (update시 sha params 필요,)
- * (delete시 sha params이 필요하고, HTTP method는 DELETE)
+ * DB(REST API SERVER)에 정보 저장
  ********************************/
 
-import React from 'react';
-import { connect } from 'react-redux';
+import React, {useState} from 'react'
+import {useSelector} from 'react-redux'
+import axios from 'axios'
+import {createFileRequestGenerator} from '../../../helpers/requestToGHHelper'
+import {createArticleRequestGenerator} from '../../../helpers/requestToDBHelper'
 
-class Writer extends React.Component {
-  render() {
-    return (
-      <div>
-        <label for='title'>Title</label>
-        <input id='title' name='title' />
-        <label for='category'>Category</label>
-        <input id='category' name='category' />
-        <label for='content'>content</label>
-        <textarea id='content' row='50' cols='50' />
-        <input type='submit' value='Save' />
-      </div>
-    )
-  }
+export default function Writer ({history}) {
+  const userName = useSelector((state) => state.userName.userName)
+  const GHToken = useSelector((state) => state.GHToken.accessToken)
+
+  const [articleTitle, setArticleTitle] = useState('')
+  const [articleCategory, setArticleCategory] = useState('')
+  const [articleContent, setArticleContent] = useState('')
+
+  const writeArticleAndMove = 
+    async function writeArticleAndMove(){
+      const article = {
+        author: userName, 
+        category: articleCategory,
+        title: articleTitle,
+        msg: `from Project-Garden`, 
+        content: articleContent,
+        token: GHToken,
+      }
+
+      // create new file in Git-hub rpos
+      await axios(createFileRequestGenerator(article))
+
+      // insert new article to DB (REST API Server)
+      await axios(createArticleRequestGenerator(article))
+
+      // move to main page
+      history.push('/')
+    }
+  
+  return (
+    <div>
+      <label>Title</label>
+      <input 
+        type='text' value={articleTitle} required
+        onChange={(e)=> {setArticleTitle(e.target.value)}}
+      />
+      <label>Category</label>
+      <input 
+        type='text' value={articleCategory} required 
+        onChange={(e)=> {setArticleCategory(e.target.value)}}
+      />
+      <label>content</label>
+      <textarea 
+        value={articleContent} row='50' cols='50' required 
+        onChange={(e)=> {setArticleContent(e.target.value)}}
+      />
+      <button onClick={writeArticleAndMove}>Save</button>
+    </div>
+  )
 }
-
-export default connect(null, {  })(Writer)

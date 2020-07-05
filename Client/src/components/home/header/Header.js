@@ -7,37 +7,20 @@
  *************************************************/
 import React from 'react';
 import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { generateLoginUrl } from '../../../helpers/requestToGHHelper';
 import './Header.scss';
 import MagnifyIcon from 'mdi-react/MagnifyIcon';
-import stringify from 'qs-stringify'
 
-const client_id = '543812307a50747ce819';
-const redirect_url = 'http://localhost:3000/';
-
-const Header = () => {
-  const state = useSelector((state) => state);
-  // // console.log(state);
-  // const { userName, accessToken } = useSelector((state) => ({
-  //   userName: state.userInfo.userName,
-  //   accessToken: state.userInfo.accessToken,
-  // }));
-
-  // console.log(userName);
-  // console.log(accessToken);
-
-  const loginUrl = 'https://github.com/login/oauth/authorize?' + stringify({
-    client_id: '543812307a50747ce819',
-    redirect_url: 'http://localhost:3000/',
-    scope: 'repo',
-    allow_signup: true,
-  })
+export const Header = () => {
+  const userName = useSelector((state) => state.userName.userName);
 
   return (
     <nav>
       <ul className='nav big'>
         <li className='app-name'>PRJ:GRDNER</li>
         <li>
-          <a href=''>Home</a>
+          <Link to='/'>Home</Link>
         </li>
         <li>
           <label className='search-label'>Search: </label>
@@ -49,9 +32,7 @@ const Header = () => {
           </div>
         </li>
         <li>
-          <a href={loginUrl}>
-            {/*userName || */'Sign in'}
-          </a>
+          <a href={generateLoginUrl()}>{userName || 'Sign in'}</a>
         </li>
       </ul>
     </nav>

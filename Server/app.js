@@ -16,16 +16,19 @@ const app = express()
 const cors = require('cors')
 app.use(cors())
 
+const {originalUrlLogger} = require('./helper/helper')
+app.use([originalUrlLogger])
+
 // routing to article router
 const { articleRouter } = require('./routes/articleRouter')
-app.all('/articles', articleRouter)
+app.use('/articles', articleRouter)
 
 // handle error
 const {catch404, errHandler} = require('./helper/helper')
 app.use([catch404, errHandler]);
 
 // listen
-const portNum = 3000;
+const portNum = 3030;
 app.listen(portNum, ()=>{
     console.log(`app listening on port ${portNum}!`);
 });
