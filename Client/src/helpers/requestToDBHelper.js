@@ -24,7 +24,7 @@ export const createArticleRequestGenerator = ({
   topic,
 }) => ({
   baseURL: baseUrl,
-  url: `/articles/${author}/${title}.md/${category}`,
+  url: `/articles/${author}/${title}/${category}`,
   method: 'put',
   params: {
     topic: topic,
