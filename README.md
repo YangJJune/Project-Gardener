@@ -29,11 +29,13 @@ git-hub API: REST API
 /*****************************
  * file에 대한 개괄적인 설명
  * 
- * helper file일 경우 export 목록을 기입한다
- * helper1
- * helper2
- * helper3
- * ...
+ * helper일 경우 export 목록을,
+ * router일 경우 route 목록을 나열한다.
+ * ex)
+ * helper
+ * export fun 1
+ * export fun 2
+ * export fun 3
  * ---------------------------
  * 발견된 error, 고려할 만 한 개선 사항
  * 혹은 추가적인 논의 사항 등을 기록해 둔다
