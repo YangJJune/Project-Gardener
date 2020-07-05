@@ -3,14 +3,6 @@
  * 반드시 init()을 호출해서 
  * db에 connect하고 사용해야 한다.
  * -----------------------------------------------
- * note
- * 내장 assert 함수를 사용하지 않고 있다.
- * 관련 공부를 하고 활용하는것이 좋아보인다.
- * const assert = require('assert')
- * 
- * note
- * DB에서 ID와 Date를 자동 생성하는 부분을 공부해야 한다.
- * 
  * FIXME
  * create article list에서 filter의 topic이 일치하는
  * item만 가져오게 디자인되어 있다. topic을 포함하는
@@ -19,9 +11,7 @@
  * ['js']로 검색하면 ['js', 'study']는 검색되지 않는다.
  * 
  * TODO
- * article collection에 date field를 추가해야 한다.
- * update시 $currentDate의 값이 js Date.now()와 
- * 같은 format인지 확인할 수 없어 추가하지 않았다.
+ * article collection에 date field를 추가
  * 
  * TODO
  * update article을 추가해야 한다.
@@ -36,23 +26,23 @@ const {asyncCallbackWrapper, catch404, errHandler} = require('../helper/helper')
 
 // associated with mongo db
 const MongoClient = require('mongodb').MongoClient;
-const url = 'mongodb://localhost:27017';
+const dbUrl = 'mongodb://localhost:27017';
 const dbName = 'Project-Gardener';
 const collectionName = 'Article';
-const client = new MongoClient(url, {useUnifiedTopology: true});
+const mongo = new MongoClient(dbUrl, {useUnifiedTopology: true});
 
 // article router initializer
 router.init = 
   async function initArticleRouter(){
     // connect to mongo db
-    await client.connect()
-    console.log(`connect with ${url}`)
+    await mongo.connect()
+    console.log(`connect with ${dbUrl}`)
   }
 
 // send article list
 router.get('/', 
   asyncCallbackWrapper(async function createArticleList(req, res, next){
-    const collection = client.db(dbName).collection(collectionName)
+    const collection = mongo.db(dbName).collection(collectionName)
     const filter = (req.params.filter)?req.params.filter:{}
     const articleList = await collection.find(filter).toArray()
 
@@ -65,7 +55,7 @@ router.get('/',
 // create new article
 router.put('/:author/:title/:category', 
   asyncCallbackWrapper(async function createArticle(req, res, next){ 
-    const collection = client.db(dbName).collection(collectionName)
+    const collection = mongo.db(dbName).collection(collectionName)
     const article = {
       author : req.params.author,
       title : req.params.title,
@@ -84,7 +74,7 @@ router.put('/:author/:title/:category',
 // delete article
 router.delete('/:id',
   asyncCallbackWrapper(async function deleteArticle(req, res, next){
-    const collection = client.db(dbName).collection(collectionName)
+    const collection = mongo.db(dbName).collection(collectionName)
     const result = await collection.deleteOne({_id : req.params.id})
     
     res.status(200).json({
