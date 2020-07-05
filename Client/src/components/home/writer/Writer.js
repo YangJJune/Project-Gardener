@@ -17,6 +17,7 @@ import {useSelector} from 'react-redux'
 import axios from 'axios'
 import {createFileRequestGenerator} from '../../../helpers/requestToGHHelper'
 import {createArticleRequestGenerator} from '../../../helpers/requestToDBHelper'
+import './Writer.scss'
 
 export default function Writer ({history}) {
   const userName = useSelector((state) => state.userName.userName)
@@ -37,7 +38,7 @@ export default function Writer ({history}) {
         token: GHToken,
       }
 
-      // create new file in Git-hub rpos
+      // create new file in Git-hub repos
       await axios(createFileRequestGenerator(article))
 
       // insert new article to DB (REST API Server)
@@ -48,20 +49,22 @@ export default function Writer ({history}) {
     }
   
   return (
-    <div>
+    <div class="write-post">
       <label>Title</label>
-      <input 
+      <input
+        class="text-box" 
         type='text' value={articleTitle} required
         onChange={(e)=> {setArticleTitle(e.target.value)}}
       />
       <label>Category</label>
-      <input 
+      <input
+        class="text-box"  
         type='text' value={articleCategory} required 
         onChange={(e)=> {setArticleCategory(e.target.value)}}
       />
       <label>content</label>
       <textarea 
-        value={articleContent} row='50' cols='50' required 
+        value={articleContent} required 
         onChange={(e)=> {setArticleContent(e.target.value)}}
       />
       <button onClick={writeArticleAndMove}>Save</button>
