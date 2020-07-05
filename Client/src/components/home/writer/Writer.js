@@ -2,9 +2,6 @@
  * Article을 작성을 위한 Component
  * 'submit'버튼 클릭 시 'submitArticle' event를 trigger한다.
  * -------------------------------
- * XXX
- * 작동 했다 안 했다 반복 중...
- * 
  * TODO
  * Styling
  * 
