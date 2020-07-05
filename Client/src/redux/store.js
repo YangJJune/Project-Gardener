@@ -2,16 +2,18 @@
  * redux의 store를 정의하는 파일
  *************************************************/
 
-import { createStore, applyMiddleware, compose} from 'redux'
+import { createStore, combineReducers, applyMiddleware, compose} from 'redux'
 import thunkMiddleware from 'redux-thunk'
-import rootReducer from './reducer/rootReducer'
+import articleList from './reducer/articleList'
+import GHToken from './reducer/GHToken'
+import userName from './reducer/userName'
 
 //enable debugging
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 // export store
 const store = createStore(
-  rootReducer,
+  combineReducers({articleList, GHToken, userName}),
   composeEnhancers(applyMiddleware(thunkMiddleware))
 )
 

@@ -64,11 +64,11 @@ const requestUserName = () => {
     type: REQUEST_USER_NAME,
   };
 };
-const receiveUserName = (name) => {
+const receiveUserName = (userName) => {
   return {
     type: RECEIVE_USER_NAME,
     payload: {
-      userName: name,
+      userName: userName,
     },
   };
 };

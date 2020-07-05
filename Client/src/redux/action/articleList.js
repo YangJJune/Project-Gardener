@@ -1,11 +1,6 @@
 /********************************************
  * article list와 관계된
  * action, action creator, fetcher를 정의
- *
- * redux-state의 articleList field와 연관
- * --------------------------------------------
- * FIXME
- * axios 입력을 작성하지 않음
  ********************************************/
 
 import axios from 'axios';
@@ -20,11 +15,11 @@ const requestArticleList = () => {
     type: REQUEST_ARTICLE_LIST,
   };
 };
-const receiveArticleList = (list) => {
+const receiveArticleList = (articleList) => {
   return {
     type: RECEIVE_ARTICLE_LIST,
     payload: {
-      articleList: list,
+      articleList: articleList,
     },
   };
 };
@@ -33,8 +28,8 @@ const receiveArticleList = (list) => {
 const fetchArticleList = (filter, requestGenerator) => {
   return async (dispatch) => {
     dispatch(requestArticleList());
-    const list = (await axios(requestGenerator(filter))).data.list;
-    dispatch(receiveArticleList(list));
+    const articleList = (await axios(requestGenerator(filter))).data.list;
+    dispatch(receiveArticleList(articleList));
   };
 };
 

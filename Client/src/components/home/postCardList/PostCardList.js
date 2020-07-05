@@ -14,7 +14,7 @@ import './PostCardList.scss';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { articleListRequestGenerator } from '../../../helpers/requestToDBHelper';
-import { fetchArticleListIfNotFetching } from '../../../redux/action/articleListAction';
+import { fetchArticleListIfNotFetching } from '../../../redux/action/articleList';
 
 // classify the number of postCards, horizontally,
 // into common display resolutions depending on screen display width.

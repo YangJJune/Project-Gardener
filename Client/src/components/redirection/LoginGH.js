@@ -11,7 +11,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import qs from 'qs';
-import { loginGH } from '../../redux/action/loginAction';
+import { loginGH } from '../../redux/action/login';
 
 export default function LoginGH({ location, history }) {
   const dispatch = useDispatch();
