@@ -1,12 +1,9 @@
 /*********************************
  * Article을 작성을 위한 Component
- * 'submit'버튼 클릭 시 'submitArticle' event를 trigger한다.
+ * 'save'버튼 클릭 시 'submitArticle' event를 trigger한다.
  * -------------------------------
  * TODO
  * Styling
- * 
- * TODO
- * DB(REST API SERVER)에 정보 저장
  ********************************/
 
 import React, {useState} from 'react'
