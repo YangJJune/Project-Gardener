@@ -28,7 +28,7 @@ export const userInfoMsgGenerator = (accessToken) => ({
   },
 });
 
-// TESTME: only network request for retriving [access_token] worked. also need to make sure when it comes to getting username.
+// TESTME: only network request for retrieving [access_token] worked. also need to make sure when it comes to getting username.
 export const authorizeByFetching = ({
   code,
   loginMsgGenerator,
