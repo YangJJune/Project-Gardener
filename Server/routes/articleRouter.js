@@ -1,5 +1,7 @@
 /*************************************************
  * mongodb Article collection에 접속하는 router
+ * 반드시 init()을 호출해서 
+ * db에 connect하고 사용해야 한다.
  * -----------------------------------------------
  * note
  * 내장 assert 함수를 사용하지 않고 있다.
@@ -39,10 +41,17 @@ const dbName = 'Project-Gardener';
 const collectionName = 'Article';
 const client = new MongoClient(url, {useUnifiedTopology: true});
 
+// article router initializer
+router.init = 
+  async function initArticleRouter(){
+    // connect to mongo db
+    await client.connect()
+    console.log(`connect with ${url}`)
+  }
+
 // send article list
 router.get('/', 
   asyncCallbackWrapper(async function createArticleList(req, res, next){
-    await client.connect()
     const collection = client.db(dbName).collection(collectionName)
     const filter = (req.params.filter)?req.params.filter:{}
     const articleList = await collection.find(filter).toArray()
@@ -50,14 +59,12 @@ router.get('/',
     res.status(200).json({
       list : articleList
     })
-    client.close()
   })
 )
 
 // create new article
 router.put('/:author/:title/:category', 
   asyncCallbackWrapper(async function createArticle(req, res, next){ 
-    await client.connect() 
     const collection = client.db(dbName).collection(collectionName)
     const article = {
       author : req.params.author,
@@ -71,14 +78,12 @@ router.put('/:author/:title/:category',
       msg : 'successfully created',
       result : result
     })
-    client.close()
   })
 )
 
 // delete article
 router.delete('/:id',
   asyncCallbackWrapper(async function deleteArticle(req, res, next){
-    await client.connect()
     const collection = client.db(dbName).collection(collectionName)
     const result = await collection.deleteOne({_id : req.params.id})
     
@@ -86,7 +91,6 @@ router.delete('/:id',
       msg : 'successfully deleted',
       result : result
     })
-    client.close()
   })
 )
 
