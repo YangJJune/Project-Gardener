@@ -46,22 +46,22 @@ export default function Writer ({history}) {
     }
   
   return (
-    <div class="write-post">
+    <div className="write-post">
       <label><b>Title</b></label>
       <input
-        class="text-box" 
+        className="text-box" 
         type='text' value={articleTitle} required
         onChange={(e)=> {setArticleTitle(e.target.value)}}
       />
       <label><b>Category</b></label>
       <input
-        class="text-box"  
+        className="text-box"  
         type='text' value={articleCategory} required 
         onChange={(e)=> {setArticleCategory(e.target.value)}}
       />
       <label><b>Content</b></label>
       <textarea
-        class="textArea-box" 
+        className="textArea-box" 
         value={articleContent} required 
         onChange={(e)=> {setArticleContent(e.target.value)}}
       />
