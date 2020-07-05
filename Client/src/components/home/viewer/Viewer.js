@@ -24,33 +24,26 @@ export default function Viewer() {
       }
     }
 
-  const viewGenerator =
-    function viewGenerator(){
-      if(isFetching)
-        return (
-          <h3>loading...</h3>
-        )
-
-      return (
+  // now fetching content
+  if(isFetching)
+    return <h3>loading...</h3>
+  else 
+    return (
+      <div>
+        <h2>{article.title}</h2>
         <div>
-          <h2>{article.title}</h2>
-          <div>
-            {article.author}
-          </div>
-          <div>
-            {article.category}
-          </div>
-          <div>
-            {article.topic}
-          </div>
-          <div>
-            {article.content}
-          </div>
-          {deleteArticleBtnGenerator()}
-        </div>)
-    }
-
-  return (
-    viewGenerator()
-  )
+          {article.author}
+        </div>
+        <div>
+          {article.category}
+        </div>
+        <div>
+          {article.topic}
+        </div>
+        <div>
+          {article.content}
+        </div>
+        {deleteArticleBtnGenerator()}
+      </div>
+    )
 }

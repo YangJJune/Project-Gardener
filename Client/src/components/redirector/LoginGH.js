@@ -21,7 +21,5 @@ export default function LoginGH({ location, history }) {
     loginAndRedirect()
   })
 
-  return (
-    <h3>logging in...</h3>
-  );
+  return <h3>logging in...</h3>
 }
