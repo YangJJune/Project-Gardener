@@ -19,3 +19,6 @@
     - redirector
         - LoginGH.js
             - URL의 code가 일정시간 노출됨
+- heleprs
+    - requestToGHHleper.js
+        - btoa의 binary string이 요구됨 (한글 불가)
